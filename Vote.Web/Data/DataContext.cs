@@ -12,6 +12,8 @@
 
         public DbSet<City> Cities { get; set; }
 
+        public DbSet<Event> Events { get; set; }
+
 
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
