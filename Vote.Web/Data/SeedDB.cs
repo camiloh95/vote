@@ -110,7 +110,7 @@
         private async Task CheckRolesAsync()
         {
             await this.userHelper.CheckRoleAsync("Admin");
-            await this.userHelper.CheckRoleAsync("Customer");
+            await this.userHelper.CheckRoleAsync("Voter");
         }
     }
 }
