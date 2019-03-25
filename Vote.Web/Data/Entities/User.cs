@@ -27,7 +27,7 @@
 
         [Display(Name = "Birthdate")]
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd hh:mm tt}", ApplyFormatInEditMode = false)]
-        public DateTime OrderDate { get; set; }
+        public DateTime Birthdate { get; set; }
 
         public int CityId { get; set; }
 

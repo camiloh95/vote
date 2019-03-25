@@ -5,7 +5,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public class RegisterNewUserViewModel
+    public class ChangeUserViewModel
     {
         [Required]
         [Display(Name = "First Name")]
@@ -15,17 +15,13 @@
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
-        [Required]
-        [DataType(DataType.EmailAddress)]
-        public string Username { get; set; }
-
         [Display(Name = "Occupation")]
         [MaxLength(50, ErrorMessage = "The field {0} only can contain {1} characters length.")]
         public string Occupation { get; set; }
 
         [Display(Name = "Gender")]
         public string Gender { get; set; }
-        
+
         [Display(Name = "Stratum")]
         public int Stratum { get; set; }
 
@@ -44,13 +40,5 @@
         public int CountryId { get; set; }
 
         public IEnumerable<SelectListItem> Countries { get; set; }
-
-        [Required]
-        [MinLength(6)]
-        public string Password { get; set; }
-
-        [Required]
-        [Compare("Password")]
-        public string Confirm { get; set; }
     }
 }
