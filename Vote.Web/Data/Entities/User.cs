@@ -17,7 +17,7 @@
 
         public int Stratum { get; set; }
 
-        public int Gender { get; set; }
+        public string Gender { get; set; }
 
         [Display(Name = "Email Confirmed")]
         public override bool EmailConfirmed { get => base.EmailConfirmed; set => base.EmailConfirmed = value; }

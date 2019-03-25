@@ -62,7 +62,7 @@
                 LastName = lastName,
                 Occupation = "Engineer",
                 Stratum = 2,
-                Gender = 1,
+                Gender = "Male",
                 Email = userName,
                 UserName = userName,
                 CityId = this.context.Countries.FirstOrDefault().Cities.FirstOrDefault().Id,

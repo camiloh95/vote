@@ -1,6 +1,7 @@
 ﻿namespace Shop.Web.Models
 {
     using Microsoft.AspNetCore.Mvc.Rendering;
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
@@ -18,11 +19,18 @@
         [DataType(DataType.EmailAddress)]
         public string Username { get; set; }
 
-        [MaxLength(100, ErrorMessage = "The field {0} only can contain {1} characters length.")]
-        public string Address { get; set; }
+        [Display(Name = "Occupation")]
+        public string Occupation { get; set; }
 
-        [MaxLength(20, ErrorMessage = "The field {0} only can contain {1} characters length.")]
-        public string PhoneNumber { get; set; }
+        [Display(Name = "Gender")]
+        public string Gender { get; set; }
+        
+        [Display(Name = "Stratum")]
+        public int Stratum { get; set; }
+
+        [Display(Name = "Birthdate")]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime Birthdate { get; set; }
 
         [Display(Name = "City")]
         [Range(1, int.MaxValue, ErrorMessage = "You must select a city.")]

@@ -98,8 +98,10 @@
                         FirstName = model.FirstName,
                         LastName = model.LastName,
                         Email = model.Username,
+                        Stratum = model.Stratum,
+                        Gender = model.Gender,
+                        Occupation = model.Occupation,
                         UserName = model.Username,
-                        PhoneNumber = model.PhoneNumber,
                         CityId = model.CityId,
                         City = city
                     };
