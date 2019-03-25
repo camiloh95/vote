@@ -1,4 +1,4 @@
-﻿namespace Shop.Web.Data.Entities
+﻿    namespace Shop.Web.Data.Entities
 {
     using System;
     using System.ComponentModel.DataAnnotations;
@@ -25,7 +25,6 @@
         [Display(Name = "Full Name")]
         public string FullName { get { return $"{this.FirstName} {this.LastName}"; } }
 
-        [Required]
         [Display(Name = "Birthdate")]
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd hh:mm tt}", ApplyFormatInEditMode = false)]
         public DateTime OrderDate { get; set; }
