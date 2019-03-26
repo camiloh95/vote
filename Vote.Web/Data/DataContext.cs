@@ -1,8 +1,8 @@
-﻿namespace Shop.Web.Data
+﻿namespace Vote.Web.Data
 {
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
-    using Shop.Web.Data.Entities;
+    using Data.Entities;
     using System.Linq;
 
     public class DataContext : IdentityDbContext<User>

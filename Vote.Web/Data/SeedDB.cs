@@ -1,4 +1,4 @@
-﻿namespace Shop.Web.Data
+﻿namespace Vote.Web.Data
 {
     using System;
     using System.Linq;
@@ -33,7 +33,7 @@
 
             await this.CheckUser("acevedo@gmail.com", "Katherin", "Acevedo", "Voter");
             await this.CheckUser("ramirez@gmail.com", "Saul", "Ramirez", "Voter");
-            var user = await this.CheckUser("camilocadavid95@gmail.com", "Camilo", "Hernández", "Admin");
+            await this.CheckUser("camilocadavid95@gmail.com", "Camilo", "Hernández", "Admin");
         }
 
         private async Task<User> CheckUser(string userName, string firstName, string lastName, string role)
@@ -62,7 +62,7 @@
                 LastName = lastName,
                 Occupation = "Engineer",
                 Stratum = 2,
-                Gender = "Male",
+                Gender = 1,
                 Email = userName,
                 UserName = userName,
                 CityId = this.context.Countries.FirstOrDefault().Cities.FirstOrDefault().Id,

@@ -1,4 +1,4 @@
-﻿namespace Shop.Web.Helpers
+﻿namespace Vote.Web.Helpers
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;

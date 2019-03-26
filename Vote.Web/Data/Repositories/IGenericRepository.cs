@@ -1,4 +1,4 @@
-﻿namespace Shop.Web.Data
+﻿namespace Vote.Web.Data
 {
     using System.Linq;
     using System.Threading.Tasks;

@@ -1,4 +1,4 @@
-﻿namespace Vote.Web
+﻿    namespace Vote.Web
 {
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -8,9 +8,9 @@
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using Shop.Web.Data;
-    using Shop.Web.Data.Entities;
-    using Shop.Web.Helpers;
+    using Data;
+    using Data.Entities;
+    using Helpers;
     using Microsoft.IdentityModel.Tokens;
     using System.Text;
 

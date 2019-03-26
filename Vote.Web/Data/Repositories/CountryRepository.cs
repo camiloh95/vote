@@ -1,4 +1,4 @@
-﻿namespace Shop.Web.Data
+﻿namespace Vote.Web.Data
 {
     using System.Collections.Generic;
     using System.Linq;

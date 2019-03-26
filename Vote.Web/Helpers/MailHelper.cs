@@ -1,4 +1,4 @@
-﻿namespace Shop.Web.Helpers
+﻿namespace Vote.Web.Helpers
 {
     using MailKit.Net.Smtp;
     using Microsoft.Extensions.Configuration;

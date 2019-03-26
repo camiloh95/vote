@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Shop.Web.Data;
+using Vote.Web.Data;
 
 namespace Vote.Web.Migrations
 {
@@ -191,6 +191,8 @@ namespace Vote.Web.Migrations
 
                     b.Property<int>("AccessFailedCount");
 
+                    b.Property<DateTime>("Birthdate");
+
                     b.Property<int>("CityId");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -220,8 +222,6 @@ namespace Vote.Web.Migrations
                         .HasMaxLength(256);
 
                     b.Property<string>("Occupation");
-
-                    b.Property<DateTime>("OrderDate");
 
                     b.Property<string>("PasswordHash");
 

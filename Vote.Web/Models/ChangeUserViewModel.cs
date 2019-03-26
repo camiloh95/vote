@@ -1,4 +1,4 @@
-﻿namespace Shop.Web.Models
+﻿namespace Vote.Web.Models
 {
     using Microsoft.AspNetCore.Mvc.Rendering;
     using System;
@@ -20,13 +20,16 @@
         public string Occupation { get; set; }
 
         [Display(Name = "Gender")]
-        public string Gender { get; set; }
+        public int Gender { get; set; }
+
+        public IEnumerable<SelectListItem> Genders { get; set; }
 
         [Display(Name = "Stratum")]
         public int Stratum { get; set; }
 
+        public IEnumerable<SelectListItem> Stratums { get; set; }
+
         [Display(Name = "Birthdate")]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Birthdate { get; set; }
 
         [Display(Name = "City")]

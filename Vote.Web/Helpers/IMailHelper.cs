@@ -1,4 +1,4 @@
-﻿namespace Shop.Web.Helpers
+﻿namespace Vote.Web.Helpers
 {
     public interface IMailHelper
     {

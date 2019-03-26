@@ -1,4 +1,4 @@
-﻿namespace Shop.Web.Models
+﻿namespace Vote.Web.Models
 {
     using System.ComponentModel.DataAnnotations;
 

@@ -1,4 +1,4 @@
-﻿namespace Shop.Web
+﻿namespace Vote.Web
 {
     using Data;
     using Microsoft.AspNetCore;

@@ -1,6 +1,7 @@
-﻿namespace Shop.Web.Controllers
+﻿namespace Vote.Web.Controllers
 {
     using System;
+    using System.Collections.Generic;
     using System.IdentityModel.Tokens.Jwt;
     using System.Linq;
     using System.Security.Claims;
@@ -11,10 +12,11 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.Extensions.Configuration;
     using Microsoft.IdentityModel.Tokens;
     using Models;
-    using Shop.Web.Data;
+    using Data;
 
     public class AccountController : Controller
     {
@@ -77,7 +79,9 @@
             var model = new RegisterNewUserViewModel
             {
                 Countries = this.countryRepository.GetComboCountries(),
-                Cities = this.countryRepository.GetComboCities(0)
+                Cities = this.countryRepository.GetComboCities(0),
+                Stratums = this.GetStratums(),
+                Genders = this.GetGenders()
             };
 
             return this.View(model);
@@ -121,7 +125,7 @@
                         token = myToken
                     }, protocol: HttpContext.Request.Scheme);
 
-                    this.mailHelper.SendMail(model.Username, "Shop Email confirmation", $"<h1>Shop Email Confirmation</h1>" +
+                    this.mailHelper.SendMail(model.Username, "Vote Email confirmation", $"<h1>Vote Email Confirmation</h1>" +
                         $"To allow the user, " +
                         $"plase click in this link:</br></br><a href = \"{tokenLink}\">Confirm Email</a>");
                     this.ViewBag.Message = "The instructions to allow your user has been sent to email.";
@@ -143,6 +147,10 @@
             {
                 model.FirstName = user.FirstName;
                 model.LastName = user.LastName;
+                model.Gender = user.Gender;
+                model.Stratum = user.Stratum;
+                model.Birthdate = user.Birthdate;
+                model.Occupation = user.Occupation;
 
                 var city = await this.countryRepository.GetCityAsync(user.CityId);
                 if (city != null)
@@ -158,8 +166,8 @@
                 }
             }
 
-            model.Cities = this.countryRepository.GetComboCities(model.CountryId);
-            model.Countries = this.countryRepository.GetComboCountries();
+            model.Genders = this.GetGenders();
+            model.Stratums = this.GetStratums();
             return this.View(model);
         }
 
@@ -175,6 +183,10 @@
 
                     user.FirstName = model.FirstName;
                     user.LastName = model.LastName;
+                    user.Gender = model.Gender;
+                    user.Stratum = model.Stratum;
+                    user.Birthdate = model.Birthdate;
+                    user.Occupation = model.Occupation;
                     user.CityId = model.CityId;
                     user.City = city;
 
@@ -193,6 +205,11 @@
                     this.ModelState.AddModelError(string.Empty, "User no found.");
                 }
             }
+
+            model.Genders = this.GetGenders();
+            model.Stratums = this.GetStratums();
+            model.Cities = this.countryRepository.GetComboCities(model.CountryId);
+            model.Countries = this.countryRepository.GetComboCountries();
 
             return this.View(model);
         }
@@ -430,6 +447,31 @@
 
             await this.userHelper.DeleteUserAsync(user);
             return this.RedirectToAction(nameof(Index));
+        }
+
+        public IEnumerable<SelectListItem> GetStratums()
+        {
+            var list = new List<SelectListItem>();
+            list.Insert(0, new SelectListItem{ Value = "0", Text = "(Select a stratum...)"});
+            list.Insert(1, new SelectListItem{ Value = "1", Text = "1"});
+            list.Insert(2, new SelectListItem{ Value = "2", Text = "2"});
+            list.Insert(3, new SelectListItem{ Value = "3", Text = "3"});
+            list.Insert(4, new SelectListItem{ Value = "4", Text = "4"});
+            list.Insert(5, new SelectListItem{ Value = "5", Text = "5"});
+            list.Insert(6, new SelectListItem{ Value = "6", Text = "6"});
+
+            return list;
+        }
+
+        public IEnumerable<SelectListItem> GetGenders()
+        {
+            var list = new List<SelectListItem>();
+            list.Insert(0, new SelectListItem { Value = "0", Text = "(Select a gender...)" });
+            list.Insert(1, new SelectListItem { Value = "1", Text = "Male" });
+            list.Insert(2, new SelectListItem { Value = "2", Text = "Female" });
+            list.Insert(3, new SelectListItem { Value = "3", Text = "Other" });
+
+            return list;
         }
     }
 }

@@ -10,8 +10,8 @@ using Vote.Web.Data;
 namespace Vote.Web.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20190324215251_UserModifications2")]
-    partial class UserModifications2
+    [Migration("20190326002906_UserGenderStratum")]
+    partial class UserGenderStratum
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -193,6 +193,8 @@ namespace Vote.Web.Migrations
 
                     b.Property<int>("AccessFailedCount");
 
+                    b.Property<DateTime>("Birthdate");
+
                     b.Property<int>("CityId");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -206,7 +208,7 @@ namespace Vote.Web.Migrations
                     b.Property<string>("FirstName")
                         .HasMaxLength(50);
 
-                    b.Property<int>("Gender");
+                    b.Property<string>("Gender");
 
                     b.Property<string>("LastName")
                         .HasMaxLength(50);
@@ -222,8 +224,6 @@ namespace Vote.Web.Migrations
                         .HasMaxLength(256);
 
                     b.Property<string>("Occupation");
-
-                    b.Property<DateTime>("OrderDate");
 
                     b.Property<string>("PasswordHash");
 

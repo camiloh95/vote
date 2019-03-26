@@ -1,4 +1,4 @@
-﻿namespace Shop.Web.Helpers
+﻿namespace Vote.Web.Helpers
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -6,7 +6,7 @@
     using Data.Entities;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
-    using Shop.Web.Models;
+    using Vote.Web.Models;
 
     public class UserHelper : IUserHelper
     {

@@ -1,4 +1,4 @@
-﻿namespace Shop.Web.Data.Entities
+﻿namespace Vote.Web.Data.Entities
 {
     public interface IEntity
     {
