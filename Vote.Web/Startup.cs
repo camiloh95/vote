@@ -10,6 +10,7 @@
     using Microsoft.Extensions.DependencyInjection;
     using Data;
     using Data.Entities;
+    using Data.Repositories;
     using Helpers;
     using Microsoft.IdentityModel.Tokens;
     using System.Text;
@@ -69,6 +70,7 @@
             services.AddTransient<SeedDb>();
             services.AddScoped<ICountryRepository, CountryRepository>();
             services.AddScoped<IUserHelper, UserHelper>();
+            services.AddScoped<IVoteEventRepository, VoteEventRepository>();
             services.AddScoped<IMailHelper, MailHelper>();
 
             services.ConfigureApplicationCookie(options =>

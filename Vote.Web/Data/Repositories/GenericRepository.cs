@@ -1,4 +1,4 @@
-﻿namespace Vote.Web.Data
+﻿namespace Vote.Web.Data.Repositories
 {
     using System.Linq;
     using System.Threading.Tasks;
