@@ -16,12 +16,10 @@
     public class VoteEventsController : Controller
     {
         private readonly IVoteEventRepository voteEventRepository;
-        private readonly IUserHelper userHelper;
 
         public VoteEventsController(IVoteEventRepository voteEventRepository, IUserHelper userHelper)
         {
             this.voteEventRepository = voteEventRepository;
-            this.userHelper = userHelper;
         }
 
         public IActionResult Index()
@@ -40,6 +38,8 @@
             if (voteEvent == null)
             {
                 return new NotFoundViewResult("VoteEventNotFound");
+            } else {
+                voteEvent.Candidates = await this.voteEventRepository.GetCandidatesAsync(id.Value);
             }
 
             return View(voteEvent);
@@ -103,13 +103,16 @@
         {
             if (id == null)
             {
-                return NotFound();
+                return new NotFoundViewResult("VoteEventNotFound");
             }
 
             var voteEvent = await this.voteEventRepository.GetByIdAsync(id.Value);
             if (voteEvent == null)
             {
-                return NotFound();
+                return new NotFoundViewResult("VoteEventNotFound");
+            }
+            else {
+                voteEvent.Candidates = await this.voteEventRepository.GetCandidatesAsync(id.Value);
             }
 
             var model = this.ToVoteEventViewModel(voteEvent);
@@ -125,13 +128,14 @@
                 Name = voteEvent.Name,
                 StartDate = voteEvent.StartDate,
                 EndDate = voteEvent.EndDate,
-                Description = voteEvent.Description,
+                Candidates = voteEvent.Candidates,
+                Description = voteEvent.Description
             };
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(VoteEventViewModel model)
+        public async Task<IActionResult> f(VoteEventViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -206,6 +210,104 @@
         public IActionResult VoteEventNotFound()
         {
             return this.View();
+        }
+
+        [Authorize(Roles = "Admin")]
+        public IActionResult CreateCandidate(int id)
+        {
+            var model = new CandidateViewModel
+            {
+                VoteEventId = id
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> createCandidate(CandidateViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var path = string.Empty;
+
+                if (model.ImageFile != null && model.ImageFile.Length > 0)
+                {
+                    var guid = Guid.NewGuid().ToString();
+                    var file = $"{guid}.jpg";
+
+                    path = Path.Combine(
+                        Directory.GetCurrentDirectory(),
+                        "wwwroot\\images\\Candidates",
+                        file);
+
+                    using (var stream = new FileStream(path, FileMode.Create))
+                    {
+                        await model.ImageFile.CopyToAsync(stream);
+                    }
+
+                    path = $"~/images/Candidates/{file}";
+                }
+
+                await this.voteEventRepository.CreateCandidateAsync(model, path);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(model);
+        }
+
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> EditCandidate(int id)
+        {
+            var candidate = await this.voteEventRepository.GetCandidateByIdAsync(id);
+            if (candidate == null)
+            {
+                return NotFound();
+            }
+            
+            var model = this.ToCandidateViewModel(candidate);
+            return View(model);
+        }
+
+        private CandidateViewModel ToCandidateViewModel(Candidate candidate)
+        {
+            return new CandidateViewModel
+            {
+                Id = candidate.Id,
+                Name = candidate.Name,
+                Proposal = candidate.Proposal,
+                ImageUrl = candidate.ImageUrl
+            };
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> editCandidate(CandidateViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var path = string.Empty;
+
+                if (model.ImageFile != null && model.ImageFile.Length > 0)
+                {
+                    var guid = Guid.NewGuid().ToString();
+                    var file = $"{guid}.jpg";
+
+                    path = Path.Combine(
+                        Directory.GetCurrentDirectory(),
+                        "wwwroot\\images\\Candidates",
+                        file);
+
+                    using (var stream = new FileStream(path, FileMode.Create))
+                    {
+                        await model.ImageFile.CopyToAsync(stream);
+                    }
+
+                    path = $"~/images/Candidates/{file}";
+                }
+
+                await this.voteEventRepository.UpdateCandidateAsync(model, path);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(model);
         }
     }
 }

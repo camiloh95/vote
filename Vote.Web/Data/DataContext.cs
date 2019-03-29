@@ -14,6 +14,8 @@
 
         public DbSet<VoteEvent> VoteEvents { get; set; }
 
+        public DbSet<Candidate> Candidates { get; set; }
+
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
         }

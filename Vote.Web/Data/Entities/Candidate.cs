@@ -1,26 +1,19 @@
 ﻿namespace Vote.Web.Data.Entities
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using Microsoft.AspNetCore.Identity;
 
-    public class VoteEvent : IEntity
+    public class Candidate : IEntity
     {
         public int Id { get; set; }
 
         [MaxLength(50, ErrorMessage = "The field {0} only can contain {1} characters length.")]
         public string Name { get; set; }
 
-        [MaxLength(200, ErrorMessage = "The field {0} only can contain {1} characters length.")]
-        public string Description { get; set; }
-
-        [Display(Name = "Start Date")]
-        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd hh:mm tt}", ApplyFormatInEditMode = false)]
-        public DateTime StartDate { get; set; }
-
-        [Display(Name = "End Date")]
-        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd hh:mm tt}", ApplyFormatInEditMode = false)]
-        public DateTime EndDate { get; set; }
+        [MaxLength(250, ErrorMessage = "The field {0} only can contain {1} characters length.")]
+        public string Proposal { get; set; }
 
         public string ImageFullPath
         {
@@ -35,9 +28,9 @@
             }
         }
 
+        public int VoteEventId { get; set; }
+
         [Display(Name = "Image")]
         public string ImageUrl { get; set; }
-
-        public IEnumerable<Candidate> Candidates { get; set; }
     }
 }

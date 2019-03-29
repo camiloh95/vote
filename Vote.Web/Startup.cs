@@ -69,8 +69,8 @@
 
             services.AddTransient<SeedDb>();
             services.AddScoped<ICountryRepository, CountryRepository>();
-            services.AddScoped<IUserHelper, UserHelper>();
             services.AddScoped<IVoteEventRepository, VoteEventRepository>();
+            services.AddScoped<IUserHelper, UserHelper>();
             services.AddScoped<IMailHelper, MailHelper>();
 
             services.ConfigureApplicationCookie(options =>

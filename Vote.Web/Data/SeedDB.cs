@@ -34,6 +34,20 @@
             await this.CheckUser("acevedo@gmail.com", "Katherin", "Acevedo", "Voter");
             await this.CheckUser("ramirez@gmail.com", "Saul", "Ramirez", "Voter");
             await this.CheckUser("camilocadavid95@gmail.com", "Camilo", "Hernández", "Admin");
+
+            if (!this.context.VoteEvents.Any())
+            {
+                this.AddVoteEvent("Legalización de la marihuana", "Se trataran diferentes temas desde el uso medicinal hasta el uso recreativo.");
+                this.AddVoteEvent("Eleccion del director TI", "Dado que la proxima semana se retira Santacruz, se requiere un nuevo director.");
+                await this.context.SaveChangesAsync();
+            }
+
+            if(!this.context.Candidates.Any())
+            {
+                this.AddCandidate("Juan Carmona", "Los niños con sindrome de down necesitan la marihuana medicinal", 1);
+                this.AddCandidate("Sandra Cadavid", "Legalizar la marihuana es lo peor que le puede pasar a nuestros jovenes", 1);
+                await this.context.SaveChangesAsync();
+            }
         }
 
         private async Task<User> CheckUser(string userName, string firstName, string lastName, string role)
@@ -111,6 +125,27 @@
         {
             await this.userHelper.CheckRoleAsync("Admin");
             await this.userHelper.CheckRoleAsync("Voter");
+        }
+
+        private void AddVoteEvent(string name, string description)
+        {
+            this.context.VoteEvents.Add(new VoteEvent
+            {
+                Name = name,
+                Description = description,
+                ImageUrl = $"~/images/Products/{name}.png"
+            });
+        }
+
+        private void AddCandidate(string name, string proposal, int voteEventId)
+        {
+            this.context.Candidates.Add(new Candidate
+            {
+                Name = name,
+                Proposal = proposal,
+                ImageUrl = $"~/images/Products/{name}.png",
+                VoteEventId = voteEventId
+            });
         }
     }
 }

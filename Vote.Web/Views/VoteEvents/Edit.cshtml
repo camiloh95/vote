@@ -1,15 +1,20 @@
 ﻿@model Vote.Web.Data.Entities.VoteEvent
 
 @{
-    ViewData["Title"] = "Edit";
+	ViewData["Title"] = "Edit";
 }
 
 <h1>Edit</h1>
 
 <h4>Event</h4>
 <hr />
+
+<p>
+	<a asp-action="CreateCandidate" asp-route-id="@Model.Id" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Create Candidate</a>
+</p>
+
 <div class="row">
-    <div class="col-md-4">
+	<div class="col-md-4">
 		<form asp-action="Edit">
 			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 			<input type="hidden" asp-for="Id" />
@@ -51,11 +56,33 @@
 			<div class="form-group">
 				<input type="submit" value="Update" class="btn btn-primary" />
 			</div>
+			<div>
+				<table>
+					<tbody>
+						@foreach (var candidate in Model.Candidates)
+						{
+							<tr>
+								<td>
+									@Html.DisplayFor(modelCandidate => candidate.Name)
+								</td>
+								<td>
+									@Html.DisplayFor(modelCandidate => candidate.Proposal)
+								</td>
+								<td>
+									<a asp-action="EditCandidate" asp-route-id="@candidate.Id" class="btn btn-warning"><i class="fa fa-plus"></i></a>
+									<a asp-action="EditCandidate" asp-route-id="@candidate.Id" class="btn btn-info"><i class="fa fa-minus"></i></a>
+									<button data-id="@candidate.Id" class="btn btn-danger deleteItem" data-toggle="modal" data-target="#deleteDialog">Delete</button>
+								</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+			</div>
 		</form>
-    </div>
+	</div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+	<a asp-action="Index">Back to List</a>
 </div>
 

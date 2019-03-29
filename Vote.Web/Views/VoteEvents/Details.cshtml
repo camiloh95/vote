@@ -1,14 +1,17 @@
 ﻿@model Vote.Web.Data.Entities.VoteEvent
 
 @{
-    ViewData["Title"] = "Details";
+	ViewData["Title"] = "Details";
 }
 
 <h1>Details</h1>
 
 <div>
-    <h4>Voting Event</h4>
-    <hr />
+	<h4>Voting Event</h4>
+	<p>
+		<a asp-action="CreateCandidate" asp-route-id="@Model.Id" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Create Candidate</a>
+	</p>
+	<hr />
 	<dl class="row">
 		<dt class="col-sm-2">
 			@Html.DisplayNameFor(model => model.Name)
@@ -43,9 +46,31 @@
 		<dd class="col-sm-10">
 			@Html.DisplayFor(model => model.EndDate)
 		</dd>
+		<dd>
+			<table>
+				<tbody>			
+					@foreach (var candidate in Model.Candidates)
+					{
+						<tr>
+							<td>
+								@Html.DisplayFor(modelCandidate => candidate.Name)
+							</td>
+							<td>
+								@Html.DisplayFor(modelCandidate => candidate.Proposal)
+							</td>
+							<td>
+								<a asp-action="EditCandidate" asp-route-id="@candidate.Id" class="btn btn-warning"><i class="fa fa-plus"></i></a>
+								<a asp-action="EditCandidate" asp-route-id="@candidate.Id" class="btn btn-info"><i class="fa fa-minus"></i></a>
+								<button data-id="@candidate.Id" class="btn btn-danger deleteItem" data-toggle="modal" data-target="#deleteDialog">Delete</button>
+							</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		</dd>
 	</dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+	<a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+	<a asp-action="Index">Back to List</a>
 </div>
