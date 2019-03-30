@@ -16,6 +16,7 @@
         {
             this.context = context;
         }
+
         public async Task<bool> CreateCandidateAsync(CandidateViewModel model, string path)
         {
             var candidate = new Candidate
@@ -63,9 +64,27 @@
 
         public async Task<Candidate> GetCandidateByIdAsync(int id)
         {
-            return await this.context.Candidates
-                .AsNoTracking()
-                .FirstOrDefaultAsync(c => c.Id == id);
+            return await this.context.Candidates.AsNoTracking()
+                                                .FirstOrDefaultAsync(c => c.Id == id);
+        }
+
+        public async Task<int> GetTotalVotesAsync(int id)
+        {
+            return await this.context.Votes.Where(v => v.Id == id).CountAsync();
+        }
+
+        public async Task<bool> UpdateTotalVotesAsync(VoteEvent voteEvent)
+        {
+            foreach (var candidate in voteEvent.Candidates)
+            {
+                var votes = this.context.Votes.Where(c => c.CandidateId == candidate.Id).Count();
+
+                candidate.voteResult = votes;
+
+                this.context.Candidates.Update(candidate);
+            }
+            await this.context.SaveChangesAsync();
+            return true;
         }
     }
 }

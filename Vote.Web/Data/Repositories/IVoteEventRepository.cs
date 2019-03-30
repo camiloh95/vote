@@ -16,5 +16,7 @@ namespace Vote.Web.Data.Repositories
         Task<Candidate> GetCandidateByIdAsync(int id);
 
         Task<Candidate> UpdateCandidateAsync(CandidateViewModel model, string imaginePath);
+
+        Task<bool> UpdateTotalVotesAsync(VoteEvent voteEvent);
     }
 }

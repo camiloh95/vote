@@ -42,6 +42,7 @@
                 voteEvent.Candidates = await this.voteEventRepository.GetCandidatesAsync(id.Value);
             }
 
+            await this.voteEventRepository.UpdateTotalVotesAsync(voteEvent);
             return View(voteEvent);
         }
 
@@ -61,20 +62,7 @@
 
                 if (model.ImageFile != null && model.ImageFile.Length > 0)
                 {
-                    var guid = Guid.NewGuid().ToString();
-                    var file = $"{guid}.jpg";
-
-                    path = Path.Combine(
-                        Directory.GetCurrentDirectory(),
-                        "wwwroot\\images\\VoteEvents",
-                        file);
-
-                    using (var stream = new FileStream(path, FileMode.Create))
-                    {
-                        await model.ImageFile.CopyToAsync(stream);
-                    }
-
-                    path = $"~/images/VoteEvents/{file}";
+                    path = await this.pathVoteEventCreation(model);
                 }
 
                 var eventvote = this.ToVoteEvent(model, path);
@@ -135,7 +123,7 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> f(VoteEventViewModel model)
+        public async Task<IActionResult> edit(VoteEventViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -145,20 +133,7 @@
 
                     if (model.ImageFile != null && model.ImageFile.Length > 0)
                     {
-                        var guid = Guid.NewGuid().ToString();
-                        var file = $"{guid}.jpg";
-
-                        path = Path.Combine(
-                            Directory.GetCurrentDirectory(),
-                            "wwwroot\\images\\VoteEvents",
-                            file);
-
-                        using (var stream = new FileStream(path, FileMode.Create))
-                        {
-                            await model.ImageFile.CopyToAsync(stream);
-                        }
-
-                        path = $"~/images/VoteEvents/{file}";
+                        path = await this.pathVoteEventCreation(model);
                     }
 
                     var voteEvent = this.ToVoteEvent(model, path);
@@ -179,6 +154,25 @@
             }
 
             return View(model);
+        }
+
+        private async Task<string> pathVoteEventCreation(VoteEventViewModel model)
+        {
+            var guid = Guid.NewGuid().ToString();
+            var file = $"{guid}.jpg";
+
+            var path = Path.Combine(
+                Directory.GetCurrentDirectory(),
+                "wwwroot\\images\\VoteEvents",
+                file);
+
+            using (var stream = new FileStream(path, FileMode.Create))
+            {
+                await model.ImageFile.CopyToAsync(stream);
+            }
+
+            path = $"~/images/VoteEvents/{file}";
+            return path;
         }
 
         [Authorize(Roles = "Admin")]
@@ -232,20 +226,7 @@
 
                 if (model.ImageFile != null && model.ImageFile.Length > 0)
                 {
-                    var guid = Guid.NewGuid().ToString();
-                    var file = $"{guid}.jpg";
-
-                    path = Path.Combine(
-                        Directory.GetCurrentDirectory(),
-                        "wwwroot\\images\\Candidates",
-                        file);
-
-                    using (var stream = new FileStream(path, FileMode.Create))
-                    {
-                        await model.ImageFile.CopyToAsync(stream);
-                    }
-
-                    path = $"~/images/Candidates/{file}";
+                    path = await this.pathCandidateCreation(model);
                 }
 
                 await this.voteEventRepository.CreateCandidateAsync(model, path);
@@ -286,28 +267,44 @@
             {
                 var path = string.Empty;
 
-                if (model.ImageFile != null && model.ImageFile.Length > 0)
+                try
                 {
-                    var guid = Guid.NewGuid().ToString();
-                    var file = $"{guid}.jpg";
-
-                    path = Path.Combine(
-                        Directory.GetCurrentDirectory(),
-                        "wwwroot\\images\\Candidates",
-                        file);
-
-                    using (var stream = new FileStream(path, FileMode.Create))
+                    if (model.ImageFile != null && model.ImageFile.Length > 0)
                     {
-                        await model.ImageFile.CopyToAsync(stream);
+                        path = await this.pathCandidateCreation(model);
                     }
-
-                    path = $"~/images/Candidates/{file}";
+                } catch (DbUpdateConcurrencyException) {
+                    if (!await this.voteEventRepository.ExistAsync(model.Id))
+                    {
+                        return NotFound();
+                    } else {
+                        throw;
+                    }
                 }
 
                 await this.voteEventRepository.UpdateCandidateAsync(model, path);
                 return RedirectToAction(nameof(Index));
             }
             return View(model);
+        }
+
+        private async Task<string> pathCandidateCreation(CandidateViewModel model)
+        {
+            var guid = Guid.NewGuid().ToString();
+            var file = $"{guid}.jpg";
+
+            var path = Path.Combine(
+                Directory.GetCurrentDirectory(),
+                "wwwroot\\images\\VoteEvents",
+                file);
+
+            using (var stream = new FileStream(path, FileMode.Create))
+            {
+                await model.ImageFile.CopyToAsync(stream);
+            }
+
+            path = $"~/images/VoteEvents/{file}";
+            return path;
         }
     }
 }

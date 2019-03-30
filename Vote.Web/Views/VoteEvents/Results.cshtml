@@ -48,25 +48,20 @@
 		</dd>
 		<dd>
 			<table>
-				<tbody>			
+				<tbody>
 					@foreach (var candidate in Model.Candidates)
 					{
-					<tr>
-						<td>
-							@Html.DisplayFor(modelCandidate => candidate.Name)
-						</td>
-						<td>
-							@Html.DisplayFor(modelCandidate => candidate.Proposal)
-						</td>
-						<td>
-							<a asp-action="EditCandidate" asp-route-id="@candidate.Id" class="btn btn-warning"><i class="fa fa-plus"></i></a>
-							<a asp-action="EditCandidate" asp-route-id="@candidate.Id" class="btn btn-info"><i class="fa fa-minus"></i></a>
-							<button data-id="@candidate.Id" class="btn btn-danger deleteItem" data-toggle="modal" data-target="#deleteDialog">Delete</button>
-						</td>
-						<td>
-							@Html.DisplayFor(modelCandidate => candidate.voteResult)
-						</td>
-					</tr>
+						<tr>
+							<td>
+								@Html.DisplayFor(modelCandidate => candidate.Name)
+							</td>
+							<td>
+								@Html.DisplayFor(modelCandidate => candidate.Proposal)
+							</td>
+							<td>
+								@Html.DisplayFor(modelCandidate => candidate.voteResult)
+							</td>
+						</tr>
 					}
 				</tbody>
 			</table>
