@@ -42,8 +42,16 @@
                 voteEvent.Candidates = await this.voteEventRepository.GetCandidatesAsync(id.Value);
             }
 
-            await this.voteEventRepository.UpdateTotalVotesAsync(voteEvent);
-            return View(voteEvent);
+            if (voteEvent.EndDate <= DateTime.Today)
+            {
+                await this.voteEventRepository.UpdateTotalVotesAsync(voteEvent);
+                return View("Results", voteEvent);
+            }
+            else
+            { 
+                return View(voteEvent);
+
+            }
         }
 
         [Authorize(Roles = "Admin")]
@@ -104,7 +112,16 @@
             }
 
             var model = this.ToVoteEventViewModel(voteEvent);
-            return View(model);
+            if (voteEvent.EndDate <= DateTime.Today)
+            {
+                await this.voteEventRepository.UpdateTotalVotesAsync(model);
+                return View("Results", model);
+            }
+            else
+            {
+                return View(voteEvent);
+
+            }
         }
 
         private VoteEventViewModel ToVoteEventViewModel(VoteEvent voteEvent)
