@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 
-namespace Vote.UIForms
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+namespace Vote.UIForms.Views
 {
-    public partial class MainPage : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class MenuPage : ContentPage
     {
-        public MainPage()
+        public MenuPage()
         {
             InitializeComponent();
         }

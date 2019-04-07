@@ -65,7 +65,6 @@
                 LastName = request.LastName,
                 Email = request.Email,
                 UserName = request.Email,
-                Address = request.Address,
                 PhoneNumber = request.Phone,
                 CityId = request.CityId,
                 City = city
@@ -181,7 +180,6 @@
             userEntity.FirstName = user.FirstName;
             userEntity.LastName = user.LastName;
             userEntity.CityId = user.CityId;
-            userEntity.Address = user.Address;
             userEntity.PhoneNumber = user.PhoneNumber;
 
             var respose = await this.userHelper.UpdateUserAsync(userEntity);

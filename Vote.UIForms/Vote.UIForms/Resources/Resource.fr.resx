@@ -118,42 +118,42 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Accept" xml:space="preserve">
-    <value>Accept</value>
+    <value>Acceptez</value>
   </data>
   <data name="Email" xml:space="preserve">
-    <value>Email</value>
+    <value>E-mail</value>
   </data>
   <data name="EmailError" xml:space="preserve">
-    <value>You must enter an email.</value>
+    <value>Vous devez entrer un email.</value>
   </data>
   <data name="EmailPlaceHolder" xml:space="preserve">
-    <value>Enter your email...</value>
+    <value>Entrez votre adresse e-mail</value>
   </data>
   <data name="Error" xml:space="preserve">
-    <value>Error</value>
+    <value>Erreur (error)</value>
   </data>
   <data name="Forgot" xml:space="preserve">
-    <value>Forgot my password?</value>
+    <value>J'ai oublié mon mot de passe</value>
   </data>
   <data name="Login" xml:space="preserve">
-    <value>Login</value>
+    <value>Connexion :</value>
   </data>
   <data name="LoginError" xml:space="preserve">
-    <value>Email or password incorrect.</value>
+    <value>Email ou mot de passe incorrect!</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value>Password</value>
+    <value>Mot de passe</value>
   </data>
   <data name="PasswordError" xml:space="preserve">
-    <value>You must enter a password.</value>
+    <value>Vous devez entrer un mot de passe.</value>
   </data>
   <data name="PasswordPlaceHolder" xml:space="preserve">
-    <value>Enter your password...</value>
+    <value>Entrez votre mot de passe</value>
   </data>
   <data name="RegisterNewUser" xml:space="preserve">
-    <value>New User</value>
+    <value>Nouvel utilisateur</value>
   </data>
   <data name="Remember" xml:space="preserve">
-    <value>Remember me in this device</value>
+    <value>Se souvenir de moi sur ce dispositif</value>
   </data>
 </root>

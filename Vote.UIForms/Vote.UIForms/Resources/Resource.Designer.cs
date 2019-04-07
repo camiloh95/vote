@@ -79,7 +79,7 @@ namespace Vote.UIForms.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to EmailError.
+        ///   Looks up a localized string similar to You must enter an email..
         /// </summary>
         internal static string EmailError {
             get {
@@ -88,7 +88,7 @@ namespace Vote.UIForms.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to EmailPlaceHolder.
+        ///   Looks up a localized string similar to Enter your email....
         /// </summary>
         internal static string EmailPlaceHolder {
             get {
@@ -106,7 +106,7 @@ namespace Vote.UIForms.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Forgot.
+        ///   Looks up a localized string similar to Forgot my password?.
         /// </summary>
         internal static string Forgot {
             get {
@@ -124,7 +124,7 @@ namespace Vote.UIForms.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to LoginError.
+        ///   Looks up a localized string similar to Email or password incorrect..
         /// </summary>
         internal static string LoginError {
             get {
@@ -142,7 +142,7 @@ namespace Vote.UIForms.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PasswordError.
+        ///   Looks up a localized string similar to You must enter a password..
         /// </summary>
         internal static string PasswordError {
             get {
@@ -151,7 +151,7 @@ namespace Vote.UIForms.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PasswordPlaceHolder.
+        ///   Looks up a localized string similar to Enter your password....
         /// </summary>
         internal static string PasswordPlaceHolder {
             get {
@@ -160,7 +160,7 @@ namespace Vote.UIForms.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to RegisterNewUser.
+        ///   Looks up a localized string similar to New User.
         /// </summary>
         internal static string RegisterNewUser {
             get {
@@ -169,7 +169,7 @@ namespace Vote.UIForms.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remember.
+        ///   Looks up a localized string similar to Remember me in this device.
         /// </summary>
         internal static string Remember {
             get {

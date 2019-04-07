@@ -12,7 +12,7 @@
     public class TranslateExtension : IMarkupExtension
     {
         private readonly CultureInfo ci;
-        private const string ResourceId = "Shop.UIForms.Resources.Resource";
+        private const string ResourceId = "Vote.UIForms.Resources.Resource";
         private static readonly Lazy<ResourceManager> ResMgr =
             new Lazy<ResourceManager>(() => new ResourceManager(
                 ResourceId,
