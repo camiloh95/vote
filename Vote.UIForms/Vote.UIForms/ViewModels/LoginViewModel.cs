@@ -1,14 +1,13 @@
 ﻿namespace Vote.UIForms.ViewModels
 {
+    using System.Windows.Input;
     using GalaSoft.MvvmLight.Command;
     using Newtonsoft.Json;
-    using Shop.Common.Helpers;
-    using Shop.Common.Models;
-    using Shop.Common.Services;
-    using Shop.UIForms.Helpers;
-    using Shop.UIForms.Views;
-    using System;
-    using System.Windows.Input;
+    using Common.Helpers;
+    using Common.Models;
+    using Common.Services;
+    using UIForms.Helpers;
+    using UIForms.Views;
     using Xamarin.Forms;
 
     public class LoginViewModel : BaseViewModel

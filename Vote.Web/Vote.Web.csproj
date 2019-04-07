@@ -19,4 +19,9 @@
     <Folder Include="wwwroot\images\VoteEvents\" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <ProjectReference Include="..\Vote.Common\Vote.Common.csproj" />
+  </ItemGroup>
+
 </Project>
