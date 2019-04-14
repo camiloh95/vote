@@ -11,10 +11,16 @@
         public string LastName { get; set; }
 
         [Required]
-        public string Email { get; set; }
+        public string Occupation { get; set; }
 
         [Required]
-        public string Address { get; set; }
+        public int Stratum { get; set; }
+
+        [Required]
+        public int Gender { get; set; }
+
+        [Required]
+        public string Email { get; set; }
 
         [Required]
         public string Phone { get; set; }

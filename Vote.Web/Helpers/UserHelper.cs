@@ -122,6 +122,11 @@
                 .ToListAsync();
         }
 
+        public IQueryable GetAllUsers()
+        {
+            return this.userManager.Users.AsNoTracking();
+        }
+
         public async Task RemoveUserFromRoleAsync(User user, string roleName)
         {
             await this.userManager.RemoveFromRoleAsync(user, roleName);

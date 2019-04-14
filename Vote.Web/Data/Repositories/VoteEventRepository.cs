@@ -17,6 +17,11 @@
             this.context = context;
         }
 
+        public IQueryable GetAllWithCandidates()
+        {
+            return this.context.VoteEvents.Include(p => p.Candidates);
+        }
+
         public async Task<bool> CreateCandidateAsync(CandidateViewModel model, string path)
         {
             var candidate = new Candidate

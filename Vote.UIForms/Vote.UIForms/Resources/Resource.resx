@@ -141,6 +141,9 @@
   <data name="LoginError" xml:space="preserve">
     <value>Email or password incorrect.</value>
   </data>
+  <data name="Occupation" xml:space="preserve">
+    <value>Occupation</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>

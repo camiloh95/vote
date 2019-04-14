@@ -11,6 +11,33 @@
         [JsonProperty("lastName")]
         public string LastName { get; set; }
 
+        [JsonProperty("occupation")]
+        public string Occupation { get; set; }
+
+        [JsonProperty("stratum")]
+        public int Stratum { get; set; }
+
+        [JsonProperty("gender")]
+        public int Gender { get; set; }
+
+        [JsonProperty("emailConfirmed")]
+        public bool EmailConfirmed { get; set; }
+
+        [JsonProperty("fullName")]
+        public string FullName { get; set; }
+
+        [JsonProperty("birthdate")]
+        public DateTimeOffset Birthdate { get; set; }
+
+        [JsonProperty("cityId")]
+        public int CityId { get; set; }
+
+        [JsonProperty("city")]
+        public object City { get; set; }
+
+        [JsonProperty("isAdmin")]
+        public bool IsAdmin { get; set; }
+
         [JsonProperty("id")]
         public Guid Id { get; set; }
 
@@ -25,9 +52,6 @@
 
         [JsonProperty("normalizedEmail")]
         public string NormalizedEmail { get; set; }
-
-        [JsonProperty("emailConfirmed")]
-        public bool EmailConfirmed { get; set; }
 
         [JsonProperty("passwordHash")]
         public string PasswordHash { get; set; }
@@ -55,13 +79,5 @@
 
         [JsonProperty("accessFailedCount")]
         public long AccessFailedCount { get; set; }
-
-        [JsonProperty("cityId")]
-        public int CityId { get; set; }
-
-        [JsonProperty("address")]
-        public string Address { get; set; }
-
-        public string FullName { get { return $"{this.FirstName} {this.LastName}"; } }
     }
 }

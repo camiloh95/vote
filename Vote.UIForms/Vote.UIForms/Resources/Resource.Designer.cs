@@ -133,6 +133,15 @@ namespace Vote.UIForms.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Occupation.
+        /// </summary>
+        internal static string Occupation {
+            get {
+                return ResourceManager.GetString("Occupation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
         internal static string Password {

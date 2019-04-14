@@ -54,12 +54,52 @@
                     <Label
                         Grid.Column="0"
                         Grid.Row="3"
+                        Text="Occupation"
+                        VerticalOptions="Center">
+                    </Label>
+                    <Entry
+                        Grid.Column="1"
+                        Grid.Row="3"
+                        Placeholder="Enter your occupation..."
+                        Text="{Binding Occupation}">
+                    </Entry>
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="4"
+                        Text="Gender"
+                        VerticalOptions="Center">
+                    </Label>
+                    <Picker
+                        Grid.Column="1"
+                        Grid.Row="4"
+                        ItemDisplayBinding="{Binding Name}"
+                        ItemsSource="{Binding Genders}"
+                        SelectedItem="{Binding Gender}"
+                        Title="Select a gender...">
+                    </Picker>
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="5"
+                        Text="Stratum"
+                        VerticalOptions="Center">
+                    </Label>
+                    <Picker
+                        Grid.Column="1"
+                        Grid.Row="5"
+                        ItemDisplayBinding="{Binding Name}"
+                        ItemsSource="{Binding Stratums}"
+                        SelectedItem="{Binding Stratum}"
+                        Title="Select a stratum...">
+                    </Picker>
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="6"
                         Text="Country"
                         VerticalOptions="Center">
                     </Label>
                     <Picker
                         Grid.Column="1"
-                        Grid.Row="3"
+                        Grid.Row="6"
                         ItemDisplayBinding="{Binding Name}"
                         ItemsSource="{Binding Countries}"
                         SelectedItem="{Binding Country}"
@@ -67,13 +107,13 @@
                     </Picker>
                     <Label
                         Grid.Column="0"
-                        Grid.Row="4"
+                        Grid.Row="7"
                         Text="City"
                         VerticalOptions="Center">
                     </Label>
                     <Picker
                         Grid.Column="1"
-                        Grid.Row="4"
+                        Grid.Row="7"
                         ItemDisplayBinding="{Binding Name}"
                         ItemsSource="{Binding Cities}"
                         SelectedItem="{Binding City}"
@@ -81,52 +121,39 @@
                     </Picker>
                     <Label
                         Grid.Column="0"
-                        Grid.Row="5"
-                        Text="Address"
-                        VerticalOptions="Center">
-                    </Label>
-                    <Entry
-                        Grid.Column="1"
-                        Grid.Row="5"
-                        Keyboard="Email"
-                        Placeholder="Enter your address..."
-                        Text="{Binding Address}">
-                    </Entry>
-                    <Label
-                        Grid.Column="0"
-                        Grid.Row="6"
+                        Grid.Row="8"
                         Text="Telephone"
                         VerticalOptions="Center">
                     </Label>
                     <Entry
                         Grid.Column="1"
-                        Grid.Row="6"
+                        Grid.Row="8"
                         Keyboard="Telephone"
                         Placeholder="Enter your phone number..."
                         Text="{Binding Phone}">
                     </Entry>
                     <Label
                         Grid.Column="0"
-                        Grid.Row="7"
+                        Grid.Row="9"
                         Text="Password"
                         VerticalOptions="Center">
                     </Label>
                     <Entry
                         Grid.Column="1"
-                        Grid.Row="7"
+                        Grid.Row="9"
                         IsPassword="True"
                         Placeholder="Enter your password..."
                         Text="{Binding Password}">
                     </Entry>
                     <Label
                         Grid.Column="0"
-                        Grid.Row="8"
+                        Grid.Row="10"
                         Text="Password confirm"
                         VerticalOptions="Center">
                     </Label>
                     <Entry
                         Grid.Column="1"
-                        Grid.Row="8"
+                        Grid.Row="10"
                         IsPassword="True"
                         Placeholder="Enter your password confirm..."
                         Text="{Binding Confirm}">

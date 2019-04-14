@@ -156,4 +156,7 @@
   <data name="Remember" xml:space="preserve">
     <value>Recuérdame en este dispositivo!</value>
   </data>
+  <data name="Occupation" xml:space="preserve">
+    <value>Profesión</value>
+  </data>
 </root>

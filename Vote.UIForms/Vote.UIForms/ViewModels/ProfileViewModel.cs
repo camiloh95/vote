@@ -162,24 +162,6 @@
                 return;
             }
 
-            if (string.IsNullOrEmpty(this.User.Address))
-            {
-                await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "You must enter an address.",
-                    "Accept");
-                return;
-            }
-
-            if (string.IsNullOrEmpty(this.User.PhoneNumber))
-            {
-                await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "You must enter a phone number.",
-                    "Accept");
-                return;
-            }
-
             this.IsRunning = true;
             this.IsEnabled = false;
 

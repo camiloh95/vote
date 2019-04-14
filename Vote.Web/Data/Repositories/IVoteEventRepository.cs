@@ -9,6 +9,8 @@ namespace Vote.Web.Data.Repositories
 {
     public interface IVoteEventRepository : IGenericRepository<VoteEvent> 
     {
+        IQueryable GetAllWithCandidates();
+
         Task<bool> CreateCandidateAsync(CandidateViewModel model, string path);
 
         Task<IQueryable<Candidate>> GetCandidatesAsync(int Id);

@@ -38,5 +38,7 @@
         public static string RegisterNewUser => Resource.RegisterNewUser;
 
         public static string Forgot => Resource.Forgot;
+
+        public static string Occupation => Resource.Occupation;
     }
 }

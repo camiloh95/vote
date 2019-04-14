@@ -1,6 +1,7 @@
 ﻿namespace Vote.Web.Helpers
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using Data.Entities;
     using Microsoft.AspNetCore.Identity;
@@ -39,6 +40,8 @@
         Task<IdentityResult> ResetPasswordAsync(User user, string token, string password);
 
         Task<List<User>> GetAllUsersAsync();
+
+        IQueryable GetAllUsers();
 
         Task RemoveUserFromRoleAsync(User user, string roleName);
 

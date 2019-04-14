@@ -26,13 +26,21 @@
 
         public string Email { get; set; }
 
-        public string Address { get; set; }
+        public string Occupation { get; set; }
 
         public string Phone { get; set; }
 
         public string Password { get; set; }
 
         public string Confirm { get; set; }
+        
+        public Gender Gender { get; set; }
+
+        public Stratum Stratum { get; set; }
+
+        public List<Gender> Genders { get; set; }
+
+        public List<Stratum> Stratums { get; set; }
 
         public Country Country
         {
@@ -80,6 +88,8 @@
         {
             this.apiService = new ApiService();
             this.IsEnabled = true;
+            this.Genders = this.GetGenders();
+            this.Stratums = this.GetStratums();
             this.LoadCountries();
         }
 
@@ -166,15 +176,6 @@
                 return;
             }
 
-            if (string.IsNullOrEmpty(this.Address))
-            {
-                await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "You must enter an address.",
-                    "Accept");
-                return;
-            }
-
             if (string.IsNullOrEmpty(this.Phone))
             {
                 await Application.Current.MainPage.DisplayAlert(
@@ -225,10 +226,12 @@
 
             var request = new NewUserRequest
             {
-                Address = this.Address,
                 CityId = this.City.Id,
                 Email = this.Email,
                 FirstName = this.FirstName,
+                Occupation = this.Occupation,
+                Stratum = this.Stratum.Id,
+                Gender = this.Gender.Id,
                 LastName = this.LastName,
                 Password = this.Password,
                 Phone = this.Phone
@@ -258,6 +261,29 @@
                 response.Message,
                 "Accept");
             await Application.Current.MainPage.Navigation.PopAsync();
+        }
+
+        public List<Stratum> GetStratums()
+        {
+            var list = new List<Stratum>();
+            list.Insert(0, new Stratum { Id = 0, Name = "1" });
+            list.Insert(1, new Stratum { Id = 1, Name = "2" });
+            list.Insert(2, new Stratum { Id = 2, Name = "3" });
+            list.Insert(3, new Stratum { Id = 3, Name = "4" });
+            list.Insert(4, new Stratum { Id = 4, Name = "5" });
+            list.Insert(5, new Stratum { Id = 5, Name = "6" });
+
+            return list;
+        }
+
+        public List<Gender> GetGenders()
+        {
+            var list = new List<Gender>();
+            list.Insert(0, new Gender { Id = 0, Name = "Male" });
+            list.Insert(1, new Gender { Id = 1, Name = "Female" });
+            list.Insert(2, new Gender { Id = 2, Name = "Other" });
+
+            return list;
         }
     }
 }

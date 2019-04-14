@@ -3,12 +3,12 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Common.Models;
+    using Data.Repositories;
     using Helpers;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
-    using Data.Repositories;
 
     [Route("api/[Controller]")]
     public class AccountController : Controller
@@ -64,6 +64,9 @@
                 FirstName = request.FirstName,
                 LastName = request.LastName,
                 Email = request.Email,
+                Stratum = request.Stratum,
+                Occupation = request.Occupation,
+                Gender = request.Gender,
                 UserName = request.Email,
                 PhoneNumber = request.Phone,
                 CityId = request.CityId,
@@ -179,6 +182,9 @@
 
             userEntity.FirstName = user.FirstName;
             userEntity.LastName = user.LastName;
+            userEntity.Stratum = user.Stratum;
+            userEntity.Occupation = user.Occupation;
+            userEntity.Gender = user.Gender;
             userEntity.CityId = user.CityId;
             userEntity.PhoneNumber = user.PhoneNumber;
 
