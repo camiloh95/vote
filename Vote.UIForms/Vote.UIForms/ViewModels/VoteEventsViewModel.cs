@@ -90,9 +90,10 @@
 
         private void RefresProductsList()
         {
-            this.myVoteEvents = new ObservableCollection<ViewVoteEventViewModel>(
-                this.myVoteEvents.Select(p => new ViewVoteEventViewModel
+            this.VoteEvents = new ObservableCollection<VoteEventItemViewModel>(
+                this.myVoteEvents.Select(p => new VoteEventItemViewModel
                 {
+                    Id = p.Id,
                 })
             .OrderBy(p => p.Name)
             .ToList());
