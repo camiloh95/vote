@@ -2,7 +2,7 @@
 {
     using Newtonsoft.Json;
     using System;
-
+    
     public partial class User
     {
         [JsonProperty("firstName")]

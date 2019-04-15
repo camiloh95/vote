@@ -29,6 +29,10 @@
 
         public ProfileViewModel Profile { get; set; }
 
+        public VoteEventsViewModel VoteEvents { get; set; }
+
+        public ViewVoteEventViewModel ViewVoteEvent { get; set; }
+        
         public ChangePasswordViewModel ChangePassword { get; set; }
 
         public MainViewModel()
