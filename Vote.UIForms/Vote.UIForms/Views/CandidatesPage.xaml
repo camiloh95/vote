@@ -1,34 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Vote.UIForms.Views.VoteEventsPage"
+             x:Class="Vote.UIForms.Views.CandidatesPage"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
-             Title="VoteEvents">
+             Title="Candidates">
     <ContentPage.Content>
         <StackLayout
-            BindingContext="{Binding VoteEvents}"
+            BindingContext="{Binding Candidates}"
             Padding="8">
             <ListView
                 IsRefreshing="{Binding IsRefreshing}"
                 HasUnevenRows="True"
-                ItemsSource="{Binding VoteEvents}">
+                ItemsSource="{Binding Candidates}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <Grid>
-                                 <Grid.GestureRecognizers>
+                                <!--<Grid.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding SelectVoteEventCommand}"/>
-                                </Grid.GestureRecognizers> 
+                                </Grid.GestureRecognizers>-->
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
-                                 <Image
+                                <!--<Image
                                     Grid.Column="0"
                                     Source="{Binding ImageFullPath}"
                                     WidthRequest="100">
-                                </Image> 
+                                </Image>-->
                                 <StackLayout
                                     Grid.Column="1"
                                     VerticalOptions="Center">
@@ -38,15 +38,19 @@
                                         Text="{Binding Name}"
                                         TextColor="Black">
                                     </Label>
-                                     <Label
-                                        Text="{Binding Description, StringFormat='Price: {0:C2}'}"
+                                    <!-- <Label
+                                        Text="{Binding Price, StringFormat='Price: {0:C2}'}"
                                         TextColor="Navy">
                                     </Label>
+                                    <Label
+                                        Text="{Binding Stock, StringFormat='Stock: {0:N2}'}"
+                                        TextColor="Black">
+                                    </Label> -->
                                 </StackLayout>
-                                 <Image
+                                <Image
                                     Grid.Column="2"
                                     Source="ic_chevron_right">
-                                </Image> 
+                                </Image>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
@@ -54,4 +58,4 @@
             </ListView>
         </StackLayout>
     </ContentPage.Content>
-</ContentPa
+</ContentPage>

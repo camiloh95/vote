@@ -111,6 +111,7 @@
             mainViewModel.UserEmail = this.Email;
             mainViewModel.UserPassword = this.Password;
             mainViewModel.Token = token;
+            mainViewModel.VoteEvents = new VoteEventsViewModel();
 
             Settings.IsRemember = this.IsRemember;
             Settings.UserEmail = this.Email;

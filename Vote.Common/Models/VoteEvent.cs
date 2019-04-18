@@ -2,6 +2,7 @@
 {
     using Newtonsoft.Json;
     using System;
+    using System.Collections.Generic;
 
     public partial class VoteEvent
     {
@@ -27,6 +28,6 @@
         public string ImageUrl { get; set; }
 
         [JsonProperty("candidates")]
-        public Candidate[] Candidates { get; set; }
+        public List<Candidate> Candidates { get; set; }
     }
 }

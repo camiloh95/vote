@@ -1,4 +1,4 @@
-﻿    namespace Vote.Web
+﻿namespace Vote.Web
 {
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;

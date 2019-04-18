@@ -7,12 +7,12 @@
 
     public class VoteEventItemViewModel : VoteEvent
     {
-        public ICommand SelectProductCommand => new RelayCommand(this.SelectProduct);
+        public ICommand SelectVoteEventCommand => new RelayCommand(this.SelectVoteEvent);
 
-        private async void SelectProduct()
+        private async void SelectVoteEvent()
         {
-            MainViewModel.GetInstance().ViewVoteEvent = new ViewVoteEventViewModel((VoteEvent)this);
-            await App.Navigator.PushAsync(new ViewVoteEventPage());
+            MainViewModel.GetInstance().Candidates = new CandidatesViewModel((VoteEvent)this);
+            await App.Navigator.PushAsync(new CandidatesPage());
         }
     }
 }

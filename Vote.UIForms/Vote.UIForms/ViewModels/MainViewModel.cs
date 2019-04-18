@@ -31,7 +31,7 @@
 
         public VoteEventsViewModel VoteEvents { get; set; }
 
-        public ViewVoteEventViewModel ViewVoteEvent { get; set; }
+        public CandidatesViewModel Candidates { get; set; }
         
         public ChangePasswordViewModel ChangePassword { get; set; }
 

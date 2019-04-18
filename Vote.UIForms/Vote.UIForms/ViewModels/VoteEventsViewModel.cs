@@ -56,44 +56,17 @@
             }
 
             this.myVoteEvents = (List<VoteEvent>)response.Result;
-            this.RefresProductsList();
+            this.RefresVoteEventsList();
         }
 
-        public void AddProductToList(VoteEvent product)
-        {
-            this.myVoteEvents.Add(product);
-            this.RefresProductsList();
-        }
-
-        public void UpdateProductInList(VoteEvent product)
-        {
-            var previousProduct = this.myVoteEvents.Where(p => p.Id == product.Id).FirstOrDefault();
-            if (previousProduct != null)
-            {
-                this.myVoteEvents.Remove(previousProduct);
-            }
-
-            this.myVoteEvents.Add(product);
-            this.RefresProductsList();
-        }
-
-        public void DeleteProductInList(int productId)
-        {
-            var previousProduct = this.myVoteEvents.Where(p => p.Id == productId).FirstOrDefault();
-            if (previousProduct != null)
-            {
-                this.myVoteEvents.Remove(previousProduct);
-            }
-
-            this.RefresProductsList();
-        }
-
-        private void RefresProductsList()
+        private void RefresVoteEventsList()
         {
             this.VoteEvents = new ObservableCollection<VoteEventItemViewModel>(
                 this.myVoteEvents.Select(p => new VoteEventItemViewModel
                 {
                     Id = p.Id,
+                    Name = p.Name,
+                    Candidates = p.Candidates
                 })
             .OrderBy(p => p.Name)
             .ToList());
