@@ -62,13 +62,15 @@
         private void RefresVoteEventsList()
         {
             this.VoteEvents = new ObservableCollection<VoteEventItemViewModel>(
-                this.myVoteEvents.Select(p => new VoteEventItemViewModel
+                this.myVoteEvents.Select(v => new VoteEventItemViewModel
                 {
-                    Id = p.Id,
-                    Name = p.Name,
-                    Candidates = p.Candidates
+                    Id = v.Id,
+                    Name = v.Name,
+                    Description = v.Description,
+                    ImageFullPath = v.ImageFullPath,
+                    Candidates = v.Candidates
                 })
-            .OrderBy(p => p.Name)
+            .OrderBy(v => v.Name)
             .ToList());
         }
     }

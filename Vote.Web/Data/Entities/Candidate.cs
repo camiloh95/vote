@@ -24,7 +24,7 @@
                     return null;
                 }
 
-                return $"https://shopzulu.azurewebsites.net{this.ImageUrl.Substring(1)}";
+                return $"https://camilovoting.azurewebsites.net{this.ImageUrl.Substring(1)}";
             }
         }
 

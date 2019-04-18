@@ -41,12 +41,52 @@
                     <Label
                         Grid.Column="0"
                         Grid.Row="2"
+                        Text="Occupation"
+                        VerticalOptions="Center">
+                    </Label>
+                    <Entry
+                        Grid.Column="1"
+                        Grid.Row="2"
+                        Placeholder="Enter your occupation..."
+                        Text="{Binding User.Occupation}">
+                    </Entry>
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="3"
+                        Text="Gender"
+                        VerticalOptions="Center">
+                    </Label>
+                    <Picker
+                        Grid.Column="1"
+                        Grid.Row="3"
+                        ItemDisplayBinding="{Binding Name}"
+                        ItemsSource="{Binding Genders}"
+                        SelectedItem="{Binding Gender}"
+                        Title="Select a gender...">
+                    </Picker>
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="4"
+                        Text="Stratum"
+                        VerticalOptions="Center">
+                    </Label>
+                    <Picker
+                        Grid.Column="1"
+                        Grid.Row="4"
+                        ItemDisplayBinding="{Binding Name}"
+                        ItemsSource="{Binding Stratums}"
+                        SelectedItem="{Binding Stratum}"
+                        Title="Select a stratum...">
+                    </Picker>
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="5"
                         Text="Country"
                         VerticalOptions="Center">
                     </Label>
                     <Picker
                         Grid.Column="1"
-                        Grid.Row="2"
+                        Grid.Row="5"
                         ItemDisplayBinding="{Binding Name}"
                         ItemsSource="{Binding Countries}"
                         SelectedItem="{Binding Country}"
@@ -54,43 +94,18 @@
                     </Picker>
                     <Label
                         Grid.Column="0"
-                        Grid.Row="3"
+                        Grid.Row="6"
                         Text="City"
                         VerticalOptions="Center">
                     </Label>
                     <Picker
                         Grid.Column="1"
-                        Grid.Row="3"
+                        Grid.Row="6"
                         ItemDisplayBinding="{Binding Name}"
                         ItemsSource="{Binding Cities}"
                         SelectedItem="{Binding City}"
                         Title="Select a city...">
                     </Picker>
-                    <Label
-                        Grid.Column="0"
-                        Grid.Row="4"
-                        Text="Address"
-                        VerticalOptions="Center">
-                    </Label>
-                    <Entry
-                        Grid.Column="1"
-                        Grid.Row="4"
-                        Placeholder="Enter your address..."
-                        Text="{Binding User.Address}">
-                    </Entry>
-                    <Label
-                        Grid.Column="0"
-                        Grid.Row="5"
-                        Text="Phone"
-                        VerticalOptions="Center">
-                    </Label>
-                    <Entry
-                        Grid.Column="1"
-                        Grid.Row="5"
-                        Keyboard="Telephone"
-                        Placeholder="Enter your phone number..."
-                        Text="{Binding User.PhoneNumber}">
-                    </Entry>
                 </Grid>
                 <ActivityIndicator
                     IsRunning="{Binding IsRunning}"

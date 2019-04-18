@@ -11,13 +11,11 @@
     {
         private readonly DataContext context;
         private readonly IUserHelper userHelper;
-        private readonly Random random;
 
         public SeedDb(DataContext context, IUserHelper userHelper)
         {
             this.context = context;
             this.userHelper = userHelper;
-            this.random = new Random();
         }
 
         public async Task SeedAsync()
@@ -133,7 +131,7 @@
             {
                 Name = name,
                 Description = description,
-                ImageUrl = $"~/images/Products/{name}.png"
+                ImageUrl = $"~/images/VoteEvents/{name.Replace(" ", "")}.jpg"
             });
         }
 
@@ -143,7 +141,7 @@
             {
                 Name = name,
                 Proposal = proposal,
-                ImageUrl = $"~/images/Products/{name}.png",
+                ImageUrl = $"~/images/Candidates/{name.Replace(" ", "")}.jpg",
                 VoteEventId = voteEventId
             });
         }

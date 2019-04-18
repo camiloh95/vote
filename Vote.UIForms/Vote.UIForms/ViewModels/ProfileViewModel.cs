@@ -69,6 +69,13 @@
             get => this.isEnabled;
             set => this.SetValue(ref this.isEnabled, value);
         }
+        public Gender Gender { get; set; }
+
+        public Stratum Stratum { get; set; }
+
+        public List<Gender> Genders { get; set; }
+
+        public List<Stratum> Stratums { get; set; }
 
         public ICommand SaveCommand => new RelayCommand(this.Save);
 
@@ -79,6 +86,10 @@
             this.apiService = new ApiService();
             this.User = MainViewModel.GetInstance().User;
             this.IsEnabled = true;
+            this.Genders = this.GetGenders();
+            this.Stratums = this.GetStratums();
+            this.SetStratum();
+            this.SetGender();
             this.LoadCountries();
         }
 
@@ -119,6 +130,30 @@
                 {
                     this.Country = country;
                     this.City = city;
+                    return;
+                }
+            }
+        }
+
+        private void SetGender()
+        {
+            foreach (var gender in this.Genders)
+            {
+                if(gender.Id == this.User.Gender)
+                {
+                    this.Gender = gender;
+                    return;
+                }
+            }
+        }
+
+        private void SetStratum()
+        {
+            foreach (var stratum in this.Stratums)
+            {
+                if (stratum.Id == this.User.Stratum)
+                {
+                    this.Stratum = stratum;
                     return;
                 }
             }
@@ -200,6 +235,29 @@
         {
             MainViewModel.GetInstance().ChangePassword = new ChangePasswordViewModel();
             await App.Navigator.PushAsync(new ChangePasswordPage());
+        }
+
+        public List<Stratum> GetStratums()
+        {
+            var list = new List<Stratum>();
+            list.Insert(0, new Stratum { Id = 0, Name = "1" });
+            list.Insert(1, new Stratum { Id = 1, Name = "2" });
+            list.Insert(2, new Stratum { Id = 2, Name = "3" });
+            list.Insert(3, new Stratum { Id = 3, Name = "4" });
+            list.Insert(4, new Stratum { Id = 4, Name = "5" });
+            list.Insert(5, new Stratum { Id = 5, Name = "6" });
+
+            return list;
+        }
+
+        public List<Gender> GetGenders()
+        {
+            var list = new List<Gender>();
+            list.Insert(0, new Gender { Id = 0, Name = "Male" });
+            list.Insert(1, new Gender { Id = 1, Name = "Female" });
+            list.Insert(2, new Gender { Id = 2, Name = "Other" });
+
+            return list;
         }
     }
 }

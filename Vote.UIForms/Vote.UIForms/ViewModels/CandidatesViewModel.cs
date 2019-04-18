@@ -11,11 +11,12 @@
     {
         private bool isRunning;
         private bool isEnabled;
+        private readonly ApiService apiService;
         private List<Candidate> myCandidates;
-        private ObservableCollection<Candidate> candidates;
+        private ObservableCollection<CandidateItemViewModel> candidates;
         private bool isRefreshing;
 
-        public ObservableCollection<Candidate> Candidates
+        public ObservableCollection<CandidateItemViewModel> Candidates
         {
             get => this.candidates;
             set => this.SetValue(ref this.candidates, value);
@@ -44,20 +45,50 @@
         public CandidatesViewModel(VoteEvent voteEvent)
         {
             this.VoteEvent = voteEvent;
-            this.myCandidates = voteEvent.Candidates;
+            this.apiService = new ApiService();
+            this.LoadCandidates();
+        }
+
+        private async void LoadCandidates()
+        {
+            this.IsRefreshing = true;
+
+            var url = Application.Current.Resources["UrlAPI"].ToString();
+            var response = await this.apiService.GetCandidatesAsync(
+                url,
+                "/api",
+                "/VoteEvents/GetCandidatesById",
+                this.VoteEvent,
+                "bearer",
+                MainViewModel.GetInstance().Token.Token);
+
+            if (!response.IsSuccess)
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    response.Message,
+                    "Accept");
+                return;
+            }
+
+            this.IsRunning = false;
+            this.IsEnabled = true;
+
+            this.myCandidates = (List<Candidate>)response.Result;
             this.RefreshCandidatesList();
         }
 
         private void RefreshCandidatesList()
         {
-            this.Candidates = new ObservableCollection<Candidate>(
-                this.myCandidates.Select(p => new Candidate
+            this.Candidates = new ObservableCollection<CandidateItemViewModel>(
+                this.myCandidates.Select(c => new CandidateItemViewModel
                 {
-                    Id = p.Id,
-                    Name = p.Name,
-                    Proposal = p.Proposal
+                    Id = c.Id,
+                    Name = c.Name,
+                    ImageFullPath = c.ImageFullPath,
+                    Proposal = c.Proposal
                 })
-            .OrderBy(p => p.Name)
+            .OrderBy(c => c.Name)
             .ToList());
         }
     }

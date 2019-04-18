@@ -16,19 +16,19 @@
                     <DataTemplate>
                         <ViewCell>
                             <Grid>
-                                <!--<Grid.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding SelectVoteEventCommand}"/>
-                                </Grid.GestureRecognizers>-->
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SelectCandidateCommand}"/>
+                                </Grid.GestureRecognizers>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
-                                <!--<Image
+                                <Image
                                     Grid.Column="0"
                                     Source="{Binding ImageFullPath}"
                                     WidthRequest="100">
-                                </Image>-->
+                                </Image>
                                 <StackLayout
                                     Grid.Column="1"
                                     VerticalOptions="Center">
@@ -38,14 +38,10 @@
                                         Text="{Binding Name}"
                                         TextColor="Black">
                                     </Label>
-                                    <!-- <Label
-                                        Text="{Binding Price, StringFormat='Price: {0:C2}'}"
-                                        TextColor="Navy">
-                                    </Label>
                                     <Label
-                                        Text="{Binding Stock, StringFormat='Stock: {0:N2}'}"
+                                        Text="{Binding Proposal, StringFormat='Proposal: {0:C2}'}"
                                         TextColor="Black">
-                                    </Label> -->
+                                    </Label>
                                 </StackLayout>
                                 <Image
                                     Grid.Column="2"
