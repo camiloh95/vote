@@ -40,7 +40,7 @@
                                     </Label>
                                     <Label
                                         Text="{Binding Proposal, StringFormat='Proposal: {0:C2}'}"
-                                        TextColor="Black">
+                                        TextColor="Navy">
                                     </Label>
                                 </StackLayout>
                                 <Image

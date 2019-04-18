@@ -11,6 +11,7 @@
 
         private async void SelectCandidate()
         {
+
             await App.Navigator.PopAsync();
         }
     }

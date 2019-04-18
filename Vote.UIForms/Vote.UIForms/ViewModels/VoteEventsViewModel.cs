@@ -56,10 +56,10 @@
             }
 
             this.myVoteEvents = (List<VoteEvent>)response.Result;
-            this.RefresVoteEventsList();
+            this.RefreshVoteEventsList();
         }
 
-        private void RefresVoteEventsList()
+        private void RefreshVoteEventsList()
         {
             this.VoteEvents = new ObservableCollection<VoteEventItemViewModel>(
                 this.myVoteEvents.Select(v => new VoteEventItemViewModel

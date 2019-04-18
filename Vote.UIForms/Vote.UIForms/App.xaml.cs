@@ -32,6 +32,7 @@ namespace Vote.UIForms
                     mainViewModel.Token = token;
                     mainViewModel.UserEmail = Settings.UserEmail;
                     mainViewModel.UserPassword = Settings.UserPassword;
+                    mainViewModel.VoteEvents = new VoteEventsViewModel();
                     this.MainPage = new MasterPage();
                     return;
                 }

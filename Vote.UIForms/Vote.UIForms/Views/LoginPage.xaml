@@ -12,7 +12,7 @@
                 Padding="8">
                 <Image
                     HeightRequest="150"
-                    Source="shop">
+                    Source="vote">
                 </Image>
                 <Label
                     Text="{i18n:Translate Email}">
