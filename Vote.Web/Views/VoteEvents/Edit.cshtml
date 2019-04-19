@@ -1,4 +1,4 @@
-﻿@model Vote.Web.Data.Entities.VoteEvent
+﻿@model Vote.Web.Models.VoteEventViewModel
 
 @{
 	ViewData["Title"] = "Edit";
@@ -7,17 +7,14 @@
 <h1>Edit</h1>
 
 <h4>Event</h4>
-<hr />
-
-<p>
-	<a asp-action="CreateCandidate" asp-route-id="@Model.Id" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Create Candidate</a>
-</p>
+<hr/>
 
 <div class="row">
 	<div class="col-md-4">
-		<form asp-action="Edit">
+		<form asp-action="Edit" enctype="multipart/form-data">
 			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 			<input type="hidden" asp-for="Id" />
+			<input type="hidden" asp-for="ImageUrl" />
 			<div class="form-group">
 				<label asp-for="Name" class="control-label"></label>
 				<input asp-for="Name" class="form-control" />
@@ -28,11 +25,13 @@
 				<input asp-for="Description" class="form-control" />
 				<span asp-validation-for="Description" class="text-danger"></span>
 			</div>
+
 			<div class="form-group">
-				<label asp-for="ImageUrl" class="control-label"></label>
-				<input asp-for="ImageUrl" class="form-control" type="file" />
-				<span asp-validation-for="ImageUrl" class="text-danger"></span>
+				<label asp-for="ImageFile" class="control-label"></label>
+				<input asp-for="ImageFile" class="form-control" type="file" />
+				<span asp-validation-for="ImageFile" class="text-danger"></span>
 			</div>
+
 			<div class="form-group">
 				<label asp-for="StartDate" class="control-label"></label>
 				<div class="input-group date" data-provide="datepicker">
@@ -56,12 +55,40 @@
 			<div class="form-group">
 				<input type="submit" value="Update" class="btn btn-primary" />
 			</div>
-			<div>
-				<table>
+		</form>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Candidates</h3>
+			</div>
+			<div class="panel-body">
+				<table class="table table-hover table-responsive table-striped" id="CandidatesTable">
+					<thead>
+						<tr>
+							<th>
+								@Html.DisplayNameFor(model => model.Candidates.First().ImageUrl)
+							</th>
+							<th>
+								@Html.DisplayNameFor(model => model.Candidates.First().Name)
+							</th>
+							<th>
+								@Html.DisplayNameFor(model => model.Candidates.First().Proposal)
+							</th>
+						</tr>
+					</thead>
 					<tbody>
 						@foreach (var candidate in Model.Candidates)
 						{
 							<tr>
+								<td>
+									@if (!string.IsNullOrEmpty(candidate.ImageUrl))
+									{
+										<img src="@Url.Content(candidate.ImageUrl)" alt="Image" style="width:75px;height:75px;max-width: 100%; height: auto;" />
+									}
+								</td>
 								<td>
 									@Html.DisplayFor(modelCandidate => candidate.Name)
 								</td>
@@ -69,20 +96,21 @@
 									@Html.DisplayFor(modelCandidate => candidate.Proposal)
 								</td>
 								<td>
-									<a asp-action="EditCandidate" asp-route-id="@candidate.Id" class="btn btn-warning"><i class="fa fa-plus"></i></a>
-									<a asp-action="EditCandidate" asp-route-id="@candidate.Id" class="btn btn-info"><i class="fa fa-minus"></i></a>
-									<button data-id="@candidate.Id" class="btn btn-danger deleteItem" data-toggle="modal" data-target="#deleteDialog">Delete</button>
+									<a asp-action="EditCandidate" asp-route-id="@candidate.Id" class="btn btn-warning"><i class="fa fa-edit"></i></a>
+									<button data-id="@candidate.Id" class="btn btn-danger deleteItem" data-toggle="modal" data-target="#deleteDialog"><i class="fa fa-trash"></i></button>
 								</td>
 							</tr>
 						}
 					</tbody>
 				</table>
 			</div>
-		</form>
+		</div>
 	</div>
 </div>
+<p>
+	<a asp-action="CreateCandidate" asp-route-id="@Model.Id" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i>Add Candidate</a>
+</p>
 
 <div>
 	<a asp-action="Index">Back to List</a>
 </div>
-

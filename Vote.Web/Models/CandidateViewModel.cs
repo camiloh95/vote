@@ -6,7 +6,7 @@
 
     public class CandidateViewModel : Candidate
     {
-        [Display(Name = "Image")]
+        [Display(Name = "Photo")]
         public IFormFile ImageFile { get; set; }
     }
 }

@@ -131,7 +131,9 @@
             {
                 Name = name,
                 Description = description,
-                ImageUrl = $"~/images/VoteEvents/{name.Replace(" ", "")}.jpg"
+                ImageUrl = $"~/images/VoteEvents/{name.Replace(" ", "")}.jpg",
+                StartDate = new DateTime(2019, 04, 18),
+                EndDate = new DateTime(2019, 05, 18)
             });
         }
 

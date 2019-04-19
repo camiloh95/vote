@@ -84,7 +84,7 @@
             {
                 var votes = this.context.Votes.Where(c => c.CandidateId == candidate.Id).Count();
 
-                candidate.voteResult = votes;
+                candidate.VoteResult = votes;
 
                 this.context.Candidates.Update(candidate);
             }

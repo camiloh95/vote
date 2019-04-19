@@ -4,7 +4,6 @@
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
-    using Data;
     using Data.Entities;
     using Data.Repositories;
     using Helpers;
@@ -23,6 +22,11 @@
         }
 
         public IActionResult Index()
+        {
+            return View(this.voteEventRepository.GetAll().OrderBy(p => p.Name));
+        }
+
+        public IActionResult IndexResults()
         {
             return View(this.voteEventRepository.GetAll().OrderBy(p => p.Name));
         }
@@ -112,16 +116,7 @@
             }
 
             var model = this.ToVoteEventViewModel(voteEvent);
-            if (voteEvent.EndDate <= DateTime.Today)
-            {
-                await this.voteEventRepository.UpdateTotalVotesAsync(model);
-                return View("Results", model);
-            }
-            else
-            {
-                return View(voteEvent);
-
-            }
+            return View(model);
         }
 
         private VoteEventViewModel ToVoteEventViewModel(VoteEvent voteEvent)
@@ -272,7 +267,8 @@
                 Id = candidate.Id,
                 Name = candidate.Name,
                 Proposal = candidate.Proposal,
-                ImageUrl = candidate.ImageUrl
+                ImageUrl = candidate.ImageUrl,
+                VoteEventId = candidate.VoteEventId
             };
         }
 
@@ -282,7 +278,7 @@
         {
             if (ModelState.IsValid)
             {
-                var path = string.Empty;
+                var path = model.ImageUrl;
 
                 try
                 {
@@ -312,7 +308,7 @@
 
             var path = Path.Combine(
                 Directory.GetCurrentDirectory(),
-                "wwwroot\\images\\VoteEvents",
+                "wwwroot\\images\\Candidates",
                 file);
 
             using (var stream = new FileStream(path, FileMode.Create))
@@ -320,7 +316,7 @@
                 await model.ImageFile.CopyToAsync(stream);
             }
 
-            path = $"~/images/VoteEvents/{file}";
+            path = $"~/images/Candidates/{file}";
             return path;
         }
     }

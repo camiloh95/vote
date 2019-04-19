@@ -5,9 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Vote.Web</title>
 
-    <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-    </environment>
+	<environment include="Development">
+		<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+		<link href="~/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+		<link href="~/node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="~/css/site.css" />
+	</environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
@@ -45,9 +48,14 @@
 						<li class="nav-item">
 							<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
 						</li>
-						<li>
-							<a class="nav-link text-dark" asp-area="" asp-controller="VoteEvents" asp-action="Index">Vote</a>
-						</li>
+						@if (this.User.Identity.IsAuthenticated)
+						{
+							@if (this.User.IsInRole("Admin"))
+							{
+								<li><a class="nav-link text-dark" asp-area="" asp-controller="VoteEvents" asp-action="Index">Voting events</a></li>
+								<li><a class="nav-link text-dark" asp-area="" asp-controller="VoteEvents" asp-action="IndexResults">Results</a></li>
+							}
+						}
 
 					</ul>
 				</div>

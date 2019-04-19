@@ -33,6 +33,7 @@
         [Display(Name = "Image")]
         public string ImageUrl { get; set; }
 
-        public int voteResult { get; set; }
+        [Display(Name = "Votes")]
+        public int VoteResult { get; set; }
     }
 }
