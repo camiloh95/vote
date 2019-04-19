@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Vote.Web.Data.Entities;
-using Vote.Web.Models;
-
-namespace Vote.Web.Data.Repositories
+﻿namespace Vote.Web.Data.Repositories
 {
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Vote.Web.Data.Entities;
+    using Vote.Web.Models;
+
     public interface IVoteEventRepository : IGenericRepository<VoteEvent> 
     {
         IQueryable GetAllWithCandidates();
@@ -20,5 +18,8 @@ namespace Vote.Web.Data.Repositories
         Task<Candidate> UpdateCandidateAsync(CandidateViewModel model, string imaginePath);
 
         Task<bool> UpdateTotalVotesAsync(VoteEvent voteEvent);
+
+        Task<Vote> CreateVoteAsync(Vote model);
+
     }
 }

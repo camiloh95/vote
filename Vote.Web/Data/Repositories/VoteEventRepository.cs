@@ -91,5 +91,12 @@
             await this.context.SaveChangesAsync();
             return true;
         }
+
+        public async Task<Vote> CreateVoteAsync(Vote model)
+        {
+            this.context.Votes.Add(model);
+            await this.context.SaveChangesAsync();
+            return model;
+        }
     }
 }

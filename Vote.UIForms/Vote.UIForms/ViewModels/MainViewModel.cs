@@ -1,11 +1,9 @@
 ﻿namespace Vote.UIForms.ViewModels
 {
-    using GalaSoft.MvvmLight.Command;
     using Common.Models;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
-    using System.Windows.Input;
 
     public class MainViewModel
     {
@@ -30,6 +28,8 @@
         public ProfileViewModel Profile { get; set; }
 
         public VoteEventsViewModel VoteEvents { get; set; }
+
+        public VoteViewModel Vote { get; set; }
 
         public CandidatesViewModel Candidates { get; set; }
 

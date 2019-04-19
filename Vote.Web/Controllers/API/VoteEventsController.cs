@@ -1,13 +1,9 @@
 ﻿namespace Vote.Web.Controllers.API
 {
-    using System.Linq;
     using System.Threading.Tasks;
     using Common.Models;
     using Data.Repositories;
-    using Helpers;
-    using Microsoft.AspNetCore.Authentication.JwtBearer;
-    using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Identity;
+    using Data.Entities;
     using Microsoft.AspNetCore.Mvc;
 
     [Route("api/[Controller]")]
@@ -28,7 +24,7 @@
 
         [HttpPost]
         [Route("GetCandidatesById")]
-        public async Task<IActionResult> GetUserByEmail([FromBody] VoteEvent request)
+        public async Task<IActionResult> GetUserByEmail([FromBody] Common.Models.VoteEvent request)
         {
             if (!ModelState.IsValid)
             {
@@ -50,6 +46,29 @@
             }
 
             return Ok(user);
+        }
+
+        [HttpPost]
+        [Route("SaveVote")]
+        public async Task<IActionResult> SaveVote([FromBody] SaveVoteRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return this.BadRequest(new Response
+                {
+                    IsSuccess = false,
+                    Message = "Bad request"
+                });
+            }
+
+            var entityVote = new Vote
+            {
+                CandidateId = request.CandidateId,
+                UserId = request.UserId
+            };
+
+            var newVote = await this.voteEventRepository.CreateVoteAsync(entityVote);
+            return Ok(newVote);
         }
     }
 }
