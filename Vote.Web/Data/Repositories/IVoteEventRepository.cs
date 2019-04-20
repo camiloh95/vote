@@ -17,9 +17,11 @@
 
         Task<Candidate> UpdateCandidateAsync(CandidateViewModel model, string imaginePath);
 
+        Task<Vote> CreateVoteAsync(Vote model);
+
         Task<bool> UpdateTotalVotesAsync(VoteEvent voteEvent);
 
-        Task<Vote> CreateVoteAsync(Vote model);
+        Task<Candidate> GetAlreadyVotedAsync(string email, int votEventId);
 
     }
 }

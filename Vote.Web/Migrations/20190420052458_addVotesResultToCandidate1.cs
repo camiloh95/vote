@@ -2,7 +2,7 @@
 
 namespace Vote.Web.Migrations
 {
-    public partial class changing_entities : Migration
+    public partial class addVotesResultToCandidate1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

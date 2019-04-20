@@ -10,8 +10,8 @@ using Vote.Web.Data;
 namespace Vote.Web.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20190419231027_changingVoteEntity")]
-    partial class changingVoteEntity
+    [Migration("20190420043834_addVotesResultToCandidate")]
+    partial class addVotesResultToCandidate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -147,7 +147,7 @@ namespace Vote.Web.Migrations
 
                     b.Property<int>("VoteEventId");
 
-                    b.Property<int>("VoteResult");
+                    b.Property<int>("VotesResult");
 
                     b.HasKey("Id");
 
@@ -244,6 +244,8 @@ namespace Vote.Web.Migrations
                     b.Property<string>("UserName")
                         .HasMaxLength(256);
 
+                    b.Property<int>("Vote");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CityId");
@@ -270,6 +272,8 @@ namespace Vote.Web.Migrations
                     b.Property<Guid>("UserId");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CandidateId");
 
                     b.ToTable("Votes");
                 });
@@ -344,7 +348,7 @@ namespace Vote.Web.Migrations
 
             modelBuilder.Entity("Vote.Web.Data.Entities.Candidate", b =>
                 {
-                    b.HasOne("Vote.Web.Data.Entities.VoteEvent")
+                    b.HasOne("Vote.Web.Data.Entities.VoteEvent", "VoteEvent")
                         .WithMany("Candidates")
                         .HasForeignKey("VoteEventId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -362,6 +366,14 @@ namespace Vote.Web.Migrations
                     b.HasOne("Vote.Web.Data.Entities.City", "City")
                         .WithMany()
                         .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Vote.Web.Data.Entities.Vote", b =>
+                {
+                    b.HasOne("Vote.Web.Data.Entities.Candidate", "Candidate")
+                        .WithMany("Votes")
+                        .HasForeignKey("CandidateId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

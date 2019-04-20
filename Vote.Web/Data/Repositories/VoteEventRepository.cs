@@ -1,20 +1,22 @@
-﻿    namespace Vote.Web.Data.Repositories
+﻿namespace Vote.Web.Data.Repositories
 {
-    using System;
     using System.Linq;
     using System.Threading.Tasks;
     using Entities;
     using Microsoft.EntityFrameworkCore;
-    using Helpers;
+    using Vote.Web.Helpers;
     using Models;
 
     public class VoteEventRepository : GenericRepository<VoteEvent>, IVoteEventRepository
     {
         private readonly DataContext context;
+        private readonly IUserHelper userHelper;
 
-        public VoteEventRepository(DataContext context) : base(context)
+        public VoteEventRepository(DataContext context, IUserHelper userHelper) : base(context)
         {
             this.context = context;
+            this.userHelper = userHelper;
+
         }
 
         public IQueryable GetAllWithCandidates()
@@ -73,18 +75,13 @@
                                                 .FirstOrDefaultAsync(c => c.Id == id);
         }
 
-        public async Task<int> GetTotalVotesAsync(int id)
-        {
-            return await this.context.Votes.Where(v => v.Id == id).CountAsync();
-        }
-
         public async Task<bool> UpdateTotalVotesAsync(VoteEvent voteEvent)
         {
             foreach (var candidate in voteEvent.Candidates)
             {
                 var votes = this.context.Votes.Where(c => c.CandidateId == candidate.Id).Count();
 
-                candidate.VoteResult = votes;
+                candidate.VotesResult = votes;
 
                 this.context.Candidates.Update(candidate);
             }
@@ -97,6 +94,27 @@
             this.context.Votes.Add(model);
             await this.context.SaveChangesAsync();
             return model;
+        }
+
+        public async Task<Candidate> GetAlreadyVotedAsync(string email, int voteEventId)
+        {
+            var user = await this.userHelper.GetUserByEmailAsync(email);
+            if (user == null)
+            {
+                return null;
+            }
+
+            var Vote = await this.context.Votes.Include(v => v.Candidate)
+                                         .ThenInclude(v => v.VoteEvent)
+                                         .AsNoTracking()
+                                         .FirstOrDefaultAsync(v => (v.UserId.Equals(user.Id)));
+            
+            if(Vote != null)
+            {
+                var candidate = await this.GetCandidateByIdAsync(Vote.CandidateId);
+                return candidate;
+            }
+            return null;
         }
     }
 }

@@ -49,6 +49,27 @@
             this.LoadCandidates();
         }
 
+        /*private async bool alreadyVote()
+        {
+            var url = Application.Current.Resources["UrlAPI"].ToString();
+            var response = await this.apiService.GetCandidatesAsync(
+                url,
+                "/api",
+                "/VoteEvents/GetCandidatesById",
+                this.VoteEvent,
+                "bearer",
+                MainViewModel.GetInstance().Token.Token);
+
+            if (!response.IsSuccess)
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    response.Message,
+                    "Accept");
+                return;
+            }
+        } */
+
         private async void LoadCandidates()
         {
             this.IsRefreshing = true;

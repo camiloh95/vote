@@ -1,9 +1,7 @@
 ﻿namespace Vote.Web.Data.Entities
 {
-    using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using Microsoft.AspNetCore.Identity;
 
     public class Candidate : IEntity
     {
@@ -30,10 +28,13 @@
 
         public int VoteEventId { get; set; }
 
+        public VoteEvent VoteEvent { get; set; }
+
         [Display(Name = "Image")]
         public string ImageUrl { get; set; }
 
-        [Display(Name = "Votes")]
-        public int VoteResult { get; set; }
+        public ICollection<Vote> Votes { get; set; }
+
+        public int VotesResult { get; set; }
     }
 }

@@ -31,6 +31,8 @@
 
         public int CityId { get; set; }
 
+        public int Vote { get; set; }
+
         public City City { get; set; }
         
         [NotMapped]

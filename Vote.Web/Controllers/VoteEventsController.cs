@@ -48,7 +48,7 @@
 
             if (voteEvent.EndDate <= DateTime.Today)
             {
-                await this.voteEventRepository.UpdateTotalVotesAsync(voteEvent);
+                await this.voteEventRepository.UpdateTotalVotesAsync(voteEvent  );
                 return View("Results", voteEvent);
             }
             else

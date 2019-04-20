@@ -4,6 +4,7 @@
     using Microsoft.EntityFrameworkCore;
     using Data.Entities;
     using System.Linq;
+    using System;
 
     public class DataContext : IdentityDbContext<User>
 

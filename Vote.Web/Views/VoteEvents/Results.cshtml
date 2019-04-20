@@ -36,7 +36,7 @@
 									@Html.DisplayNameFor(model => model.Candidates.First().Proposal)
 								</th>
 								<th>
-									@Html.DisplayNameFor(model => model.Candidates.First().VoteResult)
+									@Html.DisplayNameFor(model => model.Candidates.First().VotesResult)
 								</th>
 							</tr>
 						</thead>
@@ -57,7 +57,7 @@
 										@Html.DisplayFor(modelCandidate => candidate.Proposal)
 									</td>
 									<td>
-										@Html.DisplayFor(modelCandidate => candidate.VoteResult)
+										@Html.DisplayFor(modelCandidate => candidate.VotesResult)
 									</td>
 								</tr>
 							}

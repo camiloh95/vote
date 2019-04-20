@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Vote.Web.Data;
 
 namespace Vote.Web.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20190420025333_changeEntityVote")]
+    partial class changeEntityVote
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -145,8 +147,6 @@ namespace Vote.Web.Migrations
 
                     b.Property<int>("VoteEventId");
 
-                    b.Property<int>("VotesResult");
-
                     b.HasKey("Id");
 
                     b.HasIndex("VoteEventId");
@@ -269,9 +269,13 @@ namespace Vote.Web.Migrations
 
                     b.Property<Guid>("UserId");
 
+                    b.Property<string>("UserId1");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CandidateId");
+
+                    b.HasIndex("UserId1");
 
                     b.ToTable("Votes");
                 });
@@ -373,6 +377,10 @@ namespace Vote.Web.Migrations
                         .WithMany("Votes")
                         .HasForeignKey("CandidateId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Vote.Web.Data.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId1");
                 });
 #pragma warning restore 612, 618
         }

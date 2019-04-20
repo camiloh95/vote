@@ -3,12 +3,12 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    public class SaveVoteRequest
+    public class AlreadyVotedRequest
     {
         [Required]
-        public int CandidateId { get; set; }
+        public string Email { get; set; }
 
         [Required]
-        public Guid UserId { get; set; }
+        public int VoteEventId { get; set; }
     }
 }

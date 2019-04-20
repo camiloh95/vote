@@ -9,5 +9,7 @@
         public Guid UserId { get; set; }
 
         public int CandidateId { get; set; }
+
+        public Candidate Candidate { get; set; }
     }
 }
