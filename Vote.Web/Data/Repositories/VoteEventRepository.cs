@@ -1,4 +1,4 @@
-﻿namespace Vote.Web.Data.Repositories
+﻿    namespace Vote.Web.Data.Repositories
 {
     using System.Linq;
     using System.Threading.Tasks;
@@ -19,9 +19,14 @@
 
         }
 
-        public IQueryable GetAllWithCandidates()
+        public async Task<IQueryable> GetAllWithCandidates()
         {
-            return this.context.VoteEvents.Include(p => p.Candidates);
+            var voteEvents = this.context.VoteEvents.Include(p => p.Candidates);
+            foreach(var voteEvent in voteEvents)
+            {
+                await this.UpdateTotalVotesAsync(voteEvent);
+            }
+            return voteEvents;
         }
 
         public async Task<bool> CreateCandidateAsync(CandidateViewModel model, string path)
@@ -39,14 +44,16 @@
             return true;
         }
 
-        public async Task<IQueryable<Candidate>> GetCandidatesAsync(int id)
+        public async Task<IQueryable<Candidate>> GetCandidatesByIdAsync(int id)
         {
-            var voteEvent = await this.GetByIdAsync(id);
+            var voteEvent = await this.context.VoteEvents.Include(v => v.Candidates)
+                                                   .FirstOrDefaultAsync(e => e.Id == id);
             if (voteEvent == null)
             {
                 return null;
             }
 
+            await this.UpdateTotalVotesAsync(voteEvent);
             return this.context.Candidates
                 .Where(o => o.VoteEventId == id)
                 .OrderBy(o => o.Name);

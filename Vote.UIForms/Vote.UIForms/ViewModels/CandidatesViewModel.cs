@@ -2,6 +2,7 @@
 {
     using Common.Models;
     using Common.Services;
+    using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
@@ -19,11 +20,18 @@
         private ObservableCollection<CandidateItemViewModel> candidates;
         private bool isRefreshing;
         private bool alreadyVoted;
+        private Candidate candidate;
 
         public ObservableCollection<CandidateItemViewModel> Candidates
         {
             get => this.candidates;
             set => this.SetValue(ref this.candidates, value);
+        }
+
+        public Candidate Candidate
+        {
+            get => this.candidate;
+            set => this.SetValue(ref this.candidate, value);
         }
 
         public bool AlreadyVoted
@@ -61,22 +69,80 @@
             this.ValidationPath();
         }
 
-        private async void LoadVotedCandidate()
-        {
-            await App.Navigator.PushAsync(new VotedCandidatePage());
-        }
-
         private async void ValidationPath()
         {
-            var validation = await this.AlreadyVotedAsync();
-            if (validation)
+            if (this.VoteEvent.EndDate <= DateTime.Today)
             {
-                this.LoadVotedCandidate();
+                this.LoadResults();
             }
             else
             {
-                this.LoadCandidates();
+                var validation = await this.AlreadyVotedAsync();
+                if (validation)
+                {
+                    this.LoadVotedCandidate();
+                }
+                else
+                {
+                    this.LoadCandidates();
+                }
             }
+        }
+
+        private async void LoadResults()
+        {
+            this.IsRefreshing = true;
+
+            var url = Application.Current.Resources["UrlAPI"].ToString();
+            var response = await this.apiService.GetVotedCandidateAsync(
+                url,
+                "/api",
+                "/VoteEvents/GetVotedCandidate",
+                this.alreadyVotedRequest,
+                "bearer",
+                MainViewModel.GetInstance().Token.Token);
+
+            if (!response.IsSuccess)
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    response.Message,
+                    "Accept");
+                return;
+            }
+
+            this.IsRunning = false;
+
+            this.Candidate = (Candidate)response.Result;
+            await App.Navigator.PushAsync(new VotedCandidatePage());
+        }
+
+        private async void LoadVotedCandidate()
+        {
+            this.IsRefreshing = true;
+
+            var url = Application.Current.Resources["UrlAPI"].ToString();
+            var response = await this.apiService.GetVotedCandidateAsync(
+                url,
+                "/api",
+                "/VoteEvents/GetVotedCandidate",
+                this.alreadyVotedRequest,
+                "bearer",
+                MainViewModel.GetInstance().Token.Token);
+
+            if (!response.IsSuccess)
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    response.Message,
+                    "Accept");
+                return;
+            }
+
+            this.IsRunning = false;
+
+            this.Candidate = (Candidate)response.Result;
+            await App.Navigator.PushAsync(new VotedCandidatePage());
         }
 
         private async Task<bool> AlreadyVotedAsync()
@@ -137,6 +203,7 @@
                 return;
             }
 
+            this.IsRefreshing = false;
             this.IsRunning = false;
             this.IsEnabled = true;
 

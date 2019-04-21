@@ -7,11 +7,11 @@
 
     public interface IVoteEventRepository : IGenericRepository<VoteEvent> 
     {
-        IQueryable GetAllWithCandidates();
+        Task<IQueryable> GetAllWithCandidates();
 
         Task<bool> CreateCandidateAsync(CandidateViewModel model, string path);
 
-        Task<IQueryable<Candidate>> GetCandidatesAsync(int Id);
+        Task<IQueryable<Candidate>> GetCandidatesByIdAsync(int Id);
 
         Task<Candidate> GetCandidateByIdAsync(int id);
 

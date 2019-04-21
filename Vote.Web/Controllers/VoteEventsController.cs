@@ -43,12 +43,11 @@
             {
                 return new NotFoundViewResult("VoteEventNotFound");
             } else {
-                voteEvent.Candidates = await this.voteEventRepository.GetCandidatesAsync(id.Value);
+                voteEvent.Candidates = await this.voteEventRepository.GetCandidatesByIdAsync(id.Value);
             }
 
             if (voteEvent.EndDate <= DateTime.Today)
             {
-                await this.voteEventRepository.UpdateTotalVotesAsync(voteEvent);
                 return View("Results", voteEvent);
             }
             else
@@ -112,7 +111,7 @@
                 return new NotFoundViewResult("VoteEventNotFound");
             }
             else {
-                voteEvent.Candidates = await this.voteEventRepository.GetCandidatesAsync(id.Value);
+                voteEvent.Candidates = await this.voteEventRepository.GetCandidatesByIdAsync(id.Value);
             }
 
             var model = this.ToVoteEventViewModel(voteEvent);
