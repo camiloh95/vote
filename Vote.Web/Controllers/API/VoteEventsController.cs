@@ -87,5 +87,22 @@
             var alreadyVoted = await this.voteEventRepository.GetAlreadyVotedAsync(request.Email, request.VoteEventId);
             return Ok(alreadyVoted);
         }
+
+        [HttpPost]
+        [Route("GetVotedCandidate")]
+        public async Task<IActionResult> GetVotedCandidateAsync([FromBody] AlreadyVotedRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return this.BadRequest(new Response
+                {
+                    IsSuccess = false,
+                    Message = "Bad request"
+                });
+            }
+
+            var alreadyVoted = await this.voteEventRepository.GetVotedCandidateAsync(request.Email, request.VoteEventId);
+            return Ok(alreadyVoted);
+        }
     }
 }

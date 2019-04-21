@@ -28,8 +28,6 @@
 
         public int VoteEventId { get; set; }
 
-        public VoteEvent VoteEvent { get; set; }
-
         [Display(Name = "Image")]
         public string ImageUrl { get; set; }
 

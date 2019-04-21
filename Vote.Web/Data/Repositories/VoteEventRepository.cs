@@ -125,5 +125,27 @@
             }
             return false;
         }
+
+        public async Task<Candidate> GetVotedCandidateAsync(string email, int voteEventId)
+        {
+            var user = await this.userHelper.GetUserByEmailAsync(email);
+            if (user == null)
+            {
+                return null;
+            }
+
+            var possibleCandidates = this.context.Candidates.Where(c => c.VoteEventId == voteEventId);
+
+            foreach(var candidate in possibleCandidates)
+            {
+                var vote = this.context.Votes.Where(v => v.CandidateId == candidate.Id)
+                                             .Where(v => v.UserId.ToString() == user.Id);
+                if (vote.Any())
+                {
+                    return candidate;
+                }
+            }
+            return null;
+        }
     }
 }

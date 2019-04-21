@@ -58,22 +58,28 @@
         {
             this.VoteEvent = voteEvent;
             this.apiService = new ApiService();
-            this.AlreadyVotedAsync();
-            if (this.AlreadyVoted)
+            this.ValidationPath();
+        }
+
+        private async void LoadVotedCandidate()
+        {
+            await App.Navigator.PushAsync(new VotedCandidatePage());
+        }
+
+        private async void ValidationPath()
+        {
+            var validation = await this.AlreadyVotedAsync();
+            if (validation)
             {
                 this.LoadVotedCandidate();
-            } else
+            }
+            else
             {
                 this.LoadCandidates();
             }
         }
 
-        private async void LoadVotedCandidate()
-        {
-            await App.Navigator.PushAsync(new CandidatesPage());
-        }
-
-        private async void AlreadyVotedAsync()
+        private async Task<bool> AlreadyVotedAsync()
         {
             this.IsRefreshing = true;
 
@@ -86,7 +92,7 @@
             };
 
             var url = Application.Current.Resources["UrlAPI"].ToString();
-            var response = await this.apiService.PostAsync(
+            var response = await this.apiService.AlreadyVotedAsync(
                 url,
                 "/api",
                 "/VoteEvents/GetAlreadyVoted",
@@ -100,18 +106,13 @@
                     "Error",
                     response.Message,
                     "Accept");
-                return;
+                return false;
             }
 
             this.IsRunning = false;
             this.IsEnabled = true;
 
-            var result = response.Result;   
-
-            if (result is bool)
-            {
-                this.AlreadyVoted = (bool)result;
-            }
+            return (bool)response.Result;
         }
 
         private async void LoadCandidates()
