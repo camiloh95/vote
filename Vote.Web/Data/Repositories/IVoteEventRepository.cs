@@ -7,7 +7,7 @@
 
     public interface IVoteEventRepository : IGenericRepository<VoteEvent> 
     {
-        Task<IQueryable> GetAllWithCandidates();
+        IQueryable GetAllWithCandidates();
 
         Task<bool> CreateCandidateAsync(CandidateViewModel model, string path);
 
@@ -21,9 +21,7 @@
 
         Task<bool> UpdateTotalVotesAsync(VoteEvent voteEvent);
 
-        Task<bool> GetAlreadyVotedAsync(string email, int votEventId);
-
-        Task<Candidate> GetVotedCandidateAsync(string email, int votEventId);
+        Task<Candidate> GetAlreadyVotedAsync(string email, int votEventId);
 
     }
 }

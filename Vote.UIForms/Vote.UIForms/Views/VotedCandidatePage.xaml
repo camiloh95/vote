@@ -5,33 +5,39 @@
              Title="Voted Candidate"
              BindingContext="{Binding Main, Source={StaticResource Locator}}">
     <ContentPage.Content>
-        <ScrollView
-            BindingContext="{Binding Candidates}">
-            <StackLayout
-                Padding="8">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="2*"/>
-                    </Grid.ColumnDefinitions>
+        <StackLayout
+            BindingContext="{Binding Candidates}"
+            Padding="8">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Image
+                   Grid.Column="0"
+                   Source="{Binding Candidate.ImageFullPath}"
+                   WidthRequest="100">
+                </Image>
+                <StackLayout
+                    Grid.Column="1"
+                    VerticalOptions="Center">
                     <Label
-                        Grid.Column="0"
-                        Grid.Row="0"
+                        FontAttributes="Bold"
+                        FontSize="Medium"
                         Text="{Binding Candidate.Name}"
-                        VerticalOptions="Center">
+                        TextColor="Black">
                     </Label>
                     <Label
-                        Grid.Column="0"
-                        Grid.Row="1"
-                        Text="{Binding Candidate.Proposal}"
-                        VerticalOptions="Center">
+                        Text="{Binding Candidate.Proposal, StringFormat='Proposal: {0:C2}'}"
+                        TextColor="Navy">
                     </Label>
-                </Grid>
-                <ActivityIndicator
-                    IsRunning="{Binding IsRunning}"
-                    VerticalOptions="CenterAndExpand">
-                </ActivityIndicator>
-            </StackLayout>
-        </ScrollView>
+                </StackLayout>
+            </Grid>
+            <ActivityIndicator
+            IsRunning="{Binding IsRunning}"
+            VerticalOptions="CenterAndExpand">
+            </ActivityIndicator>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

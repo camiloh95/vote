@@ -19,7 +19,6 @@
         private List<Candidate> myCandidates;
         private ObservableCollection<CandidateItemViewModel> candidates;
         private bool isRefreshing;
-        private bool alreadyVoted;
         private Candidate candidate;
 
         public ObservableCollection<CandidateItemViewModel> Candidates
@@ -32,12 +31,6 @@
         {
             get => this.candidate;
             set => this.SetValue(ref this.candidate, value);
-        }
-
-        public bool AlreadyVoted
-        {
-            get => this.alreadyVoted;
-            set => this.SetValue(ref this.alreadyVoted, value);
         }
 
         public bool IsRefreshing
@@ -73,83 +66,29 @@
         {
             if (this.VoteEvent.EndDate <= DateTime.Today)
             {
-                this.LoadResults();
+                this.myCandidates = await this.LoadCandidates();
+                this.RefreshCandidatesList();
+                await App.Navigator.PushAsync(new VoteResultsPage());
             }
             else
             {
-                var validation = await this.AlreadyVotedAsync();
-                if (validation)
+                this.Candidate = await this.GetAlreadyVotedAsync();
+                if (this.Candidate != null)
                 {
-                    this.LoadVotedCandidate();
+                    await App.Navigator.PushAsync(new VotedCandidatePage());
                 }
                 else
                 {
-                    this.LoadCandidates();
+                    this.myCandidates = await this.LoadCandidates();
+                    this.RefreshCandidatesList();
+                    await App.Navigator.PushAsync(new CandidatesPage());
                 }
             }
         }
 
-        private async void LoadResults()
+        private async Task<Candidate> GetAlreadyVotedAsync()
         {
             this.IsRefreshing = true;
-
-            var url = Application.Current.Resources["UrlAPI"].ToString();
-            var response = await this.apiService.GetVotedCandidateAsync(
-                url,
-                "/api",
-                "/VoteEvents/GetVotedCandidate",
-                this.alreadyVotedRequest,
-                "bearer",
-                MainViewModel.GetInstance().Token.Token);
-
-            if (!response.IsSuccess)
-            {
-                await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    response.Message,
-                    "Accept");
-                return;
-            }
-
-            this.IsRunning = false;
-
-            this.Candidate = (Candidate)response.Result;
-            await App.Navigator.PushAsync(new VotedCandidatePage());
-        }
-
-        private async void LoadVotedCandidate()
-        {
-            this.IsRefreshing = true;
-
-            var url = Application.Current.Resources["UrlAPI"].ToString();
-            var response = await this.apiService.GetVotedCandidateAsync(
-                url,
-                "/api",
-                "/VoteEvents/GetVotedCandidate",
-                this.alreadyVotedRequest,
-                "bearer",
-                MainViewModel.GetInstance().Token.Token);
-
-            if (!response.IsSuccess)
-            {
-                await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    response.Message,
-                    "Accept");
-                return;
-            }
-
-            this.IsRunning = false;
-
-            this.Candidate = (Candidate)response.Result;
-            await App.Navigator.PushAsync(new VotedCandidatePage());
-        }
-
-        private async Task<bool> AlreadyVotedAsync()
-        {
-            this.IsRefreshing = true;
-
-            this.AlreadyVoted = false;
 
             this.alreadyVotedRequest = new AlreadyVotedRequest
             {
@@ -158,7 +97,7 @@
             };
 
             var url = Application.Current.Resources["UrlAPI"].ToString();
-            var response = await this.apiService.AlreadyVotedAsync(
+            var response = await this.apiService.GetAlreadyVotedAsync(
                 url,
                 "/api",
                 "/VoteEvents/GetAlreadyVoted",
@@ -172,16 +111,16 @@
                     "Error",
                     response.Message,
                     "Accept");
-                return false;
+                return null;
             }
 
             this.IsRunning = false;
             this.IsEnabled = true;
 
-            return (bool)response.Result;
+            return (Candidate)response.Result;
         }
 
-        private async void LoadCandidates()
+        private async Task<List<Candidate>> LoadCandidates()
         {
             this.IsRefreshing = true;
 
@@ -200,16 +139,14 @@
                     "Error",
                     response.Message,
                     "Accept");
-                return;
+                return null;
             }
 
             this.IsRefreshing = false;
             this.IsRunning = false;
             this.IsEnabled = true;
 
-            this.myCandidates = (List<Candidate>)response.Result;
-            this.RefreshCandidatesList();
-            await App.Navigator.PushAsync(new CandidatesPage());
+            return (List<Candidate>)response.Result;
         }
 
         private void RefreshCandidatesList()
@@ -220,7 +157,8 @@
                     Id = c.Id,
                     Name = c.Name,
                     ImageFullPath = c.ImageFullPath,
-                    Proposal = c.Proposal
+                    Proposal = c.Proposal,
+                    VoteResult = c.VoteResult
                 })
             .OrderBy(c => c.Name)
             .ToList());

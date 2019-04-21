@@ -3,7 +3,6 @@
     using System.Windows.Input;
     using GalaSoft.MvvmLight.Command;
     using Common.Models;
-    using UIForms.Views;
 
     public class VoteEventItemViewModel : VoteEvent
     {

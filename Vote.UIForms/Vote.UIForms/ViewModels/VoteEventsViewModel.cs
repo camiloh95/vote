@@ -68,6 +68,8 @@
                     Name = v.Name,
                     Description = v.Description,
                     ImageFullPath = v.ImageFullPath,
+                    StartDate = v.StartDate,
+                    EndDate = v.EndDate,
                     Candidates = v.Candidates
                 })
             .OrderBy(v => v.Name)

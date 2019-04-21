@@ -16,17 +16,11 @@
         {
             this.context = context;
             this.userHelper = userHelper;
-
         }
 
-        public async Task<IQueryable> GetAllWithCandidates()
+        public IQueryable GetAllWithCandidates()
         {
-            var voteEvents = this.context.VoteEvents.Include(p => p.Candidates);
-            foreach(var voteEvent in voteEvents)
-            {
-                await this.UpdateTotalVotesAsync(voteEvent);
-            }
-            return voteEvents;
+            return this.context.VoteEvents.Include(p => p.Candidates);
         }
 
         public async Task<bool> CreateCandidateAsync(CandidateViewModel model, string path)
@@ -47,7 +41,7 @@
         public async Task<IQueryable<Candidate>> GetCandidatesByIdAsync(int id)
         {
             var voteEvent = await this.context.VoteEvents.Include(v => v.Candidates)
-                                                   .FirstOrDefaultAsync(e => e.Id == id);
+                                                         .FirstOrDefaultAsync(e => e.Id == id);
             if (voteEvent == null)
             {
                 return null;
@@ -115,25 +109,7 @@
             return model;
         }
 
-        public async Task<bool> GetAlreadyVotedAsync(string email, int voteEventId)
-        {
-            var user = await this.userHelper.GetUserByEmailAsync(email);
-            if (user == null)
-            {
-                return false;
-            }
-
-            var candidate = await this.context.Candidates.AsNoTracking().AnyAsync(c => c.VoteEventId == voteEventId);
-
-            if(candidate)
-            {
-                var Vote = await this.context.Votes.AsNoTracking().AnyAsync(v => v.UserId.ToString() == user.Id);
-                return Vote;
-            }
-            return false;
-        }
-
-        public async Task<Candidate> GetVotedCandidateAsync(string email, int voteEventId)
+        public async Task<Candidate> GetAlreadyVotedAsync(string email, int voteEventId)
         {
             var user = await this.userHelper.GetUserByEmailAsync(email);
             if (user == null)

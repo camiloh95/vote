@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Vote.UIForms.Views.VoteResultsPage"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             Title="Results">
+    <ContentPage.Content>
+        <StackLayout
+            BindingContext="{Binding Candidates}"
+            Padding="8">
+            <ListView
+                IsRefreshing="{Binding IsRefreshing}"
+                HasUnevenRows="True"
+                ItemsSource="{Binding Candidates}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Image
+                                    Grid.Column="0"
+                                    Source="{Binding ImageFullPath}"
+                                    WidthRequest="100">
+                                </Image>
+                                <StackLayout
+                                    Grid.Column="1"
+                                    VerticalOptions="Center">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="Medium"
+                                        Text="{Binding Name}"
+                                        TextColor="Black">
+                                    </Label>
+                                    <Label
+                                        Text="{Binding VoteResult}"
+                                        TextColor="Red">
+                                    </Label>
+                                </StackLayout>
+                                <Image
+                                    Grid.Column="2"
+                                    Source="ic_chevron_right">
+                                </Image>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

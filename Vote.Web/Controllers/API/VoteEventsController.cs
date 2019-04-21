@@ -42,7 +42,7 @@
                 return this.BadRequest(new Response
                 {
                     IsSuccess = false,
-                    Message = "User don't exists."
+                    Message = "Candidates don't exists."
                 });
             }
 
@@ -88,54 +88,5 @@
             var alreadyVoted = await this.voteEventRepository.GetAlreadyVotedAsync(request.Email, request.VoteEventId);
             return Ok(alreadyVoted);
         }
-
-        [HttpPost]
-        [Route("GetVotedCandidate")]
-        public async Task<IActionResult> GetVotedCandidateAsync([FromBody] AlreadyVotedRequest request)
-        {
-            if (!ModelState.IsValid)
-            {
-                return this.BadRequest(new Response
-                {
-                    IsSuccess = false,
-                    Message = "Bad request"
-                });
-            }
-
-            var alreadyVoted = await this.voteEventRepository.GetVotedCandidateAsync(request.Email, request.VoteEventId);
-            return Ok(alreadyVoted);
-        }
-        /*
-        [HttpPost]
-        [Route("GetVoteResults")]
-        public async Task<IActionResult> GetVoteResultsAsync([FromBody] Common.Models.VoteEvent request)
-        {
-            if (!ModelState.IsValid)
-            {
-                return this.BadRequest(new Response
-                {
-                    IsSuccess = false,
-                    Message = "Bad request"
-                });
-            }
-            var voteEvent = convertToVoteEventEntity(request);
-            await this.voteEventRepository.UpdateTotalVotesAsync(voteEvent);
-
-            return Ok(voteEvent);
-        }
-
-        private Data.Entities.VoteEvent convertToVoteEventEntity(Common.Models.VoteEvent voteEvent)
-        {
-            return new Data.Entities.VoteEvent
-            {
-                Id = voteEvent.Id,
-                Name = voteEvent.Name,
-                Description = voteEvent.Description,
-                StartDate = voteEvent.StartDate,
-                EndDate = voteEvent.EndDate,
-                ImageUrl = voteEvent.ImageUrl,
-                Candidates = (IEnumerable<Data.Entities.Candidate>)voteEvent.Candidates
-            };
-        }*/
     }
 }
