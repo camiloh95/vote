@@ -21,7 +21,7 @@
 
         Task<bool> UpdateTotalVotesAsync(VoteEvent voteEvent);
 
-        Task<Candidate> GetAlreadyVotedAsync(string email, int votEventId);
+        Task<bool> GetAlreadyVotedAsync(string email, int votEventId);
 
     }
 }

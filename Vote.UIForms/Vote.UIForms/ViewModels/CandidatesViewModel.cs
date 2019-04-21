@@ -5,6 +5,9 @@
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
+    using System.Threading.Tasks;
+    using Vote.Common.Helpers;
+    using Vote.UIForms.Views;
     using Xamarin.Forms;
 
     public class CandidatesViewModel : BaseViewModel
@@ -15,11 +18,18 @@
         private List<Candidate> myCandidates;
         private ObservableCollection<CandidateItemViewModel> candidates;
         private bool isRefreshing;
+        private bool alreadyVoted;
 
         public ObservableCollection<CandidateItemViewModel> Candidates
         {
             get => this.candidates;
             set => this.SetValue(ref this.candidates, value);
+        }
+
+        public bool AlreadyVoted
+        {
+            get => this.alreadyVoted;
+            set => this.SetValue(ref this.alreadyVoted, value);
         }
 
         public bool IsRefreshing
@@ -41,22 +51,46 @@
         }
 
         public VoteEvent VoteEvent { get; set; }
+
+        public AlreadyVotedRequest alreadyVotedRequest { get; set; }
         
         public CandidatesViewModel(VoteEvent voteEvent)
         {
             this.VoteEvent = voteEvent;
             this.apiService = new ApiService();
-            this.LoadCandidates();
+            this.AlreadyVotedAsync();
+            if (this.AlreadyVoted)
+            {
+                this.LoadVotedCandidate();
+            } else
+            {
+                this.LoadCandidates();
+            }
         }
 
-        /*private async bool alreadyVote()
+        private async void LoadVotedCandidate()
         {
+            await App.Navigator.PushAsync(new CandidatesPage());
+        }
+
+        private async void AlreadyVotedAsync()
+        {
+            this.IsRefreshing = true;
+
+            this.AlreadyVoted = false;
+
+            this.alreadyVotedRequest = new AlreadyVotedRequest
+            {
+                Email = Settings.UserEmail,
+                VoteEventId = this.VoteEvent.Id
+            };
+
             var url = Application.Current.Resources["UrlAPI"].ToString();
-            var response = await this.apiService.GetCandidatesAsync(
+            var response = await this.apiService.PostAsync(
                 url,
                 "/api",
-                "/VoteEvents/GetCandidatesById",
-                this.VoteEvent,
+                "/VoteEvents/GetAlreadyVoted",
+                this.alreadyVotedRequest,
                 "bearer",
                 MainViewModel.GetInstance().Token.Token);
 
@@ -68,7 +102,17 @@
                     "Accept");
                 return;
             }
-        } */
+
+            this.IsRunning = false;
+            this.IsEnabled = true;
+
+            var result = response.Result;   
+
+            if (result is bool)
+            {
+                this.AlreadyVoted = (bool)result;
+            }
+        }
 
         private async void LoadCandidates()
         {
@@ -97,6 +141,7 @@
 
             this.myCandidates = (List<Candidate>)response.Result;
             this.RefreshCandidatesList();
+            await App.Navigator.PushAsync(new CandidatesPage());
         }
 
         private void RefreshCandidatesList()

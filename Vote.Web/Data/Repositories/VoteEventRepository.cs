@@ -52,6 +52,18 @@
                 .OrderBy(o => o.Name);
         }
 
+        public async Task<IQueryable<Vote>> GetVotesAsync(int id)
+        {
+            var candidate = await this.GetCandidateByIdAsync(id);
+            if (candidate == null)
+            {
+                return null;
+            }
+
+            return this.context.Votes
+                .Where(o => o.CandidateId == id);
+        }
+
         public async Task<Candidate> UpdateCandidateAsync(CandidateViewModel model, string imaginePath)
         {
             var candidate = await this.context.Candidates.FindAsync(model.Id);
@@ -96,25 +108,22 @@
             return model;
         }
 
-        public async Task<Candidate> GetAlreadyVotedAsync(string email, int voteEventId)
+        public async Task<bool> GetAlreadyVotedAsync(string email, int voteEventId)
         {
             var user = await this.userHelper.GetUserByEmailAsync(email);
             if (user == null)
             {
-                return null;
+                return false;
             }
 
-            var Vote = await this.context.Votes.Include(v => v.Candidate)
-                                         .ThenInclude(v => v.VoteEvent)
-                                         .AsNoTracking()
-                                         .FirstOrDefaultAsync(v => (v.UserId.Equals(user.Id)));
-            
-            if(Vote != null)
+            var candidate = await this.context.Candidates.AsNoTracking().AnyAsync(c => c.VoteEventId == voteEventId);
+
+            if(candidate)
             {
-                var candidate = await this.GetCandidateByIdAsync(Vote.CandidateId);
-                return candidate;
+                var Vote = await this.context.Votes.AsNoTracking().AnyAsync(v => v.UserId.ToString() == user.Id);
+                return Vote;
             }
-            return null;
+            return false;
         }
     }
 }

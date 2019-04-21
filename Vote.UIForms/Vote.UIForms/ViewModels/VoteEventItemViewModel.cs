@@ -9,10 +9,9 @@
     {
         public ICommand SelectVoteEventCommand => new RelayCommand(this.SelectVoteEvent);
 
-        private async void SelectVoteEvent()
+        private void SelectVoteEvent()
         {
             MainViewModel.GetInstance().Candidates = new CandidatesViewModel((VoteEvent)this);
-            await App.Navigator.PushAsync(new CandidatesPage());
         }
     }
 }

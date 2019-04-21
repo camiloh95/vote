@@ -24,7 +24,7 @@
 
         [HttpPost]
         [Route("GetCandidatesById")]
-        public async Task<IActionResult> GetUserByEmail([FromBody] Common.Models.VoteEvent request)
+        public async Task<IActionResult> GetCandidatesByIdAsync([FromBody] Common.Models.VoteEvent request)
         {
             if (!ModelState.IsValid)
             {
@@ -35,8 +35,8 @@
                 });
             }
 
-            var user = await this.voteEventRepository.GetCandidatesAsync(request.Id);
-            if (user == null)
+            var candidates = await this.voteEventRepository.GetCandidatesAsync(request.Id);
+            if (candidates == null)
             {
                 return this.BadRequest(new Response
                 {
@@ -45,7 +45,7 @@
                 });
             }
 
-            return Ok(user);
+            return Ok(candidates);
         }
 
         [HttpPost]
