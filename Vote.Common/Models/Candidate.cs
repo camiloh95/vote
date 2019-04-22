@@ -18,12 +18,12 @@
         public Uri ImageFullPath { get; set; }
 
         [JsonProperty("voteEventId")]
-        public long VoteEventId { get; set; }
+        public int VoteEventId { get; set; }
 
         [JsonProperty("imageUrl")]
         public string ImageUrl { get; set; }
 
-        [JsonProperty("voteResult")]
-        public long VoteResult { get; set; }
+        [JsonProperty("votesResult")]
+        public int VotesResult { get; set; }
     }
 }

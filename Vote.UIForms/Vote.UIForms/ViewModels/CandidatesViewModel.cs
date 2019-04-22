@@ -158,7 +158,7 @@
                     Name = c.Name,
                     ImageFullPath = c.ImageFullPath,
                     Proposal = c.Proposal,
-                    VoteResult = c.VoteResult
+                    VotesResult = c.VotesResult
                 })
             .OrderBy(c => c.Name)
             .ToList());
