@@ -197,8 +197,30 @@
                 return;
             }
 
+            if (this.Gender == null)
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    "You must select a gender.",
+                    "Accept");
+                return;
+            }
+
+            if (this.Stratum == null)
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    "You must select a stratum.",
+                    "Accept");
+                return;
+            }
+
             this.IsRunning = true;
             this.IsEnabled = false;
+
+            this.User.Gender = this.Gender.Id;
+            this.User.Stratum = this.Stratum.Id;
+            this.User.CityId = this.City.Id;
 
             var url = Application.Current.Resources["UrlAPI"].ToString();
             var response = await this.apiService.PutAsync(

@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    public class RecoverPasswordViewModel
+    public class RecoverPasswordWebViewModel
     {
         [Required]
         [EmailAddress]
