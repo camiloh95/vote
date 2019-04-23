@@ -96,8 +96,8 @@
 									@Html.DisplayFor(modelCandidate => candidate.Proposal)
 								</td>
 								<td>
-									<a asp-action="EditCandidate" asp-route-id="@candidate.Id" class="btn btn-warning"><i class="fa fa-edit"></i></a>
-									<button data-id="@candidate.Id" class="btn btn-danger deleteItem" data-toggle="modal" data-target="#deleteDialog"><i class="fa fa-trash"></i></button>
+									<a asp-action="EditCandidate" asp-route-id="@candidate.Id" class="btn btn-warning">Edit<i class="fa fa-edit"></i></a>
+									<a asp-action="DeleteCandidate" class="btn btn-danger" asp-route-id="@candidate.Id">Delete<i class="fa fa-trash"></i> </a>
 								</td>
 							</tr>
 						}
@@ -108,7 +108,7 @@
 	</div>
 </div>
 <p>
-	<a asp-action="CreateCandidate" asp-route-id="@Model.Id" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i>Add Candidate</a>
+	<a asp-action="CreateCandidate" asp-route-id="@Model.Id" class="btn btn-primary">Add Candidate</a>
 </p>
 
 <div>

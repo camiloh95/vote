@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
+    using Vote.UIForms.Helpers;
 
     public class MainViewModel
     {
@@ -51,28 +52,28 @@
             {
                 Icon = "ic_info",
                 PageName = "AboutPage",
-                Title = "About"
+                Title = Languages.About
             },
 
             new Menu
             {
                 Icon = "ic_person",
                 PageName = "ProfilePage",
-                Title = "Modify User"
+                Title = Languages.ModifyUser
             },
 
             new Menu
             {
                 Icon = "ic_phonelink_setup",
                 PageName = "SetupPage",
-                Title = "Setup"
+                Title = Languages.Setup
             },
 
             new Menu
             {
                 Icon = "ic_exit_to_app",
                 PageName = "LoginPage",
-                Title = "Close session"
+                Title = Languages.CloseSession
             }
         };
 

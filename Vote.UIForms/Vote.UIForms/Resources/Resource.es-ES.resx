@@ -159,4 +159,166 @@
   <data name="Occupation" xml:space="preserve">
     <value>Profesión</value>
   </data>
+  <data name="Candidates" xml:space="preserve">
+    <value>Candidatos</value>
+  </data>
+  <data name="Congratulations" xml:space="preserve">
+    <value>¡Felicidades!</value>
+  </data>
+  <data name="CongratulationsMessage" xml:space="preserve">
+    <value>Tu voto ha sido guardado con éxito !</value>
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>Debe introducir su contraseña actual.</value>
+  </data>
+  <data name="EmailInvalid" xml:space="preserve">
+    <value>Hay que introducir una dirección de correo válida.</value>
+  </data>
+  <data name="EnterFirstName" xml:space="preserve">
+    <value>Debes introducir tu nombre</value>
+  </data>
+  <data name="EnterLastName" xml:space="preserve">
+    <value>Debes introducir tu apellido</value>
+  </data>
+  <data name="EnterPhone" xml:space="preserve">
+    <value>Debes poner un número de teléfono</value>
+  </data>
+  <data name="MustNewPassword" xml:space="preserve">
+    <value>Debe ingresar la nueva contraseña.</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>¡No!</value>
+  </data>
+  <data name="PasswordAtLeastSix" xml:space="preserve">
+    <value>La contraseña debe tener al menos 6 caracteres.</value>
+  </data>
+  <data name="PasswordConfirm" xml:space="preserve">
+    <value>Debes ingresar una contraseña</value>
+  </data>
+  <data name="PasswordIncorrect" xml:space="preserve">
+    <value>La contraseña actual es incorrecta</value>
+  </data>
+  <data name="PasswordNotMatch" xml:space="preserve">
+    <value>La nueva contraseña y la confirmación de contraseña no son iguales.</value>
+  </data>
+  <data name="SelectCity" xml:space="preserve">
+    <value>Debes seleccionar una ciudad.</value>
+  </data>
+  <data name="SelectCountry" xml:space="preserve">
+    <value>Debe seleccionar un país.</value>
+  </data>
+  <data name="SelectGender" xml:space="preserve">
+    <value>Debes seleccionar un género.</value>
+  </data>
+  <data name="SelectStratum" xml:space="preserve">
+    <value>Debes seleccionar un estrato.</value>
+  </data>
+  <data name="UserUpdated" xml:space="preserve">
+    <value>Usuario actualizado</value>
+  </data>
+  <data name="VoteCandidate" xml:space="preserve">
+    <value>¿Te gustaría votar por este candidato?</value>
+  </data>
+  <data name="VoteQuestion" xml:space="preserve">
+    <value>Pregunta</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>¡Sí!</value>
+  </data>
+  <data name="ConfirmNewPassword" xml:space="preserve">
+    <value>Confirmar nueva contraseña</value>
+  </data>
+  <data name="CurrentPasswordName" xml:space="preserve">
+    <value>Contraseña actual</value>
+  </data>
+  <data name="EnterConfirmNewPassword" xml:space="preserve">
+    <value>Introduzca la contraseña de confirmación ...!</value>
+  </data>
+  <data name="EnterNewPassword" xml:space="preserve">
+    <value>"Introduzca la nueva contraseña:"</value>
+  </data>
+  <data name="ModifyUser" xml:space="preserve">
+    <value>Modificar usuario</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>Nueva contraseña</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>Ciudad</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>País</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>Género</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Apellido</value>
+  </data>
+  <data name="ModifyPassword" xml:space="preserve">
+    <value>Modificar contraseña</value>
+  </data>
+  <data name="PlaceholderCity" xml:space="preserve">
+    <value>Seleccione la ciudad</value>
+  </data>
+  <data name="PlaceholderCountry" xml:space="preserve">
+    <value>Selecciona un país</value>
+  </data>
+  <data name="PlaceholderFirstName" xml:space="preserve">
+    <value>Introduzca su nombre</value>
+  </data>
+  <data name="PlaceholderGender" xml:space="preserve">
+    <value>Selecciona un género</value>
+  </data>
+  <data name="PlaceholderLastName" xml:space="preserve">
+    <value>Introduzca sus apellido</value>
+  </data>
+  <data name="PlaceholderOccupation" xml:space="preserve">
+    <value>Introduzca su ocupación ...</value>
+  </data>
+  <data name="PlaceholderStratum" xml:space="preserve">
+    <value>Seleccione un estrato ...</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  <data name="Stratum" xml:space="preserve">
+    <value>Estrato</value>
+  </data>
+  <data name="Telephone" xml:space="preserve">
+    <value>Teléfono</value>
+  </data>
+  <data name="EnterTelephone" xml:space="preserve">
+    <value>Introduzca su número telefónico</value>
+  </data>
+  <data name="EmailRecoverPassword" xml:space="preserve">
+    <value>Introduzca el correo electrónico para recuperar la contraseña ...!</value>
+  </data>
+  <data name="RecoverPassword" xml:space="preserve">
+    <value>Recuperar contraseña</value>
+  </data>
+  <data name="RegisterNewUserName" xml:space="preserve">
+    <value>Registrar nuevo usuario</value>
+  </data>
+  <data name="Menu" xml:space="preserve">
+    <value>Menú</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Perfil</value>
+  </data>
+  <data name="TotalVotes" xml:space="preserve">
+    <value>Total de votos</value>
+  </data>
+  <data name="VotedCandidate" xml:space="preserve">
+    <value>Candidato votado</value>
+  </data>
+  <data name="VoteResults" xml:space="preserve">
+    <value>Resultados de la votación</value>
+  </data>
+  <data name="VotingEvents" xml:space="preserve">
+    <value>Eventos de votación</value>
+  </data>
 </root>

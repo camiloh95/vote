@@ -3,6 +3,7 @@
     using Common.Models;
     using Common.Services;
     using System;
+    using Vote.UIForms.Helpers;
     using Xamarin.Forms;
 
     public class VoteViewModel : BaseViewModel
@@ -36,9 +37,9 @@
             if (!response.IsSuccess)
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
+                    Languages.Error,
                     response.Message,
-                    "Accept");
+                    Languages.Accept);
                 return;
             }
         }

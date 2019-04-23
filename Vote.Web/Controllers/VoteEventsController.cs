@@ -212,6 +212,13 @@
             return RedirectToAction(nameof(Index));
         }
 
+        public async Task<IActionResult> DeleteCandidate(int id)
+        {
+            var candidate = await this.voteEventRepository.GetCandidateByIdAsync(id);
+            await this.voteEventRepository.DeleteCandidateAsync(candidate);
+            return RedirectToAction(nameof(Index));
+        }
+
         public IActionResult VoteEventNotFound()
         {
             return this.View();

@@ -23,5 +23,6 @@
 
         Task<Candidate> GetAlreadyVotedAsync(string email, int votEventId);
 
+        Task<bool> DeleteCandidateAsync(Candidate candidate);
     }
 }

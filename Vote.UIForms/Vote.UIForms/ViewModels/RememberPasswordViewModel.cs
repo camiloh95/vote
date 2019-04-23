@@ -7,6 +7,7 @@
     using Common.Models;
     using Xamarin.Forms;
     using UIForms.ViewModels;
+    using Vote.UIForms.Helpers;
 
     public class RememberPasswordViewModel : BaseViewModel
     {
@@ -41,18 +42,18 @@
             if (string.IsNullOrEmpty(this.Email))
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "You must enter an email.",
-                    "Accept");
+                    Languages.Error,
+                    Languages.EmailError,
+                    Languages.Accept);
                 return;
             }
 
             if (!RegexHelper.IsValidEmail(this.Email))
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "You must enter a valid email.",
-                    "Accept");
+                    Languages.Error,
+                    Languages.EmailInvalid,
+                    Languages.Accept);
                 return;
             }
 
@@ -77,16 +78,16 @@
             if (!response.IsSuccess)
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
+                    Languages.Error,
                     response.Message,
-                    "Accept");
+                    Languages.Accept);
                 return;
             }
 
             await Application.Current.MainPage.DisplayAlert(
                 "Ok",
                 response.Message,
-                "Accept");
+                Languages.Accept);
             await Application.Current.MainPage.Navigation.PopAsync();
         }
     }

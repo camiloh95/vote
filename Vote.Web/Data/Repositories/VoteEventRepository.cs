@@ -130,5 +130,12 @@
             }
             return null;
         }
+
+        public async Task<bool> DeleteCandidateAsync(Candidate candidate)
+        {
+            this.context.Candidates.Remove(candidate);
+            await SaveAllAsync();
+            return true;
+        }
     }
 }

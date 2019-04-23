@@ -70,6 +70,33 @@ namespace Vote.UIForms.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Candidates.
+        /// </summary>
+        internal static string Candidates {
+            get {
+                return ResourceManager.GetString("Candidates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to City.
+        /// </summary>
+        internal static string City {
+            get {
+                return ResourceManager.GetString("City", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm new password.
+        /// </summary>
+        internal static string ConfirmNewPassword {
+            get {
+                return ResourceManager.GetString("ConfirmNewPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Congratulations !.
         /// </summary>
         internal static string Congratulations {
@@ -88,11 +115,29 @@ namespace Vote.UIForms.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Country.
+        /// </summary>
+        internal static string Country {
+            get {
+                return ResourceManager.GetString("Country", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You must enter the current password..
         /// </summary>
         internal static string CurrentPassword {
             get {
                 return ResourceManager.GetString("CurrentPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current password.
+        /// </summary>
+        internal static string CurrentPasswordName {
+            get {
+                return ResourceManager.GetString("CurrentPasswordName", resourceCulture);
             }
         }
         
@@ -115,11 +160,38 @@ namespace Vote.UIForms.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You must enter a valid email..
+        /// </summary>
+        internal static string EmailInvalid {
+            get {
+                return ResourceManager.GetString("EmailInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter your email....
         /// </summary>
         internal static string EmailPlaceHolder {
             get {
                 return ResourceManager.GetString("EmailPlaceHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter email to recover the password....
+        /// </summary>
+        internal static string EmailRecoverPassword {
+            get {
+                return ResourceManager.GetString("EmailRecoverPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter the confirm password....
+        /// </summary>
+        internal static string EnterConfirmNewPassword {
+            get {
+                return ResourceManager.GetString("EnterConfirmNewPassword", resourceCulture);
             }
         }
         
@@ -142,6 +214,33 @@ namespace Vote.UIForms.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enter the new password....
+        /// </summary>
+        internal static string EnterNewPassword {
+            get {
+                return ResourceManager.GetString("EnterNewPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must enter a phone number..
+        /// </summary>
+        internal static string EnterPhone {
+            get {
+                return ResourceManager.GetString("EnterPhone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter your phone number....
+        /// </summary>
+        internal static string EnterTelephone {
+            get {
+                return ResourceManager.GetString("EnterTelephone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error.
         /// </summary>
         internal static string Error {
@@ -151,11 +250,38 @@ namespace Vote.UIForms.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to First name.
+        /// </summary>
+        internal static string FirstName {
+            get {
+                return ResourceManager.GetString("FirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Forgot my password?.
         /// </summary>
         internal static string Forgot {
             get {
                 return ResourceManager.GetString("Forgot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gender.
+        /// </summary>
+        internal static string Gender {
+            get {
+                return ResourceManager.GetString("Gender", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last name.
+        /// </summary>
+        internal static string LastName {
+            get {
+                return ResourceManager.GetString("LastName", resourceCulture);
             }
         }
         
@@ -178,11 +304,47 @@ namespace Vote.UIForms.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Menu.
+        /// </summary>
+        internal static string Menu {
+            get {
+                return ResourceManager.GetString("Menu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modify password.
+        /// </summary>
+        internal static string ModifyPassword {
+            get {
+                return ResourceManager.GetString("ModifyPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modify User.
+        /// </summary>
+        internal static string ModifyUser {
+            get {
+                return ResourceManager.GetString("ModifyUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You must enter the new password..
         /// </summary>
         internal static string MustNewPassword {
             get {
                 return ResourceManager.GetString("MustNewPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New password.
+        /// </summary>
+        internal static string NewPassword {
+            get {
+                return ResourceManager.GetString("NewPassword", resourceCulture);
             }
         }
         
@@ -223,7 +385,7 @@ namespace Vote.UIForms.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You must enter the password confirm..
+        ///   Looks up a localized string similar to You must enter a password confirm..
         /// </summary>
         internal static string PasswordConfirm {
             get {
@@ -268,6 +430,87 @@ namespace Vote.UIForms.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select a city....
+        /// </summary>
+        internal static string PlaceholderCity {
+            get {
+                return ResourceManager.GetString("PlaceholderCity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a country....
+        /// </summary>
+        internal static string PlaceholderCountry {
+            get {
+                return ResourceManager.GetString("PlaceholderCountry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter your first name....
+        /// </summary>
+        internal static string PlaceholderFirstName {
+            get {
+                return ResourceManager.GetString("PlaceholderFirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a gender....
+        /// </summary>
+        internal static string PlaceholderGender {
+            get {
+                return ResourceManager.GetString("PlaceholderGender", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter your last name....
+        /// </summary>
+        internal static string PlaceholderLastName {
+            get {
+                return ResourceManager.GetString("PlaceholderLastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter your occupation....
+        /// </summary>
+        internal static string PlaceholderOccupation {
+            get {
+                return ResourceManager.GetString("PlaceholderOccupation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a stratum....
+        /// </summary>
+        internal static string PlaceholderStratum {
+            get {
+                return ResourceManager.GetString("PlaceholderStratum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Profile.
+        /// </summary>
+        internal static string Profile {
+            get {
+                return ResourceManager.GetString("Profile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recover password.
+        /// </summary>
+        internal static string RecoverPassword {
+            get {
+                return ResourceManager.GetString("RecoverPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New User.
         /// </summary>
         internal static string RegisterNewUser {
@@ -277,11 +520,29 @@ namespace Vote.UIForms.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Register new user.
+        /// </summary>
+        internal static string RegisterNewUserName {
+            get {
+                return ResourceManager.GetString("RegisterNewUserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remember me in this device.
         /// </summary>
         internal static string Remember {
             get {
                 return ResourceManager.GetString("Remember", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        internal static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
             }
         }
         
@@ -322,6 +583,33 @@ namespace Vote.UIForms.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Stratum.
+        /// </summary>
+        internal static string Stratum {
+            get {
+                return ResourceManager.GetString("Stratum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Telephone.
+        /// </summary>
+        internal static string Telephone {
+            get {
+                return ResourceManager.GetString("Telephone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total votes:.
+        /// </summary>
+        internal static string TotalVotes {
+            get {
+                return ResourceManager.GetString("TotalVotes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User updated !.
         /// </summary>
         internal static string UserUpdated {
@@ -340,11 +628,38 @@ namespace Vote.UIForms.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vote Question.
+        ///   Looks up a localized string similar to Voted candidate.
+        /// </summary>
+        internal static string VotedCandidate {
+            get {
+                return ResourceManager.GetString("VotedCandidate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vote question.
         /// </summary>
         internal static string VoteQuestion {
             get {
                 return ResourceManager.GetString("VoteQuestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vote results.
+        /// </summary>
+        internal static string VoteResults {
+            get {
+                return ResourceManager.GetString("VoteResults", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Voting events.
+        /// </summary>
+        internal static string VotingEvents {
+            get {
+                return ResourceManager.GetString("VotingEvents", resourceCulture);
             }
         }
         
