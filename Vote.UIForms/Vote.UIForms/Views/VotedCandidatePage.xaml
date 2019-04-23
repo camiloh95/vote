@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"    
              xmlns:i18n="clr-namespace:Vote.UIForms.Helpers"         
              x:Class="Vote.UIForms.Views.VotedCandidatePage"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
              Title="{i18n:Translate VotedCandidate}">
-    BindingContext="{Binding Main, Source={StaticResource Locator}}">
     <ContentPage.Content>
         <StackLayout
             BindingContext="{Binding Candidates}"

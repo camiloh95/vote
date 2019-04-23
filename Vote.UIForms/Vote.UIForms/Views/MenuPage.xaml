@@ -16,10 +16,9 @@
             <Label
                 FontAttributes="Bold"
                 FontSize="Large"
-                Text="{Binding User.FullName, StringFormat='Welcome: {0}'}"
+                Text="{Binding User.FullName}"
                 TextColor="Black">
             </Label>
-
             <ListView
                 BackgroundColor="Transparent"
                 ItemsSource="{Binding Menus}"

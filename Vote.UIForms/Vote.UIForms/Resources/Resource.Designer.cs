@@ -61,6 +61,15 @@ namespace Vote.UIForms.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
+        internal static string About {
+            get {
+                return ResourceManager.GetString("About", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Accept.
         /// </summary>
         internal static string Accept {
@@ -84,6 +93,15 @@ namespace Vote.UIForms.Resources {
         internal static string City {
             get {
                 return ResourceManager.GetString("City", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close session.
+        /// </summary>
+        internal static string CloseSession {
+            get {
+                return ResourceManager.GetString("CloseSession", resourceCulture);
             }
         }
         
@@ -579,6 +597,15 @@ namespace Vote.UIForms.Resources {
         internal static string SelectStratum {
             get {
                 return ResourceManager.GetString("SelectStratum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Setup.
+        /// </summary>
+        internal static string Setup {
+            get {
+                return ResourceManager.GetString("Setup", resourceCulture);
             }
         }
         

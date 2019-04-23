@@ -214,13 +214,13 @@
             return this.View(model);
         }
 
-        public IActionResult ChangePassword()
+        public IActionResult ChangePasswordWeb()
         {
             return this.View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
+        public async Task<IActionResult> ChangePasswordWeb(ChangePasswordViewModel model)
         {
             if (this.ModelState.IsValid)
             {

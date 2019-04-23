@@ -321,4 +321,13 @@
   <data name="VotingEvents" xml:space="preserve">
     <value>Événements de vote!</value>
   </data>
+  <data name="About" xml:space="preserve">
+    <value>À propos</value>
+  </data>
+  <data name="CloseSession" xml:space="preserve">
+    <value>Fermer la session</value>
+  </data>
+  <data name="Setup" xml:space="preserve">
+    <value>Installation</value>
+  </data>
 </root>
