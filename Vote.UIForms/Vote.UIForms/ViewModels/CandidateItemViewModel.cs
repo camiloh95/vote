@@ -6,6 +6,7 @@
     using Common.Services;
     using System.Diagnostics;
     using Xamarin.Forms;
+    using Vote.UIForms.Helpers;
 
     public class CandidateItemViewModel : Candidate
     {
@@ -13,12 +14,12 @@
 
         private async void SelectCandidate()
         {
-            bool answer = await Application.Current.MainPage.DisplayAlert("Vote Question", "Would you like to vote for this candidate ?", "Yes", "No");
+            bool answer = await Application.Current.MainPage.DisplayAlert(Languages.VoteQuestion, Languages.VoteCandidate, Languages.Yes, Languages.No);
             Debug.WriteLine("Answer: " + answer);
             if (answer == true)
             {
                 MainViewModel.GetInstance().Vote = new VoteViewModel((Candidate)this);
-                await Application.Current.MainPage.DisplayAlert("Congratulations", "Your vote has been save successfully !", "OK");
+                await Application.Current.MainPage.DisplayAlert(Languages.Congratulations, Languages.CongratulationsMessage, "Ok");
                 await App.Navigator.PopAsync();
             }
             else

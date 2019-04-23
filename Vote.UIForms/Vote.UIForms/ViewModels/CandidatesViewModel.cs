@@ -8,6 +8,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Vote.Common.Helpers;
+    using Vote.UIForms.Helpers;
     using Vote.UIForms.Views;
     using Xamarin.Forms;
 
@@ -108,9 +109,9 @@
             if (!response.IsSuccess)
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
+                    Languages.Error,
                     response.Message,
-                    "Accept");
+                    Languages.Accept);
                 return null;
             }
 
@@ -136,9 +137,9 @@
             if (!response.IsSuccess)
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
+                    Languages.Error,
                     response.Message,
-                    "Accept");
+                    Languages.Accept);
                 return null;
             }
 

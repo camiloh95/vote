@@ -120,6 +120,15 @@
   <data name="Accept" xml:space="preserve">
     <value>Accept</value>
   </data>
+  <data name="Congratulations" xml:space="preserve">
+    <value>Congratulations !</value>
+  </data>
+  <data name="CongratulationsMessage" xml:space="preserve">
+    <value>Your vote has been save successfully !</value>
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>You must enter the current password.</value>
+  </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
   </data>
@@ -128,6 +137,12 @@
   </data>
   <data name="EmailPlaceHolder" xml:space="preserve">
     <value>Enter your email...</value>
+  </data>
+  <data name="EnterFirstName" xml:space="preserve">
+    <value>You must enter the first name.</value>
+  </data>
+  <data name="EnterLastName" xml:space="preserve">
+    <value>You must enter the last name.</value>
   </data>
   <data name="Error" xml:space="preserve">
     <value>Error</value>
@@ -141,14 +156,32 @@
   <data name="LoginError" xml:space="preserve">
     <value>Email or password incorrect.</value>
   </data>
+  <data name="MustNewPassword" xml:space="preserve">
+    <value>You must enter the new password.</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
   <data name="Occupation" xml:space="preserve">
     <value>Occupation</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>
+  <data name="PasswordAtLeastSix" xml:space="preserve">
+    <value>The password must have at least 6 characters length.</value>
+  </data>
+  <data name="PasswordConfirm" xml:space="preserve">
+    <value>You must enter the password confirm.</value>
+  </data>
   <data name="PasswordError" xml:space="preserve">
     <value>You must enter a password.</value>
+  </data>
+  <data name="PasswordIncorrect" xml:space="preserve">
+    <value>The current password is incorrect.</value>
+  </data>
+  <data name="PasswordNotMatch" xml:space="preserve">
+    <value>The password and confirm does not match.</value>
   </data>
   <data name="PasswordPlaceHolder" xml:space="preserve">
     <value>Enter your password...</value>
@@ -158,5 +191,29 @@
   </data>
   <data name="Remember" xml:space="preserve">
     <value>Remember me in this device</value>
+  </data>
+  <data name="SelectCity" xml:space="preserve">
+    <value>You must select a city.</value>
+  </data>
+  <data name="SelectCountry" xml:space="preserve">
+    <value>You must select a country.</value>
+  </data>
+  <data name="SelectGender" xml:space="preserve">
+    <value>You must select a gender.</value>
+  </data>
+  <data name="SelectStratum" xml:space="preserve">
+    <value>You must select a stratum.</value>
+  </data>
+  <data name="UserUpdated" xml:space="preserve">
+    <value>User updated !</value>
+  </data>
+  <data name="VoteCandidate" xml:space="preserve">
+    <value>Would you like to vote for this candidate ?</value>
+  </data>
+  <data name="VoteQuestion" xml:space="preserve">
+    <value>Vote Question</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
   </data>
 </root>

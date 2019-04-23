@@ -136,13 +136,13 @@
     <value>Olvidé mi contraseña</value>
   </data>
   <data name="Login" xml:space="preserve">
-    <value>Inicio de sesión:</value>
+    <value>Iniciar sesión</value>
   </data>
   <data name="LoginError" xml:space="preserve">
     <value>Email o contraseña incorrectos</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value>Contraseña:</value>
+    <value>Contraseña</value>
   </data>
   <data name="PasswordError" xml:space="preserve">
     <value>Debe especificar una contraseña.</value>

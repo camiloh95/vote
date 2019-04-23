@@ -11,6 +11,7 @@
     using Common.Helpers;
     using UIForms.Views;
     using Xamarin.Forms;
+    using Vote.UIForms.Helpers;
 
     public class ProfileViewModel : BaseViewModel
     {
@@ -110,9 +111,9 @@
             if (!response.IsSuccess)
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
+                    Languages.Error,
                     response.Message,
-                    "Accept");
+                    Languages.Accept);
                 return;
             }
 
@@ -164,54 +165,54 @@
             if (string.IsNullOrEmpty(this.User.FirstName))
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "You must enter the first name.",
-                    "Accept");
+                    Languages.Error,
+                    Languages.EnterFirstName,
+                    Languages.Accept);
                 return;
             }
 
             if (string.IsNullOrEmpty(this.User.LastName))
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "You must enter the last name.",
-                    "Accept");
+                    Languages.Error,
+                    Languages.EnterLastName,
+                    Languages.Accept);
                 return;
             }
 
             if (this.Country == null)
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "You must select a country.",
-                    "Accept");
+                    Languages.Error,
+                    Languages.SelectCountry,
+                    Languages.Accept);
                 return;
             }
 
             if (this.City == null)
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "You must select a city.",
-                    "Accept");
+                    Languages.Error,
+                    Languages.SelectCity,
+                    Languages.Accept);
                 return;
             }
 
             if (this.Gender == null)
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "You must select a gender.",
-                    "Accept");
+                    Languages.Error,
+                    Languages.SelectGender,
+                    Languages.Accept);
                 return;
             }
 
             if (this.Stratum == null)
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "You must select a stratum.",
-                    "Accept");
+                    Languages.Error,
+                    Languages.SelectStratum,
+                    Languages.Accept);
                 return;
             }
 
@@ -237,9 +238,9 @@
             if (!response.IsSuccess)
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
+                    Languages.Error,
                     response.Message,
-                    "Accept");
+                    Languages.Accept);
                 return;
             }
 
@@ -248,8 +249,8 @@
 
             await Application.Current.MainPage.DisplayAlert(
                 "Ok",
-                "User updated!",
-                "Accept");
+                Languages.UserUpdated,
+                Languages.Accept);
             await App.Navigator.PopAsync();
         }
 
