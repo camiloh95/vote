@@ -29,8 +29,26 @@
                 await this.AddCountriesAndCitiesAsync();
             }
 
-            await this.CheckUser("acevedo@gmail.com", "Katherin", "Acevedo", "Voter");
-            await this.CheckUser("ramirez@gmail.com", "Saul", "Ramirez", "Voter");
+            await this.CheckUser("user01@gmail.com", "user01", "user01", "Voter");
+            await this.CheckUser("user02@gmail.com", "user02", "user02", "Voter");
+            await this.CheckUser("user03@gmail.com", "user03", "user03", "Voter");
+            await this.CheckUser("user04@gmail.com", "user04", "user04", "Voter");
+            await this.CheckUser("user05@gmail.com", "user05", "user05", "Voter");
+            await this.CheckUser("user06@gmail.com", "user06", "user06", "Voter");
+            await this.CheckUser("user07@gmail.com", "user07", "user07", "Voter");
+            await this.CheckUser("user08@gmail.com", "user08", "user08", "Voter");
+            await this.CheckUser("user09@gmail.com", "user09", "user09", "Voter");
+            await this.CheckUser("user10@gmail.com", "user10", "user10", "Voter");
+            await this.CheckUser("user11@gmail.com", "user11", "user11", "Voter");
+            await this.CheckUser("user12@gmail.com", "user12", "user12", "Voter");
+            await this.CheckUser("user13@gmail.com", "user13", "user13", "Voter");
+            await this.CheckUser("user14@gmail.com", "user14", "user14", "Voter");
+            await this.CheckUser("user15@gmail.com", "user15", "user15", "Voter");
+            await this.CheckUser("user16@gmail.com", "user16", "user16", "Voter");
+            await this.CheckUser("user17@gmail.com", "user17", "user17", "Voter");
+            await this.CheckUser("user18@gmail.com", "user18", "user18", "Voter");
+            await this.CheckUser("user19@gmail.com", "user19", "user19", "Voter");
+            await this.CheckUser("user20@gmail.com", "user20", "user20", "Voter");
             await this.CheckUser("camilocadavid95@gmail.com", "Camilo", "Hernández", "Admin");
 
             if (!this.context.VoteEvents.Any())
