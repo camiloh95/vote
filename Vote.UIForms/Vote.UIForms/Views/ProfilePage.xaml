@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:Vote.UIForms.Helpers"
+             x:Class="Vote.UIForms.Views.ProfilePage"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             Title="{i18n:Translate Profile}">
+    <ContentPage.Content>
+        <ScrollView
+            BindingContext="{Binding Profile}">
+            <StackLayout
+                Padding="8">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        Text="{i18n:Translate FirstName}"
+                        VerticalOptions="Center">
+                    </Label>
+                    <Entry
+                        Grid.Column="1"
+                        Grid.Row="0"
+                        Placeholder="{i18n:Translate PlaceholderFirstName}"
+                        Text="{Binding User.FirstName}">
+                    </Entry>
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="1"
+                        Text="{i18n:Translate LastName}"
+                        VerticalOptions="Center">
+                    </Label>
+                    <Entry
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        Placeholder="{i18n:Translate PlaceholderLastName}"
+                        Text="{Binding User.LastName}">
+                    </Entry>
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="2"
+                        Text="{i18n:Translate Occupation}"
+                        VerticalOptions="Center">
+                    </Label>
+                    <Entry
+                        Grid.Column="1"
+                        Grid.Row="2"
+                        Placeholder="{i18n:Translate PlaceholderOccupation}"
+                        Text="{Binding User.Occupation}">
+                    </Entry>
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="3"
+                        Text="{i18n:Translate Gender}"
+                        VerticalOptions="Center">
+                    </Label>
+                    <Picker
+                        Grid.Column="1"
+                        Grid.Row="3"
+                        ItemDisplayBinding="{Binding Name}"
+                        ItemsSource="{Binding Genders}"
+                        SelectedItem="{Binding Gender}"
+                        Title="{i18n:Translate PlaceholderGender}">
+                    </Picker>
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="4"
+                        Text="{i18n:Translate Stratum}"
+                        VerticalOptions="Center">
+                    </Label>
+                    <Picker
+                        Grid.Column="1"
+                        Grid.Row="4"
+                        ItemDisplayBinding="{Binding Name}"
+                        ItemsSource="{Binding Stratums}"
+                        SelectedItem="{Binding Stratum}"
+                        Title="{i18n:Translate PlaceholderStratum}">
+                    </Picker>
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="5"
+                        Text="{i18n:Translate Country}"
+                        VerticalOptions="Center">
+                    </Label>
+                    <Picker
+                        Grid.Column="1"
+                        Grid.Row="5"
+                        ItemDisplayBinding="{Binding Name}"
+                        ItemsSource="{Binding Countries}"
+                        SelectedItem="{Binding Country}"
+                        Title="{i18n:Translate PlaceholderCountry}">
+                    </Picker>
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="6"
+                        Text="{i18n:Translate City}"
+                        VerticalOptions="Center">
+                    </Label>
+                    <Picker
+                        Grid.Column="1"
+                        Grid.Row="6"
+                        ItemDisplayBinding="{Binding Name}"
+                        ItemsSource="{Binding Cities}"
+                        SelectedItem="{Binding City}"
+                        Title="{i18n:Translate PlaceholderCity}">
+                    </Picker>
+                </Grid>
+                <ActivityIndicator
+                    IsRunning="{Binding IsRunning}"
+                    VerticalOptions="CenterAndExpand">
+                </ActivityIndicator>
+                <StackLayout
+                    Orientation="Horizontal">
+                    <Button
+                        BackgroundColor="Navy"
+                        BorderRadius="23"
+                        Command="{Binding SaveCommand}"
+                        HeightRequest="46"
+                        HorizontalOptions="FillAndExpand"
+                        IsEnabled="{Binding IsEnabled}"
+                        Text="{i18n:Translate Save}"
+                        TextColor="White">
+                    </Button>
+                    <Button
+                        BackgroundColor="Purple"
+                        BorderRadius="23"
+                        Command="{Binding ModifyPasswordCommand}"
+                        HeightRequest="46"
+                        HorizontalOptions="FillAndExpand"
+                        IsEnabled="{Binding IsEnabled}"
+                        Text="{i18n:Translate ModifyPassword}"
+                        TextColor="White">
+                    </Button>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

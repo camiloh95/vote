@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:Vote.UIForms.Helpers"
+             x:Class="Vote.UIForms.Views.VoteResultsPage"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             Title="{i18n:Translate VoteResults}">
+    <ContentPage.Content>
+        <StackLayout
+            BindingContext="{Binding Candidates}"
+            Padding="8">
+            <ListView
+                IsRefreshing="{Binding IsRefreshing}"
+                HasUnevenRows="True"
+                ItemsSource="{Binding Candidates}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Image
+                                    Grid.Column="0"
+                                    Source="{Binding ImageFullPath}"
+                                    WidthRequest="100">
+                                </Image>
+                                <StackLayout
+                                    Grid.Column="1"
+                                    VerticalOptions="Center">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label
+                                            Grid.Column="0"
+                                            Grid.Row="0"
+                                            FontAttributes="Bold"
+                                            FontSize="Medium"
+                                            Text="{Binding Name}"
+                                            TextColor="Black">
+                                        </Label>
+                                        <Grid
+                                            Grid.Row="1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Label
+                                                Grid.Column="0"
+                                                Grid.Row="0"
+                                                Text="{i18n:Translate TotalVotes}"
+                                                TextColor="Black">
+                                            </Label>
+                                            <Label
+                                                Grid.Column="1"
+                                                Grid.Row="0"
+                                                Text="{Binding VotesResult}"
+                                                TextColor="Red">
+                                            </Label>
+                                        </Grid>
+                                    </Grid>
+                                </StackLayout>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

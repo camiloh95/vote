@@ -1,0 +1,116 @@
+﻿@model Vote.Web.Models.VoteEventViewModel
+
+@{
+	ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Event</h4>
+<hr/>
+
+<div class="row">
+	<div class="col-md-4">
+		<form asp-action="Edit" enctype="multipart/form-data">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<input type="hidden" asp-for="Id" />
+			<input type="hidden" asp-for="ImageUrl" />
+			<div class="form-group">
+				<label asp-for="Name" class="control-label"></label>
+				<input asp-for="Name" class="form-control" />
+				<span asp-validation-for="Name" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Description" class="control-label"></label>
+				<input asp-for="Description" class="form-control" />
+				<span asp-validation-for="Description" class="text-danger"></span>
+			</div>
+
+			<div class="form-group">
+				<label asp-for="ImageFile" class="control-label"></label>
+				<input asp-for="ImageFile" class="form-control" type="file" />
+				<span asp-validation-for="ImageFile" class="text-danger"></span>
+			</div>
+
+			<div class="form-group">
+				<label asp-for="StartDate" class="control-label"></label>
+				<div class="input-group date" data-provide="datepicker">
+					<input asp-for="StartDate" class="form-control" />
+					<span class="input-group-addon">
+						<span class="glyphicon glyphicon-calendar"></span>
+					</span>
+				</div>
+				<span asp-validation-for="StartDate" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="EndDate" class="control-label"></label>
+				<div class="input-group date" data-provide="datepicker">
+					<input asp-for="EndDate" class="form-control" />
+					<span class="input-group-addon">
+						<span class="glyphicon glyphicon-calendar"></span>
+					</span>
+				</div>
+				<span asp-validation-for="EndDate" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<input type="submit" value="Update" class="btn btn-primary" />
+			</div>
+		</form>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Candidates</h3>
+			</div>
+			<div class="panel-body">
+				<table class="table table-hover table-responsive table-striped" id="CandidatesTable">
+					<thead>
+						<tr>
+							<th>
+								@Html.DisplayNameFor(model => model.Candidates.First().ImageUrl)
+							</th>
+							<th>
+								@Html.DisplayNameFor(model => model.Candidates.First().Name)
+							</th>
+							<th>
+								@Html.DisplayNameFor(model => model.Candidates.First().Proposal)
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (var candidate in Model.Candidates)
+						{
+							<tr>
+								<td>
+									@if (!string.IsNullOrEmpty(candidate.ImageUrl))
+									{
+										<img src="@Url.Content(candidate.ImageUrl)" alt="Image" style="width:75px;height:75px;max-width: 100%; height: auto;" />
+									}
+								</td>
+								<td>
+									@Html.DisplayFor(modelCandidate => candidate.Name)
+								</td>
+								<td>
+									@Html.DisplayFor(modelCandidate => candidate.Proposal)
+								</td>
+								<td>
+									<a asp-action="EditCandidate" asp-route-id="@candidate.Id" class="btn btn-warning">Edit<i class="fa fa-edit"></i></a>
+									<a asp-action="DeleteCandidate" class="btn btn-danger" asp-route-id="@candidate.Id">Delete<i class="fa fa-trash"></i> </a>
+								</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+<p>
+	<a asp-action="CreateCandidate" asp-route-id="@Model.Id" class="btn btn-primary">Add Candidate</a>
+</p>
+
+<div>
+	<a asp-action="Index">Back to List</a>
+</div>

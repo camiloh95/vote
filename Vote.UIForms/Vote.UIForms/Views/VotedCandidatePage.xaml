@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"    
+             xmlns:i18n="clr-namespace:Vote.UIForms.Helpers"         
+             x:Class="Vote.UIForms.Views.VotedCandidatePage"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             Title="{i18n:Translate VotedCandidate}">
+    <ContentPage.Content>
+        <StackLayout
+            BindingContext="{Binding Candidates}"
+            Padding="8">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Image
+                   Grid.Column="0"
+                   Source="{Binding Candidate.ImageFullPath}"
+                   WidthRequest="100">
+                </Image>
+                <StackLayout
+                    Grid.Column="1"
+                    VerticalOptions="Center">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="Medium"
+                        Text="{Binding Candidate.Name}"
+                        TextColor="Black">
+                    </Label>
+                    <Label
+                        Text="{Binding Candidate.Proposal, StringFormat='Proposal: {0:C2}'}"
+                        TextColor="Navy">
+                    </Label>
+                </StackLayout>
+            </Grid>
+            <ActivityIndicator
+            IsRunning="{Binding IsRunning}"
+            VerticalOptions="CenterAndExpand">
+            </ActivityIndicator>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
