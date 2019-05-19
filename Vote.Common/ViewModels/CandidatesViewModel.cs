@@ -1,5 +1,8 @@
 ﻿namespace Vote.Common.ViewModels
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
     using System.Windows.Input;
     using Helpers;
     using Interfaces;
@@ -9,15 +12,16 @@
     using MvvmCross.ViewModels;
     using Newtonsoft.Json;
     using Services;
-
+    
     public class CandidatesViewModel : MvxViewModel<NavigationArgs>
     {
         private readonly IApiService apiService;
         private readonly IDialogService dialogService;
         private readonly IMvxNavigationService navigationService;
-        private Candidate candidate;
+        private List<Candidate> candidates;
+        private MvxCommand<Candidate> itemClickCommand;
         private bool isLoading;
-        private MvxCommand updateCommand;
+        private User user;
 
         public CandidatesViewModel(
             IApiService apiService,
@@ -29,6 +33,16 @@
             this.navigationService = navigationService;
             this.IsLoading = false;
         }
+        public SaveVoteRequest SaveVoteRequest { get; set; }
+
+        public ICommand ItemClickCommand
+        {
+            get
+            {
+                this.itemClickCommand = new MvxCommand<Candidate>(this.OnItemClickCommand);
+                return itemClickCommand;
+            }
+        }
 
         public bool IsLoading
         {
@@ -36,37 +50,51 @@
             set => this.SetProperty(ref this.isLoading, value);
         }
 
-        public Candidate Candidate
+        public User User
         {
-            get => this.candidate;
-            set => this.SetProperty(ref this.candidate, value);
+            get => this.user;
+            set => this.SetProperty(ref this.user, value);
+        }
+        public List<Candidate> Candidates
+        {
+            get => this.candidates;
+            set => this.SetProperty(ref this.candidates, value);
         }
 
-        public ICommand UpdateCommand
+        private void OnItemClickCommand(Candidate candidate)
         {
-            get
+            this.getUserId();
+            this.SaveVoteRequest = new SaveVoteRequest
             {
-                this.updateCommand = this.updateCommand ?? new MvxCommand(this.Update);
-                return this.updateCommand;
-            }
+                CandidateId = candidate.Id,
+                UserId = this.User.Id
+            };
+            this.Vote(candidate);
         }
 
-        private async void Update()
+        private async void getUserId()
         {
-            if (string.IsNullOrEmpty(this.Candidate.Name))
-            {
-                this.dialogService.Alert("Error", "You must enter a candidate name.", "Accept");
-                return;
-            }
+            var response2 = await this.apiService.GetUserByEmailAsync(
+                "https://camilovoting.azurewebsites.net",
+                "/api",
+                "/Account/GetUserByEmail",
+                Settings.UserEmail,
+                "bearer",
+                Settings.Token);
 
+            var user = (User)response2.Result;
+            this.User = user;
+        }
+
+        private async void Vote(Candidate candidate)
+        {
             this.IsLoading = true;
 
             var token = JsonConvert.DeserializeObject<TokenResponse>(Settings.Token);
-
             var response = await this.apiService.PutAsync(
                 "https://camilovoting.azurewebsites.net",
                 "/api",
-                "/Candidates",
+                "/VoteEvents/SaveVote",
                 candidate.Id,
                 candidate,
                 "bearer",
@@ -82,10 +110,10 @@
 
             await this.navigationService.Close(this);
         }
-
+        
         public override void Prepare(NavigationArgs parameter)
         {
-            this.candidate = parameter.Candidate;
+            this.candidates = parameter.VoteEvent.Candidates;
         }
     }
 }

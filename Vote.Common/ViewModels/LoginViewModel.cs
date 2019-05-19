@@ -99,7 +99,7 @@
             };
 
             var response = await this.apiService.GetTokenAsync(
-                "https://shopzulu.azurewebsites.net",
+                "https://camilovoting.azurewebsites.net",
                 "/Account",
                 "/CreateToken",
                 request);

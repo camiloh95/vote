@@ -34,7 +34,7 @@
         {
             get
             {
-                this.itemClickCommand = new MvxCommand<Candidate>(this.OnItemClickCommand);
+                this.itemClickCommand = new MvxCommand<VoteEvent>(this.OnItemClickCommand);
                 return itemClickCommand;
             }
         }
@@ -48,16 +48,16 @@
         public override void ViewAppeared()
         {
             base.ViewAppeared();
-            this.LoadProducts();
+            this.LoadVoteEvents();
         }
 
-        private async void OnItemClickCommand(Candidate candidate)
+        private async void OnItemClickCommand(VoteEvent voteEvent)
         {
             await this.navigationService.Navigate<CandidatesViewModel, NavigationArgs>(
-                new NavigationArgs { Candidate = candidate});
+                new NavigationArgs { VoteEvent = voteEvent});
         }
 
-        private async void LoadProducts()
+        private async void LoadVoteEvents()
         {
             var token = JsonConvert.DeserializeObject<TokenResponse>(Settings.Token);
             var response = await this.apiService.GetListAsync<VoteEvent>(

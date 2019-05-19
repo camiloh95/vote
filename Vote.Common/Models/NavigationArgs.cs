@@ -2,6 +2,6 @@
 {
     public class NavigationArgs
     {
-        public Candidate Candidate { get; set; }
+        public VoteEvent VoteEvent { get; set; }
     }
 }
