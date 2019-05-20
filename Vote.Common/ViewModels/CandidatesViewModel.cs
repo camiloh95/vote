@@ -55,6 +55,7 @@
             get => this.user;
             set => this.SetProperty(ref this.user, value);
         }
+
         public List<Candidate> Candidates
         {
             get => this.candidates;
@@ -63,7 +64,6 @@
 
         private void OnItemClickCommand(Candidate candidate)
         {
-            this.getUserId();
             this.SaveVoteRequest = new SaveVoteRequest
             {
                 CandidateId = candidate.Id,
@@ -74,16 +74,23 @@
 
         private async void getUserId()
         {
-            var response2 = await this.apiService.GetUserByEmailAsync(
+            var token = JsonConvert.DeserializeObject<TokenResponse>(Settings.Token);
+            var response = await this.apiService.GetUserByEmailAsync(
                 "https://camilovoting.azurewebsites.net",
                 "/api",
                 "/Account/GetUserByEmail",
                 Settings.UserEmail,
                 "bearer",
-                Settings.Token);
+                token.Token);
 
-            var user = (User)response2.Result;
-            this.User = user;
+            if (!response.IsSuccess)
+            {
+                this.IsLoading = false;
+                this.dialogService.Alert("Error", "Error en la consulta", "Accept");
+                return;
+            }
+
+            this.User = (User)response.Result;
         }
 
         private async void Vote(Candidate candidate)
@@ -113,6 +120,7 @@
         
         public override void Prepare(NavigationArgs parameter)
         {
+            this.getUserId();
             this.candidates = parameter.VoteEvent.Candidates;
         }
     }
