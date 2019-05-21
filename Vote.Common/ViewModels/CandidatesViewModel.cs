@@ -69,7 +69,7 @@
                 CandidateId = candidate.Id,
                 UserId = this.User.Id
             };
-            this.Vote(candidate);
+            this.Vote();
         }
 
         private async void getUserId()
@@ -93,17 +93,16 @@
             this.User = (User)response.Result;
         }
 
-        private async void Vote(Candidate candidate)
+        private async void Vote()
         {
             this.IsLoading = true;
 
             var token = JsonConvert.DeserializeObject<TokenResponse>(Settings.Token);
-            var response = await this.apiService.PutAsync(
+            var response = await this.apiService.PostAsync(
                 "https://camilovoting.azurewebsites.net",
                 "/api",
                 "/VoteEvents/SaveVote",
-                candidate.Id,
-                candidate,
+                this.SaveVoteRequest,
                 "bearer",
                 token.Token);
 
