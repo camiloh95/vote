@@ -9663,10 +9663,13 @@ namespace Vote
 			public const int support_simple_spinner_dropdown_item = 2130968635;
 			
 			// aapt resource value: 0x7f04003c
-			public const int VoteEventRow = 2130968636;
+			public const int VotedCandidatePage = 2130968636;
 			
 			// aapt resource value: 0x7f04003d
-			public const int VoteEventsPage = 2130968637;
+			public const int VoteEventRow = 2130968637;
+			
+			// aapt resource value: 0x7f04003e
+			public const int VoteEventsPage = 2130968638;
 			
 			static Layout()
 			{

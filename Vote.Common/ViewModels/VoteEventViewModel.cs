@@ -1,7 +1,9 @@
 ﻿namespace Vote.Common.ViewModels
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
     using System.Windows.Input;
     using Helpers;
     using Interfaces;
@@ -51,10 +53,52 @@
             this.LoadVoteEvents();
         }
 
+        public Candidate Candidate { get; set; }
+
         private async void OnItemClickCommand(VoteEvent voteEvent)
         {
-            await this.navigationService.Navigate<CandidatesViewModel, NavigationArgs>(
-                new NavigationArgs { VoteEvent = voteEvent});
+            this.Router(voteEvent);
+        }
+
+        private async void Router(VoteEvent voteEvent)
+        {
+            this.GetAlreadyVote(voteEvent);
+            if (this.Candidate != null)
+            {
+                await this.navigationService.Navigate<VotedCandidateViewModel, NavigationArgs>(
+                    new NavigationArgs { Candidate = this.Candidate });
+            } else
+            {
+                await this.navigationService.Navigate<CandidatesViewModel, NavigationArgs>(
+                    new NavigationArgs { VoteEvent = voteEvent });
+            }
+        }
+
+        private async void GetAlreadyVote(VoteEvent voteEvent)
+        {
+
+            var alreadyVotedRequest = new AlreadyVotedRequest
+            {
+                Email = Settings.UserEmail,
+                VoteEventId = voteEvent.Id
+            };
+
+            var token = JsonConvert.DeserializeObject<TokenResponse>(Settings.Token);
+            var response = await this.apiService.GetAlreadyVotedAsync(
+                "https://camilovoting.azurewebsites.net",
+                "/api",
+                "/VoteEvents/GetAlreadyVoted",
+                alreadyVotedRequest,
+                "bearer",
+                token.Token);
+
+            if (!response.IsSuccess)
+            {
+                this.dialogService.Alert("Error", response.Message, "Accept");
+                return;
+            }
+
+            this.Candidate = (Candidate)response.Result;
         }
 
         private async void LoadVoteEvents()

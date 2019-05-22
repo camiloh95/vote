@@ -68,6 +68,7 @@
     <Compile Include="Views\Candidates.cs" />
     <Compile Include="Views\LoginView.cs" />
     <Compile Include="Views\SplashView.cs" />
+    <Compile Include="Views\VotedCandidateView.cs" />
     <Compile Include="Views\VoteEventsView.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -167,6 +168,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\CandidateRow.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\VotedCandidatePage.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
