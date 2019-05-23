@@ -64,7 +64,7 @@
         {
             if (voteEvent.EndDate <= DateTime.Today)
             {
-                await this.navigationService.Navigate<CandidatesViewModel, NavigationArgs>(
+                await this.navigationService.Navigate<ResultsViewModel, NavigationArgs>(
                     new NavigationArgs { VoteEvent = voteEvent });
             }
             else
