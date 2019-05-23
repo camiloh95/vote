@@ -21,7 +21,6 @@
         private List<Candidate> candidates;
         private MvxCommand<Candidate> itemClickCommand;
         private bool isLoading;
-        private User user;
 
         public CandidatesViewModel(
             IApiService apiService,
@@ -50,29 +49,24 @@
             set => this.SetProperty(ref this.isLoading, value);
         }
 
-        public User User
-        {
-            get => this.user;
-            set => this.SetProperty(ref this.user, value);
-        }
-
         public List<Candidate> Candidates
         {
             get => this.candidates;
             set => this.SetProperty(ref this.candidates, value);
         }
 
-        private void OnItemClickCommand(Candidate candidate)
+        private async void OnItemClickCommand(Candidate candidate)
         {
+            var user = await this.GetUserId();
             this.SaveVoteRequest = new SaveVoteRequest
             {
                 CandidateId = candidate.Id,
-                UserId = this.User.Id
+                UserId = user.Id
             };
             this.Vote();
         }
 
-        private async void getUserId()
+        private async Task<User> GetUserId()
         {
             var token = JsonConvert.DeserializeObject<TokenResponse>(Settings.Token);
             var response = await this.apiService.GetUserByEmailAsync(
@@ -87,10 +81,10 @@
             {
                 this.IsLoading = false;
                 this.dialogService.Alert("Error", "Error en la consulta", "Accept");
-                return;
+                return null;
             }
-
-            this.User = (User)response.Result;
+            
+            return (User)response.Result;
         }
 
         private async void Vote()
@@ -119,7 +113,6 @@
         
         public override void Prepare(NavigationArgs parameter)
         {
-            this.getUserId();
             this.candidates = parameter.VoteEvent.Candidates;
         }
     }

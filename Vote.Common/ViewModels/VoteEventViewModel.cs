@@ -69,11 +69,11 @@
             }
             else
             { 
-                this.GetAlreadyVote(voteEvent);
-                if (this.Candidate != null)
+                var candidate = await this.GetAlreadyVoteAsync(voteEvent);
+                if (candidate != null)
                 {
                     await this.navigationService.Navigate<VotedCandidateViewModel, NavigationArgs>(
-                        new NavigationArgs { Candidate = this.Candidate });
+                        new NavigationArgs { Candidate = candidate });
                 } else
                 {
                     await this.navigationService.Navigate<CandidatesViewModel, NavigationArgs>(
@@ -82,7 +82,7 @@
             }
         }
 
-        private async void GetAlreadyVote(VoteEvent voteEvent)
+        private async Task<Candidate> GetAlreadyVoteAsync(VoteEvent voteEvent)
         {
 
             var alreadyVotedRequest = new AlreadyVotedRequest
@@ -103,10 +103,10 @@
             if (!response.IsSuccess)
             {
                 this.dialogService.Alert("Error", response.Message, "Accept");
-                return;
+                return null;
             }
 
-            this.Candidate = (Candidate)response.Result;
+            return (Candidate)response.Result;
         }
 
         private async void LoadVoteEvents()
