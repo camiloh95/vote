@@ -41,7 +41,7 @@
             tools:text="Proposal"
             local:layout_constraintTop_toBottomOf="@+id/nameTextView"
             local:layout_constraintLeft_toRightOf="@+id/productImageView"
-            local:MvxBind="Text Proposal,Converter=DecimalToString" />
+            local:MvxBind="Text Proposal" />
 
     </android.support.constraint.ConstraintLayout>
 

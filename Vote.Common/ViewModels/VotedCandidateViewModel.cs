@@ -10,10 +10,6 @@
     {
         private bool isLoading;
 
-        public VotedCandidateViewModel()
-        {
-        }
-
         public SaveVoteRequest SaveVoteRequest { get; set; }
 
         public bool IsLoading

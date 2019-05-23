@@ -62,15 +62,23 @@
 
         private async void Router(VoteEvent voteEvent)
         {
-            this.GetAlreadyVote(voteEvent);
-            if (this.Candidate != null)
-            {
-                await this.navigationService.Navigate<VotedCandidateViewModel, NavigationArgs>(
-                    new NavigationArgs { Candidate = this.Candidate });
-            } else
+            if (voteEvent.EndDate <= DateTime.Today)
             {
                 await this.navigationService.Navigate<CandidatesViewModel, NavigationArgs>(
                     new NavigationArgs { VoteEvent = voteEvent });
+            }
+            else
+            { 
+                this.GetAlreadyVote(voteEvent);
+                if (this.Candidate != null)
+                {
+                    await this.navigationService.Navigate<VotedCandidateViewModel, NavigationArgs>(
+                        new NavigationArgs { Candidate = this.Candidate });
+                } else
+                {
+                    await this.navigationService.Navigate<CandidatesViewModel, NavigationArgs>(
+                        new NavigationArgs { VoteEvent = voteEvent });
+                }
             }
         }
 
