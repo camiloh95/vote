@@ -8641,26 +8641,26 @@ namespace Vote
 			// aapt resource value: 0x7f020054
 			public const int avd_hide_password = 2130837588;
 			
-			// aapt resource value: 0x7f020072
-			public const int avd_hide_password_1 = 2130837618;
+			// aapt resource value: 0x7f020075
+			public const int avd_hide_password_1 = 2130837621;
 			
-			// aapt resource value: 0x7f020073
-			public const int avd_hide_password_2 = 2130837619;
+			// aapt resource value: 0x7f020076
+			public const int avd_hide_password_2 = 2130837622;
 			
-			// aapt resource value: 0x7f020074
-			public const int avd_hide_password_3 = 2130837620;
+			// aapt resource value: 0x7f020077
+			public const int avd_hide_password_3 = 2130837623;
 			
 			// aapt resource value: 0x7f020055
 			public const int avd_show_password = 2130837589;
 			
-			// aapt resource value: 0x7f020075
-			public const int avd_show_password_1 = 2130837621;
+			// aapt resource value: 0x7f020078
+			public const int avd_show_password_1 = 2130837624;
 			
-			// aapt resource value: 0x7f020076
-			public const int avd_show_password_2 = 2130837622;
+			// aapt resource value: 0x7f020079
+			public const int avd_show_password_2 = 2130837625;
 			
-			// aapt resource value: 0x7f020077
-			public const int avd_show_password_3 = 2130837623;
+			// aapt resource value: 0x7f02007a
+			public const int avd_show_password_3 = 2130837626;
 			
 			// aapt resource value: 0x7f020056
 			public const int design_bottom_navigation_item_background = 2130837590;
@@ -8725,11 +8725,11 @@ namespace Vote
 			// aapt resource value: 0x7f02006a
 			public const int notification_icon_background = 2130837610;
 			
-			// aapt resource value: 0x7f020070
-			public const int notification_template_icon_bg = 2130837616;
+			// aapt resource value: 0x7f020073
+			public const int notification_template_icon_bg = 2130837619;
 			
-			// aapt resource value: 0x7f020071
-			public const int notification_template_icon_low_bg = 2130837617;
+			// aapt resource value: 0x7f020074
+			public const int notification_template_icon_low_bg = 2130837620;
 			
 			// aapt resource value: 0x7f02006b
 			public const int notification_tile_bg = 2130837611;
@@ -8738,13 +8738,22 @@ namespace Vote
 			public const int notify_panel_notification_icon_bg = 2130837612;
 			
 			// aapt resource value: 0x7f02006d
-			public const int splash = 2130837613;
+			public const int primary_button = 2130837613;
 			
 			// aapt resource value: 0x7f02006e
-			public const int tooltip_frame_dark = 2130837614;
+			public const int secondary_button = 2130837614;
 			
 			// aapt resource value: 0x7f02006f
-			public const int tooltip_frame_light = 2130837615;
+			public const int splash = 2130837615;
+			
+			// aapt resource value: 0x7f020070
+			public const int tooltip_frame_dark = 2130837616;
+			
+			// aapt resource value: 0x7f020071
+			public const int tooltip_frame_light = 2130837617;
+			
+			// aapt resource value: 0x7f020072
+			public const int vote = 2130837618;
 			
 			static Drawable()
 			{
@@ -8804,17 +8813,17 @@ namespace Vote
 			// aapt resource value: 0x7f0a0078
 			public const int action_bar_title = 2131361912;
 			
-			// aapt resource value: 0x7f0a00c1
-			public const int action_container = 2131361985;
+			// aapt resource value: 0x7f0a00c9
+			public const int action_container = 2131361993;
 			
 			// aapt resource value: 0x7f0a009d
 			public const int action_context_bar = 2131361949;
 			
-			// aapt resource value: 0x7f0a00cc
-			public const int action_divider = 2131361996;
+			// aapt resource value: 0x7f0a00d4
+			public const int action_divider = 2131362004;
 			
-			// aapt resource value: 0x7f0a00c2
-			public const int action_image = 2131361986;
+			// aapt resource value: 0x7f0a00ca
+			public const int action_image = 2131361994;
 			
 			// aapt resource value: 0x7f0a0003
 			public const int action_menu_divider = 2131361795;
@@ -8831,11 +8840,11 @@ namespace Vote
 			// aapt resource value: 0x7f0a007a
 			public const int action_mode_close_button = 2131361914;
 			
-			// aapt resource value: 0x7f0a00c3
-			public const int action_text = 2131361987;
+			// aapt resource value: 0x7f0a00cb
+			public const int action_text = 2131361995;
 			
-			// aapt resource value: 0x7f0a00cd
-			public const int actions = 2131361997;
+			// aapt resource value: 0x7f0a00d5
+			public const int actions = 2131362005;
 			
 			// aapt resource value: 0x7f0a007b
 			public const int activity_chooser_view_content = 2131361915;
@@ -8885,6 +8894,9 @@ namespace Vote
 			// aapt resource value: 0x7f0a00ac
 			public const int browser_actions_menu_view = 2131361964;
 			
+			// aapt resource value: 0x7f0a00c6
+			public const int buttonContainer = 2131361990;
+			
 			// aapt resource value: 0x7f0a0081
 			public const int buttonPanel = 2131361921;
 			
@@ -8903,8 +8915,11 @@ namespace Vote
 			// aapt resource value: 0x7f0a0095
 			public const int checkbox = 2131361941;
 			
-			// aapt resource value: 0x7f0a00cb
-			public const int chronometer = 2131361995;
+			// aapt resource value: 0x7f0a00d3
+			public const int chronometer = 2131362003;
+			
+			// aapt resource value: 0x7f0a00de
+			public const int cityName_layout = 2131362014;
 			
 			// aapt resource value: 0x7f0a0063
 			public const int clip_horizontal = 2131361891;
@@ -8914,6 +8929,9 @@ namespace Vote
 			
 			// aapt resource value: 0x7f0a0042
 			public const int collapseActionView = 2131361858;
+			
+			// aapt resource value: 0x7f0a00e2
+			public const int confirmName_layout = 2131362018;
 			
 			// aapt resource value: 0x7f0a00b7
 			public const int container = 2131361975;
@@ -8926,6 +8944,9 @@ namespace Vote
 			
 			// aapt resource value: 0x7f0a00b8
 			public const int coordinator = 2131361976;
+			
+			// aapt resource value: 0x7f0a00dd
+			public const int countryName_layout = 2131362013;
 			
 			// aapt resource value: 0x7f0a008b
 			public const int custom = 2131361931;
@@ -8963,8 +8984,17 @@ namespace Vote
 			// aapt resource value: 0x7f0a0029
 			public const int disableHome = 2131361833;
 			
+			// aapt resource value: 0x7f0a00c3
+			public const int editTextEmail = 2131361987;
+			
+			// aapt resource value: 0x7f0a00c5
+			public const int editTextPassword = 2131361989;
+			
 			// aapt resource value: 0x7f0a009e
 			public const int edit_query = 2131361950;
+			
+			// aapt resource value: 0x7f0a00da
+			public const int emailName_layout = 2131362010;
 			
 			// aapt resource value: 0x7f0a0039
 			public const int end = 2131361849;
@@ -8996,11 +9026,17 @@ namespace Vote
 			// aapt resource value: 0x7f0a0061
 			public const int filled = 2131361889;
 			
+			// aapt resource value: 0x7f0a00d8
+			public const int firstName_layout = 2131362008;
+			
 			// aapt resource value: 0x7f0a005e
 			public const int @fixed = 2131361886;
 			
 			// aapt resource value: 0x7f0a0076
 			public const int forever = 2131361910;
+			
+			// aapt resource value: 0x7f0a00df
+			public const int genderName_layout = 2131362015;
 			
 			// aapt resource value: 0x7f0a000a
 			public const int ghost_view = 2131361802;
@@ -9020,8 +9056,8 @@ namespace Vote
 			// aapt resource value: 0x7f0a0080
 			public const int icon = 2131361920;
 			
-			// aapt resource value: 0x7f0a00ce
-			public const int icon_group = 2131361998;
+			// aapt resource value: 0x7f0a00d6
+			public const int icon_group = 2131362006;
 			
 			// aapt resource value: 0x7f0a0043
 			public const int ifRoom = 2131361859;
@@ -9029,8 +9065,11 @@ namespace Vote
 			// aapt resource value: 0x7f0a007d
 			public const int image = 2131361917;
 			
-			// aapt resource value: 0x7f0a00c7
-			public const int info = 2131361991;
+			// aapt resource value: 0x7f0a00c1
+			public const int imageViewEmail = 2131361985;
+			
+			// aapt resource value: 0x7f0a00cf
+			public const int info = 2131361999;
 			
 			// aapt resource value: 0x7f0a0068
 			public const int invisible = 2131361896;
@@ -9047,6 +9086,9 @@ namespace Vote
 			// aapt resource value: 0x7f0a00b6
 			public const int largeLabel = 2131361974;
 			
+			// aapt resource value: 0x7f0a00d9
+			public const int lastName_layout = 2131362009;
+			
 			// aapt resource value: 0x7f0a0056
 			public const int left = 2131361878;
 			
@@ -9062,8 +9104,11 @@ namespace Vote
 			// aapt resource value: 0x7f0a007f
 			public const int list_item = 2131361919;
 			
-			// aapt resource value: 0x7f0a00d0
-			public const int masked = 2131362000;
+			// aapt resource value: 0x7f0a00c7
+			public const int loginButton = 2131361991;
+			
+			// aapt resource value: 0x7f0a00e4
+			public const int masked = 2131362020;
 			
 			// aapt resource value: 0x7f0a00ab
 			public const int message = 2131361963;
@@ -9092,20 +9137,26 @@ namespace Vote
 			// aapt resource value: 0x7f0a0044
 			public const int never = 2131361860;
 			
+			// aapt resource value: 0x7f0a00c8
+			public const int newUserButton = 2131361992;
+			
 			// aapt resource value: 0x7f0a002b
 			public const int none = 2131361835;
 			
 			// aapt resource value: 0x7f0a0027
 			public const int normal = 2131361831;
 			
-			// aapt resource value: 0x7f0a00c9
-			public const int notification_background = 2131361993;
+			// aapt resource value: 0x7f0a00d1
+			public const int notification_background = 2131362001;
 			
-			// aapt resource value: 0x7f0a00c5
-			public const int notification_main_column = 2131361989;
+			// aapt resource value: 0x7f0a00cd
+			public const int notification_main_column = 2131361997;
 			
-			// aapt resource value: 0x7f0a00c4
-			public const int notification_main_column_container = 2131361988;
+			// aapt resource value: 0x7f0a00cc
+			public const int notification_main_column_container = 2131361996;
+			
+			// aapt resource value: 0x7f0a00db
+			public const int occupationName_layout = 2131362011;
 			
 			// aapt resource value: 0x7f0a0062
 			public const int outline = 2131361890;
@@ -9125,8 +9176,14 @@ namespace Vote
 			// aapt resource value: 0x7f0a000b
 			public const int parent_matrix = 2131361803;
 			
+			// aapt resource value: 0x7f0a00e1
+			public const int passwordName_layout = 2131362017;
+			
 			// aapt resource value: 0x7f0a006a
 			public const int percent = 2131361898;
+			
+			// aapt resource value: 0x7f0a00dc
+			public const int phoneName_layout = 2131362012;
 			
 			// aapt resource value: 0x7f0a005a
 			public const int pin = 2131361882;
@@ -9149,11 +9206,11 @@ namespace Vote
 			// aapt resource value: 0x7f0a0057
 			public const int right = 2131361879;
 			
-			// aapt resource value: 0x7f0a00c8
-			public const int right_icon = 2131361992;
+			// aapt resource value: 0x7f0a00d0
+			public const int right_icon = 2131362000;
 			
-			// aapt resource value: 0x7f0a00c6
-			public const int right_side = 2131361990;
+			// aapt resource value: 0x7f0a00ce
+			public const int right_side = 2131361998;
 			
 			// aapt resource value: 0x7f0a000c
 			public const int save_image_matrix = 2131361804;
@@ -9272,6 +9329,9 @@ namespace Vote
 			// aapt resource value: 0x7f0a0058
 			public const int start = 2131361880;
 			
+			// aapt resource value: 0x7f0a00e0
+			public const int stratumName_layout = 2131362016;
+			
 			// aapt resource value: 0x7f0a005d
 			public const int stretch = 2131361885;
 			
@@ -9308,6 +9368,12 @@ namespace Vote
 			// aapt resource value: 0x7f0a005c
 			public const int textStart = 2131361884;
 			
+			// aapt resource value: 0x7f0a00c2
+			public const int textViewEmail = 2131361986;
+			
+			// aapt resource value: 0x7f0a00c4
+			public const int textViewPassword = 2131361988;
+			
 			// aapt resource value: 0x7f0a00c0
 			public const int text_input_password_toggle = 2131361984;
 			
@@ -9320,8 +9386,8 @@ namespace Vote
 			// aapt resource value: 0x7f0a001a
 			public const int textinput_helper_text = 2131361818;
 			
-			// aapt resource value: 0x7f0a00ca
-			public const int time = 2131361994;
+			// aapt resource value: 0x7f0a00d2
+			public const int time = 2131362002;
 			
 			// aapt resource value: 0x7f0a0023
 			public const int title = 2131361827;
@@ -9331,6 +9397,9 @@ namespace Vote
 			
 			// aapt resource value: 0x7f0a008d
 			public const int title_template = 2131361933;
+			
+			// aapt resource value: 0x7f0a00d7
+			public const int title_textView = 2131362007;
 			
 			// aapt resource value: 0x7f0a00b4
 			public const int toolbar_cross = 2131361972;
@@ -9374,8 +9443,8 @@ namespace Vote
 			// aapt resource value: 0x7f0a001b
 			public const int view_offset_helper = 2131361819;
 			
-			// aapt resource value: 0x7f0a00cf
-			public const int visible = 2131361999;
+			// aapt resource value: 0x7f0a00e3
+			public const int visible = 2131362019;
 			
 			// aapt resource value: 0x7f0a0045
 			public const int withText = 2131361861;
@@ -9648,34 +9717,37 @@ namespace Vote
 			public const int notification_template_part_time = 2130968630;
 			
 			// aapt resource value: 0x7f040037
-			public const int ResultsPage = 2130968631;
+			public const int RegisterPage = 2130968631;
 			
 			// aapt resource value: 0x7f040038
-			public const int ResultsRow = 2130968632;
+			public const int ResultsPage = 2130968632;
 			
 			// aapt resource value: 0x7f040039
-			public const int select_dialog_item_material = 2130968633;
+			public const int ResultsRow = 2130968633;
 			
 			// aapt resource value: 0x7f04003a
-			public const int select_dialog_multichoice_material = 2130968634;
+			public const int select_dialog_item_material = 2130968634;
 			
 			// aapt resource value: 0x7f04003b
-			public const int select_dialog_singlechoice_material = 2130968635;
+			public const int select_dialog_multichoice_material = 2130968635;
 			
 			// aapt resource value: 0x7f04003c
-			public const int SplashPage = 2130968636;
+			public const int select_dialog_singlechoice_material = 2130968636;
 			
 			// aapt resource value: 0x7f04003d
-			public const int support_simple_spinner_dropdown_item = 2130968637;
+			public const int SplashPage = 2130968637;
 			
 			// aapt resource value: 0x7f04003e
-			public const int VotedCandidatePage = 2130968638;
+			public const int support_simple_spinner_dropdown_item = 2130968638;
 			
 			// aapt resource value: 0x7f04003f
-			public const int VoteEventRow = 2130968639;
+			public const int VotedCandidatePage = 2130968639;
 			
 			// aapt resource value: 0x7f040040
-			public const int VoteEventsPage = 2130968640;
+			public const int VoteEventRow = 2130968640;
+			
+			// aapt resource value: 0x7f040041
+			public const int VoteEventsPage = 2130968641;
 			
 			static Layout()
 			{
