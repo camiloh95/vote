@@ -200,12 +200,15 @@
                 this.dialogService.Alert("Error", "There where a problem trying to register the user", "Accept");
                 return;
             }
-
-            this.dialogService.Alert("Ok", "The user was created succesfully, you must " +
-                "confirm your user by the email sent to you and then you could login with " +
-                "the email and password entered.", "Accept"); 
-
-            await this.navigationService.Close(this);
+            else
+            {
+                this.dialogService.Alert("¡ Congratulations !",
+                                     "The user was created succesfully. You must " +
+                                     "confirm your user by the email sent to you and then you could login with " +
+                                     "the email and password entered.",
+                                     "Accept",
+                                     () => { this.navigationService.Close(this); });
+            }            
         }
 
         public override void ViewAppeared()

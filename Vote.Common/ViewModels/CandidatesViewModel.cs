@@ -87,7 +87,18 @@
             return (User)response.Result;
         }
 
-        private async void Vote()
+        private void Vote()
+        {
+            this.dialogService.Confirm(
+                "Confirm",
+                "This action can't be undone, are you sure you want to vote for this candidate?",
+                "Yes",
+                "No",
+                () => { this.ConfirmVote(); },
+                null);
+        }
+
+        private async Task ConfirmVote()
         {
             this.IsLoading = true;
 
@@ -107,8 +118,14 @@
                 this.dialogService.Alert("Error", response.Message, "Accept");
                 return;
             }
-
-            await this.navigationService.Close(this);
+            else
+            {
+                this.dialogService.Alert(
+                    "¡ Congratulations !",
+                    "Your vote has been recorded successfully",
+                    "Accept",
+                    () => { this.navigationService.Close(this); });
+            }
         }
         
         public override void Prepare(NavigationArgs parameter)
