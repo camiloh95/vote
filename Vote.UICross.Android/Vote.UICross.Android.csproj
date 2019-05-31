@@ -66,6 +66,7 @@
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="Views\Candidates.cs" />
+    <Compile Include="Views\ChangePasswordView.cs" />
     <Compile Include="Views\LoginView.cs" />
     <Compile Include="Views\ModifyUserView.cs" />
     <Compile Include="Views\RegisterView.cs" />
@@ -214,6 +215,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\ModifyUserPage.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\ChangePasswordPage.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

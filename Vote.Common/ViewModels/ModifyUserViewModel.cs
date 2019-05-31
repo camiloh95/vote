@@ -27,6 +27,7 @@
         private Gender selectedGender;
         private Stratum selectedStratum;
         private MvxCommand updateCommand;
+        private MvxCommand changePasswordCommand;
         private bool isLoading;
 
         public ModifyUserViewModel(
@@ -46,6 +47,15 @@
             {
                 this.updateCommand = this.updateCommand ?? new MvxCommand(this.UpdateUser);
                 return this.updateCommand;
+            }
+        }
+
+        public ICommand ChangePasswordCommand
+        {
+            get
+            {
+                this.changePasswordCommand = this.changePasswordCommand ?? new MvxCommand(this.ChangePassword);
+                return this.changePasswordCommand;
             }
         }
 
@@ -124,6 +134,11 @@
                 selectedStratum = value;
                 RaisePropertyChanged(() => selectedStratum);
             }
+        }
+
+        private async void ChangePassword()
+        {
+            await this.navigationService.Navigate<ChangePasswordViewModel>();
         }
 
         private async void LoadCountries()
