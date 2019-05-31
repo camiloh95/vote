@@ -49,6 +49,30 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewPassword"/>
 
     <LinearLayout
+        android:id="@+id/rememberContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:paddingBottom="150dp"
+        android:paddingLeft="70dp">
+
+        <Button
+            android:id="@+id/rememberButton"
+            android:text="Remember password"
+            android:layout_width="150dp"
+            android:layout_marginLeft="25dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/primary_button"
+            local:MvxBind="Click RememberCommand"/>
+        
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/buttonContainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -86,9 +110,10 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         app:layout_constraintTop_toTopOf="@+id/buttonContainer"
-        app:layout_constraintBottom_toTopOf="@+id/editTextPassword"
+        app:layout_constraintBottom_toTopOf="@+id/rememberContainer"
         local:MvxBind="Visibility Visibility(IsLoading)"
         android:indeterminateOnly="true"
+        android:paddingTop="50dp"
         android:keepScreenOn="true"/>
 
 </android.support.constraint.ConstraintLayout>

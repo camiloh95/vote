@@ -67,7 +67,9 @@
     <Compile Include="Setup.cs" />
     <Compile Include="Views\Candidates.cs" />
     <Compile Include="Views\LoginView.cs" />
+    <Compile Include="Views\ModifyUserView.cs" />
     <Compile Include="Views\RegisterView.cs" />
+    <Compile Include="Views\RememberView.cs" />
     <Compile Include="Views\ResultsView.cs" />
     <Compile Include="Views\SplashView.cs" />
     <Compile Include="Views\VotedCandidateView.cs" />
@@ -202,6 +204,16 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\RegisterPage.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\RememberPage.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\ModifyUserPage.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

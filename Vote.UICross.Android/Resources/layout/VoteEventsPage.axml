@@ -12,6 +12,14 @@
         android:layout_marginRight="6dp"
         local:layout_constraintTop_toBottomOf="@+id/toolbar_cross"
         local:MvxItemTemplate="@layout/voteeventrow"
-        local:MvxBind="ItemsSource VoteEvents;ItemClick ItemClickCommand;"/>
+        local:MvxBind="ItemsSource VoteEvents;ItemClick ItemClickCommand;"/>    
+
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="16dp"
+            local:layout_anchorGravity="bottom|right|end"
+            local:MvxBind="Click ModifyUserCommand" />
 
 </android.support.design.widget.CoordinatorLayout>

@@ -1,15 +1,18 @@
 ﻿namespace Vote.Common.ViewModels
 {
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using System.Windows.Input;
     using Interfaces;
     using Models;
     using MvvmCross.Commands;
     using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
+    using Newtonsoft.Json;
     using Services;
+    using Vote.Common.Helpers;
 
-    public class RegisterViewModel : MvxViewModel
+    public class ModifyUserViewModel : MvxViewModel
     {
         private readonly IApiService apiService;
         private readonly IMvxNavigationService navigationService;
@@ -18,21 +21,15 @@
         private List<City> cities;
         private List<Gender> genders;
         private List<Stratum> stratums;
+        private User user;
         private Country selectedCountry;
         private City selectedCity;
         private Gender selectedGender;
         private Stratum selectedStratum;
-        private MvxCommand registerCommand;
+        private MvxCommand updateCommand;
         private bool isLoading;
-        private string firstName;
-        private string lastName;
-        private string email;
-        private string phone;
-        private string occupation;
-        private string password;
-        private string confirmPassword;
 
-        public RegisterViewModel(
+        public ModifyUserViewModel(
             IMvxNavigationService navigationService,
             IApiService apiService,
             IDialogService dialogService)
@@ -43,12 +40,12 @@
             this.LoadCountries();
         }
 
-        public ICommand RegisterCommand
+        public ICommand UpdateCommand
         {
             get
             {
-                this.registerCommand = this.registerCommand ?? new MvxCommand(this.RegisterUser);
-                return this.registerCommand;
+                this.updateCommand = this.updateCommand ?? new MvxCommand(this.UpdateUser);
+                return this.updateCommand;
             }
         }
 
@@ -58,46 +55,10 @@
             set => this.SetProperty(ref this.isLoading, value);
         }
 
-        public string FirstName
+        public User User
         {
-            get => this.firstName;
-            set => this.SetProperty(ref this.firstName, value);
-        }
-
-        public string LastName
-        {
-            get => this.lastName;
-            set => this.SetProperty(ref this.lastName, value);
-        }
-
-        public string Email
-        {
-            get => this.email;
-            set => this.SetProperty(ref this.email, value);
-        }
-
-        public string Phone
-        {
-            get => this.phone;
-            set => this.SetProperty(ref this.phone, value);
-        }
-
-        public string Password
-        {
-            get => this.password;
-            set => this.SetProperty(ref this.password, value);
-        }
-
-        public string ConfirmPassword
-        {
-            get => this.confirmPassword;
-            set => this.SetProperty(ref this.confirmPassword, value);
-        }
-
-        public string Occupation
-        {
-            get => this.occupation;
-            set => this.SetProperty(ref this.occupation, value);
+            get => this.user;
+            set => this.SetProperty(ref this.user, value);
         }
 
         public List<Country> Countries
@@ -167,8 +128,6 @@
 
         private async void LoadCountries()
         {
-            this.IsLoading = true;
-
             var response = await this.apiService.GetListAsync<Country>(
                 "https://camilovoting.azurewebsites.net",
                 "/api",
@@ -183,28 +142,35 @@
             this.Countries = (List<Country>)response.Result;
         }
 
-        private async void RegisterUser()
+        private async Task<User> UserRequest()
         {
-            var request = new NewUserRequest
-            {
-                CityId = this.SelectedCity.Id,
-                Email = this.Email,
-                Occupation = this.Occupation,
-                Gender = this.SelectedGender.Id,
-                Stratum = this.SelectedStratum.Id,
-                FirstName = this.FirstName,
-                LastName = this.LastName,
-                Password = this.Password,
-                Phone = this.Phone
-            };
+            var token = JsonConvert.DeserializeObject<TokenResponse>(Settings.Token);
+            var response = await this.apiService.GetUserByEmailAsync(
+                "https://camilovoting.azurewebsites.net",
+                "/api",
+                "/Account/GetUserByEmail",
+                Settings.UserEmail,
+                "bearer",
+                token.Token);
 
-            var response = await this.apiService.RegisterUserAsync(
+            return (User)response.Result;
+        }
+
+        private async void UpdateUser()
+        {
+
+            this.User.Gender = this.SelectedCountry.Id;
+            this.User.Stratum = this.SelectedStratum.Id;
+            this.User.CityId = this.SelectedCity.Id;
+
+            var token = JsonConvert.DeserializeObject<TokenResponse>(Settings.Token);
+            var response = await this.apiService.PutAsync(
                 "https://camilovoting.azurewebsites.net",
                 "/api",
                 "/Account",
-                request);
-
-            this.IsLoading = false;
+                this.User,
+                "bearer",
+                token.Token);
 
             if (!response.IsSuccess)
             {
@@ -214,19 +180,59 @@
             else
             {
                 this.dialogService.Alert("¡ Congratulations !",
-                                     "The user was created succesfully. You must " +
-                                     "confirm your user by the email sent to you and then you could login with " +
-                                     "the email and password entered.",
+                                     "The user was updated succesfully.",
                                      "Accept",
                                      () => { this.navigationService.Close(this); });
-            }            
+            }
         }
 
-        public override void ViewAppeared()
+        public override async void ViewAppeared()
         {
             base.ViewAppeared();
+            this.User = await this.UserRequest();
             this.Genders = this.GetGenders();
             this.Stratums = this.GetStratums();
+            this.SetCountryAndCity();
+            //this.SetStratum();
+            //this.SetGender();
+        }
+
+        private void SetGender()
+        {
+            foreach (var gender in this.Genders)
+            {
+                if (gender.Id == this.User.Gender)
+                {
+                    this.SelectedGender = gender;
+                    return;
+                }
+            }
+        }
+
+        private void SetStratum()
+        {
+            foreach (var stratum in this.Stratums)
+            {
+                if (stratum.Id == this.User.Stratum)
+                {
+                    this.SelectedStratum = stratum;
+                    return;
+                }
+            }
+        }
+
+        private void SetCountryAndCity()
+        {
+            foreach (var country in this.Countries)
+            {
+                var city = country.Cities.Find(c => c.Id == this.User.CityId);
+                if (city != null)
+                {
+                    this.SelectedCountry = country;
+                    this.SelectedCity = city;
+                    return;
+                }
+            }
         }
 
         public List<Stratum> GetStratums()

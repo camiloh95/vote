@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:padding="10dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/title_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18dp"
+        local:layout_constraintLeft_toLeftOf="parent"
+        local:layout_constraintRight_toRightOf="parent"
+        android:text="Remember password"/>
+
+    <LinearLayout
+        android:id="@+id/emailName_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        local:layout_constraintTop_toBottomOf="@+id/title_textView">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:text="Email:"/>
+
+        <EditText
+            android:inputType="textEmailAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            local:MvxBind="Text Email"/>
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        local:layout_constraintTop_toTopOf="@+id/emailName_layout"
+        local:layout_constraintBottom_toTopOf="@+id/newUserButton"
+        local:MvxBind="Visibility Visibility(IsLoading)"
+        android:indeterminateOnly="true"
+        android:paddingTop="50dp"
+        android:keepScreenOn="true"
+        android:id="@+id/progressBar2" />
+
+    <Button
+        android:id="@+id/newUserButton"
+        android:text="Remember password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        local:MvxBind="Click RememberCommand"
+        local:layout_constraintBottom_toBottomOf="parent"
+        android:background="@drawable/primary_button"/>
+
+</android.support.constraint.ConstraintLayout>

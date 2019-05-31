@@ -21,6 +21,7 @@
         private readonly IDialogService dialogService;
         private readonly IMvxNavigationService navigationService;
         private MvxCommand<VoteEvent> itemClickCommand;
+        private MvxCommand modifyUserCommand;
 
         public VoteEventViewModel(
             IApiService apiService,
@@ -41,6 +42,15 @@
             }
         }
 
+        public ICommand ModifyUserCommand
+        {
+            get
+            {
+                this.modifyUserCommand = this.modifyUserCommand ?? new MvxCommand(this.ModifyUser);
+                return this.modifyUserCommand;
+            }
+        }
+
         public List<VoteEvent> VoteEvents
         {
             get => this.voteEvents;
@@ -58,6 +68,11 @@
         private async void OnItemClickCommand(VoteEvent voteEvent)
         {
             this.Router(voteEvent);
+        }
+
+        private async void ModifyUser()
+        {
+            await this.navigationService.Navigate<ModifyUserViewModel>();
         }
 
         private async void Router(VoteEvent voteEvent)

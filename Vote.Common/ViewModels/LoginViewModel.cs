@@ -15,6 +15,7 @@
         private string email;
         private string password;
         private MvxCommand loginCommand;
+        private MvxCommand rememberCommand;
         private MvxCommand registerCommand;
         private readonly IApiService apiService;
         private readonly IDialogService dialogService;
@@ -71,9 +72,23 @@
             }
         }
 
+        public ICommand RememberCommand
+        {
+            get
+            {
+                this.rememberCommand = this.rememberCommand ?? new MvxCommand(this.DoRememberCommand);
+                return this.rememberCommand;
+            }
+        }
+
         private async void DoRegisterCommand()
         {
             await this.navigationService.Navigate<RegisterViewModel>();
+        }
+
+        private async void DoRememberCommand()
+        {
+            await this.navigationService.Navigate<RememberViewModel>();
         }
 
         private async void DoLoginCommand()
