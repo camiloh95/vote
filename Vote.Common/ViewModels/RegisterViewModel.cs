@@ -8,6 +8,7 @@
     using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
     using Services;
+    using Vote.Common.Helpers;
 
     public class RegisterViewModel : MvxViewModel
     {
@@ -185,6 +186,84 @@
 
         private async void RegisterUser()
         {
+            if (string.IsNullOrEmpty(this.FirstName))
+            {
+                this.dialogService.Alert("Error", "You must enter a firstname.", "Accept");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(this.LastName))
+            {
+                this.dialogService.Alert("Error", "You must enter a lastname.", "Accept");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(this.Email))
+            {
+                this.dialogService.Alert("Error", "You must enter an email.", "Accept");
+                return;
+            }
+
+            if (!RegexHelper.IsValidEmail(this.Email))
+            {
+                this.dialogService.Alert("Error", "You must enter valid email.", "Accept");
+                return;
+            }
+
+            if (this.SelectedCountry == null)
+            {
+                this.dialogService.Alert("Error", "You must select a country.", "Accept");
+                return;
+            }
+
+            if (this.SelectedCity == null)
+            {
+                this.dialogService.Alert("Error", "You must select a city.", "Accept");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(this.Phone))
+            {
+                this.dialogService.Alert("Error", "You must enter a phone number.", "Accept");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(this.Password))
+            {
+                this.dialogService.Alert("Error", "You must enter a password.", "Accept");
+                return;
+            }
+
+            if (this.Password.Length < 6)
+            {
+                this.dialogService.Alert("Error", "The password must have at least 6 characters.", "Accept");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(this.ConfirmPassword))
+            {
+                this.dialogService.Alert("Error", "You must confirm the password.", "Accept");
+                return;
+            }
+
+            if (!this.Password.Equals(this.ConfirmPassword))
+            {
+                this.dialogService.Alert("Error", "The passwords are not the same.", "Accept");
+                return;
+            }
+
+            if (this.SelectedGender == null)
+            {
+                this.dialogService.Alert("Error", "You must select a gender.", "Accept");
+                return;
+            }
+
+            if (this.SelectedStratum == null)
+            {
+                this.dialogService.Alert("Error", "You must select a stratum.", "Accept");
+                return;
+            }
+
             var request = new NewUserRequest
             {
                 CityId = this.SelectedCity.Id,
@@ -208,7 +287,7 @@
 
             if (!response.IsSuccess)
             {
-                this.dialogService.Alert("Error", "There where a problem trying to register the user", "Accept");
+                this.dialogService.Alert("Error", response.Message, "Accept");
                 return;
             }
             else

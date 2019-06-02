@@ -50,6 +50,12 @@
 
         private async void RememberPassword()
         {
+            if(string.IsNullOrEmpty(this.Email))
+            {
+                this.dialogService.Alert("Error", "You must enter an email.", "Accept");
+                return;
+            }
+
             this.IsLoading = true;
 
             var request = new RecoverPasswordRequest
@@ -67,7 +73,7 @@
 
             if (!response.IsSuccess)
             {
-                this.dialogService.Alert("Error", "There where a problem trying to register the user", "Accept");
+                this.dialogService.Alert("Error", response.Message, "Accept");
                 return;
             }
             else

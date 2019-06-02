@@ -51,6 +51,23 @@
 
         private async void ChangePasswordPassword()
         {
+            if (string.IsNullOrEmpty(this.CurrentPassword))
+            {
+                this.dialogService.Alert("Error", "You must enter your old password.", "Accept");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(this.NewPassword))
+            {
+                this.dialogService.Alert("Error", "You must enter the new password.", "Accept");
+                return;
+            }
+
+            if (!this.NewPassword.Equals(this.PasswordConfirm))
+            {
+                this.dialogService.Alert("Error", "The passwords are not the same.", "Accept");
+                return;
+            }
             this.IsLoading = true;
 
             var request = new ChangePasswordRequest
@@ -73,7 +90,7 @@
 
             if (!response.IsSuccess)
             {
-                this.dialogService.Alert("Error", "There where a problem trying to change your password. Try again", "Accept");
+                this.dialogService.Alert("Error", response.Message, "Accept");
                 return;
             }
             else

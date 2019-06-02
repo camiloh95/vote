@@ -1,5 +1,6 @@
 ﻿namespace Vote.Common.ViewModels
 {
+    using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Windows.Input;
@@ -118,22 +119,14 @@
 
         public Gender SelectedGender
         {
-            get => selectedGender;
-            set
-            {
-                selectedGender = value;
-                RaisePropertyChanged(() => selectedGender);
-            }
+            get => this.selectedGender;
+            set => this.SetProperty(ref this.selectedGender, value);
         }
 
         public Stratum SelectedStratum
         {
-            get => selectedStratum;
-            set
-            {
-                selectedStratum = value;
-                RaisePropertyChanged(() => selectedStratum);
-            }
+            get => this.selectedStratum;
+            set => this.SetProperty(ref this.selectedStratum, value);
         }
 
         private async void ChangePassword()
@@ -173,6 +166,41 @@
 
         private async void UpdateUser()
         {
+            if (string.IsNullOrEmpty(this.User.FirstName))
+            {
+                this.dialogService.Alert("Error", "You must enter a firstname.", "Accept");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(this.User.LastName))
+            {
+                this.dialogService.Alert("Error", "You must enter a lastname.", "Accept");
+                return;
+            }
+
+            if (this.SelectedCountry == null)
+            {
+                this.dialogService.Alert("Error", "You must select a country.", "Accept");
+                return;
+            }
+
+            if (this.SelectedCity == null)
+            {
+                this.dialogService.Alert("Error", "You must select a city.", "Accept");
+                return;
+            }
+
+            if (this.SelectedGender == null)
+            {
+                this.dialogService.Alert("Error", "You must select a gender.", "Accept");
+                return;
+            }
+
+            if (this.SelectedStratum == null)
+            {
+                this.dialogService.Alert("Error", "You must select a stratum.", "Accept");
+                return;
+            }
 
             this.User.Gender = this.SelectedCountry.Id;
             this.User.Stratum = this.SelectedStratum.Id;
@@ -189,7 +217,7 @@
 
             if (!response.IsSuccess)
             {
-                this.dialogService.Alert("Error", "There where a problem trying to register the user", "Accept");
+                this.dialogService.Alert("Error", response.Message, "Accept");
                 return;
             }
             else
@@ -208,8 +236,8 @@
             this.Genders = this.GetGenders();
             this.Stratums = this.GetStratums();
             this.SetCountryAndCity();
-            //this.SetStratum();
-            //this.SetGender();
+            this.SetStratum();
+            this.SetGender();
         }
 
         private void SetGender()
@@ -230,8 +258,8 @@
             {
                 if (stratum.Id == this.User.Stratum)
                 {
-                    this.SelectedStratum = stratum;
-                    return;
+                        this.SelectedStratum = stratum;
+                        return;
                 }
             }
         }
