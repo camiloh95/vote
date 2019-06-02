@@ -168,8 +168,6 @@
 
         private async void LoadCountries()
         {
-            this.IsLoading = true;
-
             var response = await this.apiService.GetListAsync<Country>(
                 "https://camilovoting.azurewebsites.net",
                 "/api",
@@ -186,6 +184,8 @@
 
         private async void RegisterUser()
         {
+            this.IsLoading = true;
+
             if (string.IsNullOrEmpty(this.FirstName))
             {
                 this.dialogService.Alert("Error", "You must enter a firstname.", "Accept");
