@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="10dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/title_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18dp"
+        local:layout_constraintLeft_toLeftOf="parent"
+        local:layout_constraintRight_toRightOf="parent"
+        android:text="Update User"/>
+
+    <LinearLayout
+        android:id="@+id/firstName_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        local:layout_constraintTop_toBottomOf="@+id/title_textView">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:text="First name:"/>
+
+        <EditText
+            android:inputType="textEmailAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            local:MvxBind="Text User.FirstName"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lastName_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        local:layout_constraintTop_toBottomOf="@+id/firstName_layout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:text="Last name:"/>
+
+        <EditText
+            android:inputType="textEmailAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            local:MvxBind="Text User.LastName"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/occupationName_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        local:layout_constraintTop_toBottomOf="@+id/lastName_layout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:text="Occupation:"/>
+
+        <EditText
+            android:inputType="textEmailAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            local:MvxBind="Text User.Occupation"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/countryName_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        local:layout_constraintTop_toBottomOf="@+id/occupationName_layout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:textSize="18dp"
+            android:text="Country:"/>
+
+        <mvvmcross.platforms.android.binding.views.MvxSpinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            local:MvxBind="ItemsSource Countries;SelectedItem SelectedCountry"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/cityName_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        local:layout_constraintTop_toBottomOf="@+id/countryName_layout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:textSize="18dp"
+            android:text="City:"/>
+
+        <mvvmcross.platforms.android.binding.views.MvxSpinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            local:MvxBind="ItemsSource Cities;SelectedItem SelectedCity"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/genderName_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        local:layout_constraintTop_toBottomOf="@+id/cityName_layout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:textSize="18dp"
+            android:text="Gender:"/>
+
+        <mvvmcross.platforms.android.binding.views.MvxSpinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            local:MvxBind="ItemsSource Genders;SelectedItem SelectedGender"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/stratumName_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        local:layout_constraintTop_toBottomOf="@+id/genderName_layout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:text="Stratum:"/>
+
+        <mvvmcross.platforms.android.binding.views.MvxSpinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            local:MvxBind="ItemsSource Stratums;SelectedItem SelectedStratum"/>
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        local:layout_constraintTop_toTopOf="@+id/stratumName_layout"
+        local:layout_constraintBottom_toTopOf="@+id/buttonContainer"
+        local:MvxBind="Visibility Visibility(IsLoading)"
+        android:indeterminateOnly="true"
+        android:paddingTop="30dp"
+        android:paddingLeft="-20dp"
+        android:keepScreenOn="true"
+        android:id="@+id/progressBar2" />
+
+    <LinearLayout
+        android:id="@+id/buttonContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:paddingBottom="10dp"
+        android:paddingLeft="-10dp">
+
+        <Button
+            android:id="@+id/updateButton"
+            android:text="Update"
+            android:layout_width="150dp"
+            android:layout_marginLeft="25dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/primary_button"
+            local:MvxBind="Click UpdateCommand"/>
+
+        <Button
+            android:id="@+id/newPasswordButton"
+            android:text="New password"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/secondary_button"
+            local:MvxBind="Click ChangePasswordCommand"/>
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

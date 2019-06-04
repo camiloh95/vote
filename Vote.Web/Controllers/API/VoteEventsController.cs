@@ -5,7 +5,6 @@
     using Data.Repositories;
     using Data.Entities;
     using Microsoft.AspNetCore.Mvc;
-    using System.Collections.Generic;
 
     [Route("api/[Controller]")]
     public class VoteEventsController : Controller
