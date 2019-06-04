@@ -202,7 +202,7 @@
                 return;
             }
 
-            this.User.Gender = this.SelectedCountry.Id;
+            this.User.Gender = this.SelectedGender.Id;
             this.User.Stratum = this.SelectedStratum.Id;
             this.User.CityId = this.SelectedCity.Id;
 
